@@ -9,4 +9,4 @@ $this->menu=array(
 
 <h1>Редактирование модели "<?php echo $model->brandModel->brand.' <b>'.$model->model_name.'</b>'; ?>"</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form_update', array('model'=>$model, 'modelChar'=>$modelChar)); ?>

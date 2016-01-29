@@ -106,4 +106,39 @@ class Characteristics extends CActiveRecord
 		return parent::model($className);
 	}
     
+    public static function values($idkey, $model_id)
+    {
+        $connection = Yii::app()->db;
+        $char = $connection->createCommand(array(
+            'select' => array('id', 'characteristic_name', 'parent_id', 'unit', 'category_id'),
+            'from' => '{{characteristics}}',
+            'where' => 'category_id = :idkey',
+            'params' => array(':idkey'=>$idkey)
+        ))->queryAll();
+        
+        $id = $char['id'];
+        
+        
+        $result = $connection->createCommand(array(
+            'select' => array('value', 'characteristic_id'),
+            'from' => '{{characteristicValue}}',
+            'where' => array('and', 'model_id = :model_id' , array('in', 'characteristic_id', $id)),
+            'params'=>array(':model_id'=>$model_id)
+        ))->queryAll();
+        
+        foreach ($char as $k=>$item_char)
+        {
+            foreach($result as $item_result)
+            {
+                if($item_char['id'] == $item_result['characteristic_id'])
+                {
+                    $char[$k]['value'] = $item_result['value'];
+                }
+            }
+        }
+              
+        
+        return $char;
+    }
+    
 }

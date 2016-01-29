@@ -2,16 +2,14 @@
 
 class CharacteristicsController extends Controller
 {
+    
+    
+    
 	public function actionIndex($id)
 	{
 		$model = Characteristics::model()->findAll('category_id = :num', array(':num' => $id));
         $models = new Characteristics;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-        $criteria = new CDbCriteria;
-        $criteria->condition = '(parent_id = 0)&(category_id = :id)';
-        $criteria->params = array(':id'=>$id);
-        $list = array(0=>"")+CHtml::listData(Characteristics::model()->findAll($criteria), 'id', 'characteristic_name');
+        $list = $this->listDown($id);
 		if(isset($_POST['Characteristics']))
 		{
             //echo '<pre>';
@@ -27,6 +25,7 @@ class CharacteristicsController extends Controller
 			'model'=>$model,
             'models'=>$models,
             'list'=>$list,
+            'idk'=>$id
 		));
 	}
 
@@ -35,22 +34,25 @@ class CharacteristicsController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate($id, $idk)
 	{
+	    $this->layout='/layouts/column2';
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+        $models = new Characteristics;
+        $list = $this->listDown($idk);
 
 		if(isset($_POST['Characteristics']))
 		{
 			$model->attributes=$_POST['Characteristics'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('index','id'=>$idk));
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+            'models'=>$models,
+            'list'=>$list,
+            'idk'=>$idk
 		));
 	}
 
@@ -59,13 +61,18 @@ class CharacteristicsController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	public function actionDelete($id, $idk)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+        if ($model->parent_id == 0)
+        {
+            Characteristics::model()->deleteAll('parent_id = :id', array(':id'=>$model->id));
+        }
+        $model->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/admin/characteristics/'.$idk));
 	}
 
 	/**
@@ -82,6 +89,15 @@ class CharacteristicsController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+    
+    public function listDown($id)
+    {
+        $criteria = new CDbCriteria;
+        $criteria->condition = '(parent_id = 0)&(category_id = :id)';
+        $criteria->params = array(':id'=>$id);
+        $list = array(0=>"")+CHtml::listData(Characteristics::model()->findAll($criteria), 'id', 'characteristic_name');
+        return $list;
+    }
 
 	/**
 	 * Performs the AJAX validation.

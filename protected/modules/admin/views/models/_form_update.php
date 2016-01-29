@@ -67,9 +67,9 @@
     <?php
           foreach($modelChar as $k=>$item)
           {
-            echo ($item->parent_id!=0   ?   '&nbsp;&nbsp;&nbsp;'   :   '<br/><b><u>').
-            $item->characteristic_name.
-            ($item->parent_id!=0   ?   '<br/>&nbsp;&nbsp;&nbsp;'.CHtml::textField('characteristicValue['.$item->id.']').'<br/>'   :   "</u></b><br/>");
+            echo ($item['parent_id']!=0   ?   '&nbsp;&nbsp;&nbsp;'   :   '<br/><b><u>').
+            $item['characteristic_name'].
+            ($item['parent_id']!=0   ?   '<br/>&nbsp;&nbsp;&nbsp;'.CHtml::textField('characteristicValue['.$item['id'].']', $item['value']).'<br/>'   :   "</u></b><br/>");
           }	       
     ?>
     

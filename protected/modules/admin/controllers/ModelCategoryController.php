@@ -34,7 +34,9 @@ class ModelCategoryController extends Controller
             
 		$this->render('index', array(
         'model' => $model,
-        'modelBrand' => $modelBrand));
+        'modelBrand' => $modelBrand,
+        'idkey'=>$id
+        ));
 	}
 
 }

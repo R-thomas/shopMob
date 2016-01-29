@@ -13,4 +13,4 @@
 
 <h1>Создание модели</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'modelCharVal'=>$modelCharVal, 'modelChar'=>$modelChar)); ?>

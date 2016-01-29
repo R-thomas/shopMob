@@ -1,6 +1,6 @@
 <?php
 $this->menu=array(
-	array('label'=>'Добавить модель', 'url'=>array('/admin/models/create/id/'.$id)),
+	array('label'=>'Добавить модель', 'url'=>array('/admin/models/create/id/'.$id.'/idkey/'.$idkey)),
 );
 
 ?>
@@ -40,6 +40,7 @@ $this->menu=array(
         ),
 		array(
 			'class'=>'CButtonColumn',
+            'updateButtonUrl'=> 'Yii::app()->controller->createUrl("update",array("id"=>$data->primaryKey, "idkey"=>'.$idkey.'))',
 		),
 	),
 )); ?>

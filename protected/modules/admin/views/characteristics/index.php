@@ -13,7 +13,7 @@
 
 	<p class="note">Поля со звездочкой (<span class="required">*</span>) обязательны к заполнению.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary($models); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($models,'characteristic_name'); ?>
@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($models->isNewRecord ? 'Добавить' : 'Сохранить'); ?>
+		<?php echo CHtml::submitButton('Сохранить'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
@@ -55,11 +55,11 @@
     {
         if($item->parent_id == 0)
         {
-            echo '<b>'.$item->characteristic_name.'</b><br/>';
+            echo '<b>'.CHtml::link($item->characteristic_name, '/admin/characteristics/update/id/'.$item->id.'/idk/'.$idk, array('class'=>'characteristic')).'</b><br/>';
             foreach($model as $items)
             {
                 if ($items->parent_id == $item->id)
-                echo '&nbsp;&nbsp;&nbsp;'.$items->characteristic_name.($items->unit?',':'').'&nbsp;&nbsp;<i>'.$items->unit.'</i><br/>';
+                echo '&nbsp;&nbsp;&nbsp;'.CHtml::link($items->characteristic_name, '/admin/characteristics/update/id/'.$items->id.'/idk/'.$idk, array('class'=>'characteristic')).($items->unit?',':'').'&nbsp;&nbsp;<i>'.$items->unit.'</i><br/>';
             }
         }    
     }

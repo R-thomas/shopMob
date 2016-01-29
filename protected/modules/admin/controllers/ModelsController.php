@@ -60,27 +60,50 @@ class ModelsController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id)
+	public function actionCreate($id, $idkey)
 	{
 		$model=new Models;
         
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'category_id = :idkey';
+        $criteria->params = array(':idkey'=>$idkey);
+        
+        $modelChar = Characteristics::model()->findAll($criteria);
+        
+        
+        
+        
 		if(isset($_POST['Models']))
 		{
 			$model->attributes=$_POST['Models'];
             $model->brand_id=$id;
 			if($model->save())
             {
-                Yii::app()->user->setFlash('status','Модель добавлена');
-                $this->refresh();
+                $modelId = $model->id;
             }	
-		}
+		
+        
+            if(isset($_POST['characteristicValue']))
+            {
+                foreach ($_POST['characteristicValue'] as $k=>$item)
+                {
+                    $modelCharVal = new CharacteristicValue;
+                    $modelCharVal->value = $item; 
+                    $modelCharVal->characteristic_id = $k;
+                    $modelCharVal->model_id = $modelId;
+                    $save = $modelCharVal->save();    
+                }
+                if($save)
+                $this->refresh();    
+            }
+        
+        }
 
 		$this->render('create',array(
 			'model'=>$model,
             'id'=>$id,
+            'modelCharVal'=>$modelCharVal,
+            'modelChar'=>$modelChar
 		));
 	}
 
@@ -89,22 +112,38 @@ class ModelsController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate($id, $idkey)
 	{
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
+        $modelChar = Characteristics::values($idkey, $id);
 		if(isset($_POST['Models']))
 		{
 		    $model->attributes=$_POST['Models'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{
+                if(isset($_POST['characteristicValue']))
+                {
+                    foreach ($_POST['characteristicValue'] as $k=>$item)
+                    {
+                        $criteria = new CDbCriteria;
+                        $criteria->condition = '(characteristic_id = :k)&(model_id = :id)';
+                        $criteria->params = array(':k'=>$k, ':id'=>$id);
+                        $modelCharVal = CharacteristicValue::model()->find($criteria);
+                        $modelCharVal->value = $item;
+                        $save = $modelCharVal->save(false);    
+                    }
+                    if($save)
+                    $this->refresh();    
+                }
+			}
 		}
+        
+        
 
 		$this->render('update',array(
 			'model'=>$model,
+            'idkey'=>$idkey,
+            'modelChar'=>$modelChar
 		));
 	}
 
@@ -125,48 +164,33 @@ class ModelsController extends Controller
 	/**
 	 * Manages all models.
 	 */
-	public function actionIndex($id)
+	public function actionIndex($id, $idkey)
 	{
+	    $models = Models::model()->findByPk($_POST['id']);
 	    if (isset($_POST['top'])&isset($_POST['id']))
         {
-            $models = Models::model()->findByPk($_POST['id']);
-            if ($models->top == 0)
-                $models->top = 1;
-            else
-                $models->top = 0;    
+            $models->top == 0 ? $models->top = 1 : $models->top = 0;    
             if($models->save())
                 $this->refresh();
         }
         
         if (isset($_POST['promotion'])&isset($_POST['id']))
         {
-            $models = Models::model()->findByPk($_POST['id']);
-            if ($models->promotion == 0)
-                $models->promotion = 1;
-            else
-                $models->promotion = 0;    
+            $models->promotion == 0 ? $models->promotion = 1 : $models->promotion = 0;    
             if($models->save())
                 $this->refresh();
         }
         
         if (isset($_POST['novelty'])&isset($_POST['id']))
         {
-            $models = Models::model()->findByPk($_POST['id']);
-            if ($models->novelty == 0)
-                $models->novelty = 1;
-            else
-                $models->novelty = 0;    
+            $models->novelty == 0 ? $models->novelty = 1 : $models->novelty = 0;    
             if($models->save())
                 $this->refresh();
         }
         
         if (isset($_POST['bestPrice'])&isset($_POST['id']))
         {
-            $models = Models::model()->findByPk($_POST['id']);
-            if ($models->bestPrice == 0)
-                $models->bestPrice = 1;
-            else
-                $models->bestPrice = 0;    
+            $models->bestPrice == 0?$models->bestPrice = 1:$models->bestPrice = 0;    
             if($models->save())
                 $this->refresh();
         }
@@ -178,7 +202,8 @@ class ModelsController extends Controller
 
 		$this->render('index',array(
 			'model'=>$model,
-            'id'=>$id
+            'id'=>$id,
+            'idkey'=>$idkey
 		));
 	}
 

@@ -30,11 +30,10 @@
 <br />
 
 <?php
-    
     foreach ($model as $brands)
     {
         echo '<div class = "admin_p">'.CHtml::link(CHtml::image("/upload/images/" . $brands->brandis->img, $brands->brandis->brand, array('style' => 'max-height:100px; max-width:250px; border:1px solid #c9e0ed; margin:10px') ), 
-                                                   '/admin/models/'.$brands->brandis->id).
+                                                   '/admin/models/index/id/'.$brands->brandis->id.'/idkey/'.$idkey).
         CHtml::submitButton('', array('name'=>'ids', 'value'=> $brands->brandis->id, 'class'=>'image_button'))
         .'</div>';
     }

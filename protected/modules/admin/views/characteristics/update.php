@@ -1,21 +1,35 @@
 <?php
-/* @var $this CharacteristicsController */
-/* @var $model Characteristics */
-
-$this->breadcrumbs=array(
-	'Characteristics'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
 
 $this->menu=array(
-	array('label'=>'List Characteristics', 'url'=>array('index')),
-	array('label'=>'Create Characteristics', 'url'=>array('create')),
-	array('label'=>'View Characteristics', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Characteristics', 'url'=>array('admin')),
+	array('label'=>'Удалить характеристику', 'url'=>array('delete', 'id'=>$model->id, 'idk'=>$idk), 'linkOptions' => array('class'=>'del_char')),
+	array('label'=>'Все характеристкики', 'url'=>array('/admin/characteristics', 'id'=>$idk)),
 );
 ?>
 
-<h1>Update Characteristics <?php echo $model->id; ?></h1>
+<?php
+    if($model->parent_id == 0)
+    {
+    	Yii::app()->clientScript->registerScript('', "
+            $(document).ready(function(){
+        	    $('.del_char').on('click', function(){
+        	       if(!confirm('Внимание! Если Вы удалите родительскую характеристику, то удалятся все подхарактеристики? Вы уверены, что хотите удалить характеристику?')) return false;
+        	    })
+            });
+        ");
+    }
+    else
+    {
+        Yii::app()->clientScript->registerScript('', "
+            $(document).ready(function(){
+        	    $('.del_char').on('click', function(){
+        	       if(!confirm('Вы уверены?')) return false;
+        	    })
+            });
+        ");
+    }
+?>
+<h1>Редактирование характеристики "<?php echo $model->characteristic_name; ?>"</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form_update', array('model'=>$model,
+                                          'models'=>$models,
+                                          'list'=>$list,)); ?>

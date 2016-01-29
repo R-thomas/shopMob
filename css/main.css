@@ -262,8 +262,66 @@ div.search-form
 
 .right_block{
     float: right;
-    width: 45%;
+    width: 40%;
     padding: 30px;
     border: 1px solid #ccc;
     margin-bottom: 30px;
+}
+
+.characteristic{
+    color: #000;
+    text-decoration: none;
+}
+
+.characteristic:hover{
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.cl1{
+    background-color: red;
+}
+
+.cl2{
+    background-color: blue;
+}
+
+.cl3{
+    background-color: green;
+}
+
+.wrap{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.cl4{
+    background-color: pink;
+}
+
+.sc{
+    display: none;
+}
+
+@media screen and (max-width: 1000px)
+{
+    .wrap{
+    width: 100%;
+}
+}
+
+
+@media screen and (max-width: 767px)
+{
+    .sc{
+    display: block;
+}
+}
+
+@media screen and (max-width: 479px)
+{
+    .sc{
+    display: none;
+}
 }
