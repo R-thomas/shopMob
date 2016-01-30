@@ -7,7 +7,7 @@
 <?php endif; ?>
 
 <?php $this->menu=array(
-	array('label'=>'Управление моделями', 'url'=>array('/admin/models/'.$id)),
+	array('label'=>'Управление моделями', 'url'=>array('/admin/models/index/category/'.$category.'/brand/'.$brand)),
 );
 ?>
 

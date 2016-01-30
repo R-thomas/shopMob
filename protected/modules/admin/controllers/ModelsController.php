@@ -49,10 +49,13 @@ class ModelsController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($category, $id, $brand)
 	{
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+            'id'=>$id,
+            'category'=>$category,
+            'brand'=>$brand
 		));
 	}
 
@@ -60,13 +63,13 @@ class ModelsController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate($id, $idkey)
+	public function actionCreate($category, $brand)
 	{
 		$model=new Models;
         
         $criteria = new CDbCriteria;
-        $criteria->condition = 'category_id = :idkey';
-        $criteria->params = array(':idkey'=>$idkey);
+        $criteria->condition = 'category_id = :category';
+        $criteria->params = array(':category'=>$category);
         
         $modelChar = Characteristics::model()->findAll($criteria);
         
@@ -76,7 +79,7 @@ class ModelsController extends Controller
 		if(isset($_POST['Models']))
 		{
 			$model->attributes=$_POST['Models'];
-            $model->brand_id=$id;
+            $model->brand_id=$brand;
 			if($model->save())
             {
                 $modelId = $model->id;
@@ -101,7 +104,8 @@ class ModelsController extends Controller
 
 		$this->render('create',array(
 			'model'=>$model,
-            'id'=>$id,
+            'brand'=>$brand,
+            'category'=>$category,
             'modelCharVal'=>$modelCharVal,
             'modelChar'=>$modelChar
 		));
@@ -112,10 +116,10 @@ class ModelsController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id, $idkey)
+	public function actionUpdate($category, $id, $brand)
 	{
 		$model=$this->loadModel($id);
-        $modelChar = Characteristics::values($idkey, $id);
+        $modelChar = Characteristics::values($category, $id);
 		if(isset($_POST['Models']))
 		{
 		    $model->attributes=$_POST['Models'];
@@ -142,8 +146,9 @@ class ModelsController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
-            'idkey'=>$idkey,
-            'modelChar'=>$modelChar
+            'category'=>$category,
+            'modelChar'=>$modelChar,
+            'brand'=>$brand
 		));
 	}
 
@@ -152,19 +157,19 @@ class ModelsController extends Controller
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	public function actionDelete($category, $brand, $id)
 	{
 	    $model = $this->loadModel($id);
 		$model->delete();
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/admin/models/'.$model->brandModel->id));
+			$this->redirect(array('/admin/models/index/category/'.$category.'/brand/'.$brand));
 	}
 
 	
 	/**
 	 * Manages all models.
 	 */
-	public function actionIndex($id, $idkey)
+	public function actionIndex($brand, $category)
 	{
 	    $models = Models::model()->findByPk($_POST['id']);
 	    if (isset($_POST['top'])&isset($_POST['id']))
@@ -202,8 +207,8 @@ class ModelsController extends Controller
 
 		$this->render('index',array(
 			'model'=>$model,
-            'id'=>$id,
-            'idkey'=>$idkey
+            'brand'=>$brand,
+            'category'=>$category
 		));
 	}
 

@@ -74,6 +74,7 @@ class Models extends CActiveRecord
 			'promotion' => 'Акция',
 			'novelty' => 'Новинка',
 			'bestPrice' => 'Лучшая цена',
+            'Charact' => 'Характеристики'
 		);
 	}
 
@@ -251,5 +252,35 @@ class Models extends CActiveRecord
             
             return $array;
         }
+    }
+    
+    public static function charView($idkey, $model_id)
+    {
+        $array =  Characteristics::values($idkey, $model_id);
+        $arr = '';
+        foreach ($array as $item)
+        {
+            if ($item['parent_id'] == 0)
+            {
+                $arr = $arr
+                       .'<b>'
+                       .$item['characteristic_name']
+                       .'</b><br/>';
+            }
+            else
+            {
+                $arr = $arr
+                       .'&nbsp;&nbsp;'
+                       .$item['characteristic_name']
+                       .'&nbsp;&nbsp;-&nbsp;&nbsp;'
+                       .'<b>'
+                       .$item['value']
+                       .'</b>'
+                       .'&nbsp;&nbsp;'
+                       .$item['unit']
+                       .'<br/>';
+            }
+        }
+        return $arr;
     }
 }

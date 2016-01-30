@@ -1,6 +1,6 @@
 <?php
 $this->menu=array(
-	array('label'=>'Добавить модель', 'url'=>array('/admin/models/create/id/'.$id.'/idkey/'.$idkey)),
+	array('label'=>'Добавить модель', 'url'=>array('/admin/models/create/category/'.$category.'/brand/'.$brand)),
 );
 
 ?>
@@ -20,7 +20,7 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'models-grid',
     'selectableRows'=>2,
-	'dataProvider'=>$model->search($id),
+	'dataProvider'=>$model->search($brand),
 	'filter'=>$model,
 	'columns'=>array(
         array('class' => 'CCheckBoxColumn',
@@ -40,7 +40,9 @@ $this->menu=array(
         ),
 		array(
 			'class'=>'CButtonColumn',
-            'updateButtonUrl'=> 'Yii::app()->controller->createUrl("update",array("id"=>$data->primaryKey, "idkey"=>'.$idkey.'))',
+            'viewButtonUrl'=> 'Yii::app()->controller->createUrl("view",array("category"=>'.$category.', "brand"=>'.$brand.',"id"=>$data->primaryKey))',
+            'updateButtonUrl'=> 'Yii::app()->controller->createUrl("update",array("category"=>'.$category.', "brand"=>'.$brand.', "id"=>$data->primaryKey))',
+            'deleteButtonUrl'=> 'Yii::app()->controller->createUrl("delete",array("category"=>'.$category.', "brand"=>'.$brand.', "id"=>$data->primaryKey))',
 		),
 	),
 )); ?>

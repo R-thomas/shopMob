@@ -2,8 +2,8 @@
 
 
 $this->menu=array(
-	array('label'=>'Карточка товара', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Управление моделями', 'url'=>array('/admin/models/'.$model->brandModel->id)),
+	array('label'=>'Карточка товара', 'url'=>array('view', 'category'=>$category, 'brand'=>$brand, 'id'=>$model->id)),
+	array('label'=>'Управление моделями', 'url'=>array('/admin/models/index/category/'.$category.'/brand/'.$model->brandModel->id)),
 );
 ?>
 

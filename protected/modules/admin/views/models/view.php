@@ -1,9 +1,9 @@
 <?php
 
 $this->menu=array(
-	array('label'=>'Редактировать модель', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Удалить модель', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Управление моделями', 'url'=>array('/admin/models/'.$model->brandModel->id)),
+	array('label'=>'Редактировать модель', 'url'=>array('update', 'category'=>$category, 'brand'=>$brand, 'id'=>$model->id)),
+	array('label'=>'Удалить модель', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete', 'category'=>$category, 'brand'=>$brand, 'id'=>$model->id),'confirm'=>'Вы уверены, что хотите удалить эту модель?')),
+	array('label'=>'Управление моделями', 'url'=>array('/admin/models/index/category/'.$category.'/brand/'.$brand)),
 );
 ?>
 
@@ -30,6 +30,11 @@ $this->menu=array(
             'name'=>'photo_other',
             'type'=>'raw',
             'value'=>Models::images($model->id),
+        ),
+        array(
+            'name'=>'Charact',
+            'type'=>'raw',
+            'value'=>Models::charView($category, $id)
         )
 	),
 )); ?>
