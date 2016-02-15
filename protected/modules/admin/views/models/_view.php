@@ -12,7 +12,11 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('model_name')); ?>:</b>
 	<?php echo CHtml::encode($data->model_name); ?>
 	<br />
-
+    
+    <b><?php echo CHtml::encode($data->getAttributeLabel('old_price')); ?>:</b>
+	<?php echo CHtml::encode($data->old_price); ?>
+	<br />
+    
 	<b><?php echo CHtml::encode($data->getAttributeLabel('price')); ?>:</b>
 	<?php echo CHtml::encode($data->price); ?>
 	<br />

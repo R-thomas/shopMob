@@ -10,7 +10,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Поля со звездочкой (<span class="required">*</span>) обязательны к заполнению</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -18,6 +18,12 @@
 		<?php echo $form->labelEx($model,'model_name'); ?>
 		<?php echo $form->textField($model,'model_name',array('size'=>60,'maxlength'=>255, 'autocomplete'=>'off')); ?>
 		<?php echo $form->error($model,'model_name'); ?>
+	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'old_price'); ?>
+		<?php echo $form->textField($model,'old_price', array('autocomplete'=>'off')); ?>
+		<?php echo $form->error($model,'old_price'); ?>
 	</div>
 
 	<div class="row">

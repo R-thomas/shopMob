@@ -7,6 +7,11 @@ body
 	background: #EFEFEF;
 }
 
+.row{
+    padding: 0;
+    margin: 0;
+}
+
 #page
 {
 	margin-top: 5px;
@@ -279,49 +284,3 @@ div.search-form
     text-decoration: none;
 }
 
-.cl1{
-    background-color: red;
-}
-
-.cl2{
-    background-color: blue;
-}
-
-.cl3{
-    background-color: green;
-}
-
-.wrap{
-    width: 1000px;
-    margin: 0 auto;
-}
-
-.cl4{
-    background-color: pink;
-}
-
-.sc{
-    display: none;
-}
-
-@media screen and (max-width: 1000px)
-{
-    .wrap{
-    width: 100%;
-}
-}
-
-
-@media screen and (max-width: 767px)
-{
-    .sc{
-    display: block;
-}
-}
-
-@media screen and (max-width: 479px)
-{
-    .sc{
-    display: none;
-}
-}

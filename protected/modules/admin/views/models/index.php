@@ -27,6 +27,7 @@ $this->menu=array(
             'id' => 'id'
         ),
 		'model_name',
+        'old_price',
 		'price',
         'quantity',
         'photo'=>array(

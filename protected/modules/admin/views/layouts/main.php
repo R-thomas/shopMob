@@ -30,7 +30,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'К сайту', 
-                      'url'=>array('/site/index')),
+                      'url'=>array('/main/index')),
                 array('label'=>'Категории', 
                       'url'=>array('/admin/category'), 
                       'active' => Yii::app()->controller->id =='category' || 
@@ -40,6 +40,12 @@
                       'active' => Yii::app()->controller->id == 'goods' || 
                                   Yii::app()->controller->id =='modelCategory' || 
                                   Yii::app()->controller->id =='models'),
+                array('label'=>'Слайдер', 
+                      'url'=>array('/admin/banner'), 
+                      'active' => Yii::app()->controller->id == 'banner'),  
+                array('label'=>'Новости', 
+                      'url'=>array('/admin/news'), 
+                      'active' => Yii::app()->controller->id == 'news'),                      
 				array('label'=>'Login', 
                       'url'=>array('/site/login'), 
                       'visible'=>Yii::app()->user->isGuest),

@@ -19,6 +19,12 @@
 		<?php echo $form->textField($model,'model_name',array('size'=>60,'maxlength'=>255, 'autocomplete'=>'off')); ?>
 		<?php echo $form->error($model,'model_name'); ?>
 	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'old_price'); ?>
+		<?php echo $form->textField($model,'old_price', array('autocomplete'=>'off')); ?>
+		<?php echo $form->error($model,'old_price'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'price'); ?>

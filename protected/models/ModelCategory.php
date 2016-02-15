@@ -43,6 +43,7 @@ class ModelCategory extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'brandis' => array(self::BELONGS_TO, 'Brand', 'brand_id'),
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id')
 		);
 	}
 

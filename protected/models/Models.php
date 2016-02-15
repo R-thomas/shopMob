@@ -35,7 +35,7 @@ class Models extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('model_name, price', 'required'),
-			array('price, brand_id, quantity, top, promotion, novelty, bestPrice', 'numerical', 'integerOnly'=>true),
+			array('price, old_price, brand_id, quantity, top, promotion, novelty, bestPrice', 'numerical', 'integerOnly'=>true),
 			array('model_name', 'length', 'max'=>255),
             array('photo','file','types'=>'jpg, jpeg, png', 'message'=>'Добавьте изображение', 'allowEmpty'=>'true'),
             array('photo_other','file','types'=>'jpg, jpeg, png', 'allowEmpty'=>'true'),
@@ -54,6 +54,7 @@ class Models extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'brandModel' => array(self::BELONGS_TO, 'Brand', 'brand_id'),
+            'categoryId' => array(self::BELONGS_TO, 'modelCategory', 'brand_id')
 		);
 	}
 
@@ -66,6 +67,7 @@ class Models extends CActiveRecord
 			'id' => 'ID',
 			'model_name' => 'Название модели',
 			'price' => 'Цена',
+            'old_price' => 'Старая цена',
 			'brand_id' => 'Бренд',
 			'photo' => 'Главная фотография',
             'photo_other' => 'Дополнительные фотографии',
@@ -282,5 +284,17 @@ class Models extends CActiveRecord
             }
         }
         return $arr;
+    }
+    
+    public static function randomId()
+    {
+        $connection = Yii::app()->db;  
+        $sql = 'SELECT cms_models.id, model_name, price, old_price, photo, cms_category.category_name 
+                FROM cms_models JOIN cms_brand JOIN cms_modelCategory JOIN cms_category
+                                ON cms_models.brand_id = cms_brand.id AND  cms_models.brand_id = cms_modelCategory.id AND cms_modelCategory.category_id = cms_category.id
+                ORDER BY RAND() 
+                LIMIT 4';      
+        $result = $connection->createCommand($sql)->queryAll();
+        return $result;
     }
 }

@@ -1,0 +1,188 @@
+.content_index{
+    background-color: #f8f8f8;
+}
+
+.content_slider{
+    padding: 40px 20px 0 20px;
+}
+
+.index_banner img{
+    height: 282px !important;
+}
+
+.content_index_menu ul li a{
+    font-size: 14px;
+}
+
+.content_index_menu{
+    padding: 40px 20px 40px 20px;
+}
+
+/* Популярные товары (повторяется)*/
+
+.content_index_popular{
+    padding: 0 20px 40px 20px;
+}
+
+.content_index_popular_container{
+    border: 1px solid #dbdbdb;
+}
+
+.content_index_popular_cont{
+    background-color: #fff !important;
+}
+
+.content_index_popular_header{
+    height: 60px;
+    background-color: #f0f0f0;
+    padding: 22px 20px 0 20px;
+    font: bold 18px arial, sans-serif;
+    color: #676767;
+}
+
+.content_index_img{
+    text-align: center;
+    vertical-align: middle;
+    height: 285px;
+    line-height: 285px;
+    margin: 0 auto;
+}
+
+
+.content_first_item, .content_second_item, .content_third_item, .content_fourth_item{
+    height: 460px;
+    
+}
+
+.content_first_item:hover, .content_second_item:hover, .content_third_item:hover, .content_fourth_item:hover{
+    border: 1px solid #dbdbdb;    
+    box-shadow: 0 0 10px #ccc;
+}
+
+.content_first_item img, .content_second_item img, .content_third_item img, .content_fourth_item img{
+    max-height: 90%;
+    max-width: 90%;
+    vertical-align: middle;
+}
+
+.content_first_item a, .content_second_item a, .content_third_item a, .content_fourth_item a{
+    margin-top: 15px;
+    color: #b2b2b2;
+} 
+
+.content_tel_title a{
+    font: 18px tahoma, sans-serif;
+    color: #676767;
+}
+
+.content_tel_title a:hover{
+    color: #eb1d24;
+}
+
+.content_tel_title{
+    margin-top: 18px;
+}
+
+.content_description{
+    height: 95px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.content_old_price{
+    font: 18px tahoma, sans-serif;
+    color: #d0d0d0;
+    margin-top: 5px;
+    margin-bottom: 0;
+    height: 20px;
+}
+
+.content_price{
+    font: bold 18px tahoma, sans-serif;
+    color: #676767;
+}
+
+.content_button_buy{
+    width: 140px;
+    height: 35px;
+    background-color: #eb1d24;
+    font: 18px tahoma, sans-serif;
+    color: #fff;
+    text-align: center;
+    padding-top: 5px;
+    float: right;
+    margin-top: -36px;
+    cursor: pointer;
+}
+
+.content_news{
+    padding: 0 20px 40px 20px;
+}
+
+.content_news_header{
+    height: 60px;
+    background-color: #f0f0f0;
+    padding: 22px 20px 0 20px;
+    font: bold 18px arial, sans-serif;
+    color: #676767;
+}
+
+.content_news_cont{
+    padding: 0;
+    height: 300px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+}
+
+.content_news_widget{
+    padding: 0;
+    height: 300px;
+    border-top: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    background-color: #fff;
+}
+
+#vk_groups{
+    margin: 20px auto 0 auto;
+}
+
+.content_news_text h3{
+    font:18px tahoma, sans-serif;
+    color: #676767;
+}
+
+.content_news_date{
+    font: 10px tahoma, sans-serif;
+    color: #b2b2b2;
+}
+
+.content_news_textnews{
+    font: 12px tahoma, sans-serif;
+    color: #676767;
+}
+
+@media screen and (min-width: 768px){
+    .content_fourth_item{
+        display:none;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .content_news_widget{
+        border-left: 1px solid #dbdbdb;
+        border-right: 1px solid #dbdbdb;
+        border-bottom: 1px solid #dbdbdb;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .content_button_buy{
+        width: 95px;
+    }
+}
+
+@media screen and (max-width: 479px){
+    .content_fourth_item{
+        display:none;
+    }
+}
