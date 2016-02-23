@@ -27,25 +27,19 @@
         
         
             <div class="col-md-40 col-sm-120 col-xs-120 goods_filter">
-                <div class="goods_filter_selected goods_filter_selected_nopadding">
-                    <p>Выбранные параметры <span class="glyphicon glyphicon-triangle-bottom"></p>
-                </div>
-                <div class="filter_selected">
-                    <div class="selected_item">
-                        <span class="glyphicon glyphicon-remove-sign"></span>
-                         Диагональ 
-                         <span class="selected_value">5 дюймов</span>
-                    </div>
-                    <div class="selected_item">
-                        <span class="glyphicon glyphicon-remove-sign"></span>
-                         Диагональ 
-                         <span class="selected_value">5 дюймов</span>
-                    </div>
-                    <div class="filter_selected_remove_all">
-                        Сбросить все фильтры
-                    </div>
-                </div>
                 
+                <a href="<?php echo $this->createAbsoluteUrl('main/goods/category_id/'.$category_id); ?>"><div class="filter_selected_remove_all" <?php echo ''.(($a != '') ? '' : 'style="display:none;"').'';?> >
+                    Сбросить все фильтры
+                </div></a>
+                
+                
+                <?php 
+                    echo CHtml::form('', 'get', array('id'=>'my_form'));
+                	echo Characteristics::filterRender($category_id, $models);
+                    echo CHtml::submitButton('Отправить' , array('style' => 'display:none'));
+                    echo CHtml::endForm();
+                ?>
+                <!--
                 <div class="goods_filter_selected">
                     <p>Экран <span class="glyphicon glyphicon-triangle-bottom"></p>
                 </div>
@@ -112,48 +106,71 @@
                          </div>
                     </div>
                     
-                </div>
+                </div>-->
             </div>
             <!-- Товары -->
             <div class="col-md-80 col-sm-120 col-xs-120 goods_content_goods" id="goods_content_goods">
                 <div class="row">
-                    <div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
-                        <div class="content_index_img"><img src="../../../images/tel1.jpg" /></div>
-                        <div class="content_description"><a href="#">Телефоны></a>
-                            <div class="content_tel_title"><a href="#">Samsug galaxy A 50000</a></div>    
-                        </div>
-                        <p class="content_old_price"><s>25000 р</s></p>
-                        <p class="content_price">19000 р</p>
-                        <div class="content_button_buy">Купить</div>   
-                    </div>
-                    <div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_second_item">
-                        <div class="content_index_img"><img src="../../../images/tel2.jpg" /></div>
-                        <div class="content_description"><a href="#">Телефоны></a>
-                            <div class="content_tel_title"><a href="#">Samsug galaxy A 50000</a></div>    
-                        </div>
-                        <p class="content_old_price"><s>25000 р</s></p>
-                        <p class="content_price">19000 р</p>
-                        <div class="content_button_buy">Купить</div> 
-                    </div>
-                    <div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
-                        <div class="content_index_img"><img src="../../../images/tel1.jpg" /></div>
-                        <div class="content_description"><a href="#">Телефоны></a>
-                            <div class="content_tel_title"><a href="#">Samsug galaxy A 50000</a></div>    
-                        </div>
-                        <p class="content_old_price"><s>25000 р</s></p>
-                        <p class="content_price">19000 р</p>
-                        <div class="content_button_buy">Купить</div>   
-                    </div>
-                    <div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_second_item">
-                        <div class="content_index_img"><img src="../../../images/tel2.jpg" /></div>
-                        <div class="content_description"><a href="#">Телефоны></a>
-                            <div class="content_tel_title"><a href="#">Samsug galaxy A 50000</a></div>    
-                        </div>
-                        <p class="content_old_price"><s>25000 р</s></p>
-                        <p class="content_price">19000 р</p>
-                        <div class="content_button_buy">Купить</div> 
-                    </div>
+                    
+                    
+                    <?php 
+                          $j = 1;  
+                          foreach ($model as $goods)
+                          {
+                            
+                            if ($j == 1)
+                            {
+                                
+                                echo '<div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
+                                      <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
+                                      <div class="content_description"><a href="#">'.$goods->categoryId->category->category_name.'></a>
+                                          <div class="content_tel_title"><a href="#">'.$goods->brandModel->brand
+                                                                                      .' '.$goods->model_name
+                                                                                      .'</a></div>    
+                                      </div>
+                                      <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
+                                      <p class="content_price">'.$goods->price.' р</p>
+                                      <div class="content_button_buy">Купить</div>   
+                                  </div>';
+                            }
+                            
+                            
+                            
+                            if ($j == 2)
+                            {
+                                $j = 0;
+                                echo '<div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_second_item">
+                                      <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
+                                      <div class="content_description"><a href="#">'.$goods->categoryId->category->category_name.'></a>
+                                          <div class="content_tel_title"><a href="#">'.$goods->brandModel->brand
+                                                                                      .' '.$goods->model_name
+                                                                                      .'</a></div>    
+                                      </div>
+                                      <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
+                                      <p class="content_price">'.$goods->price.' р</p>
+                                      <div class="content_button_buy">Купить</div>   
+                                  </div>';
+                            }
+                            
+                            
+                            $j++;
+                          }  
+                    
+                    ?>
+                    
+                    
                </div> 
+               <?$this->widget('CLinkPager', array(
+                        'pages' => $pages,
+                        'header' => false,
+                        'nextPageLabel' => '>',
+                        'nextPageCssClass' => 'goods_next_page',
+                        'prevPageLabel' => '<',
+                        'previousPageCssClass' => 'goods_prev_page',
+                        'selectedPageCssClass' => 'goods_selected_page',
+                        'internalPageCssClass' => 'goods_internal_page',
+                        'maxButtonCount' => 7,
+                    ))?>
             </div>
         </div>
     </div>

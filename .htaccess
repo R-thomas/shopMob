@@ -1,4 +1,5 @@
 AddDefaultCharset UTF-8
+
 RewriteEngine on
 
 # не позволять httpd отдавать файлы, начинающиеся с точки (.htaccess, .svn, .git и прочие)
@@ -7,9 +8,4 @@ RedirectMatch 403 /\..*$
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 # иначе отправлять запрос на файл index.php
-RewriteRule . index.php
-
-# сжатие text, html, javascript, css, xml:
-<ifModule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml application/xhtml+xml text/css text/javascript application/javascript application/x-javascript
-</ifModule>
+RewriteRule ^(.*)\?*$ index.php/$1 [L,QSA] 

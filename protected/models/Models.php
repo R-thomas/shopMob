@@ -34,14 +34,14 @@ class Models extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('model_name, price', 'required'),
+			array('model_name, price, vendor_code', 'required'),
 			array('price, old_price, brand_id, quantity, top, promotion, novelty, bestPrice', 'numerical', 'integerOnly'=>true),
-			array('model_name', 'length', 'max'=>255),
+			array('model_name, vendor_code', 'length', 'max'=>255),
             array('photo','file','types'=>'jpg, jpeg, png', 'message'=>'Добавьте изображение', 'allowEmpty'=>'true'),
             array('photo_other','file','types'=>'jpg, jpeg, png', 'allowEmpty'=>'true'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, model_name, price, brand_id, photo, quantity, top, promotion, novelty, bestPrice', 'safe', 'on'=>'search'),
+			array('id, vendor_code, model_name, price, brand_id, photo, quantity, description, accessories, top, promotion, novelty, bestPrice', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +54,7 @@ class Models extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'brandModel' => array(self::BELONGS_TO, 'Brand', 'brand_id'),
-            'categoryId' => array(self::BELONGS_TO, 'modelCategory', 'brand_id')
+            'categoryId' => array(self::BELONGS_TO, 'ModelCategory', 'brand_id')
 		);
 	}
 
@@ -65,6 +65,7 @@ class Models extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+            'vendor_code' => 'Артикул',
 			'model_name' => 'Название модели',
 			'price' => 'Цена',
             'old_price' => 'Старая цена',
@@ -72,6 +73,8 @@ class Models extends CActiveRecord
 			'photo' => 'Главная фотография',
             'photo_other' => 'Дополнительные фотографии',
 			'quantity' => 'Количество',
+            'description' => 'Описание',
+            'accessories' => 'Сопутствующие товары',
 			'top' => 'Топ продаж',
 			'promotion' => 'Акция',
 			'novelty' => 'Новинка',
@@ -99,13 +102,16 @@ class Models extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+        $criteria->compare('vendor_code',$this->vendor_code,true);
 		$criteria->compare('model_name',$this->model_name,true);
 		$criteria->compare('price',$this->price);
 		$criteria->compare('brand_id',$this->brand_id);
 		$criteria->compare('photo',$this->photo,true);
         $criteria->compare('photo_other',$this->photo_other,true);
 		$criteria->compare('quantity',$this->quantity);
+        $criteria->compare('description',$this->description, true);
 		$criteria->compare('top',$this->top);
+        $criteria->compare('accessories',$this->accessories, true);
 		$criteria->compare('promotion',$this->promotion);
 		$criteria->compare('novelty',$this->novelty);
 		$criteria->compare('bestPrice',$this->bestPrice);
@@ -134,6 +140,7 @@ class Models extends CActiveRecord
     {
         if (parent::beforeSave())
         {
+            
             if (($this->scenario=='insert' || $this->scenario=='update') && ($file = CUploadedFile::getInstance($this, 'photo')))
             {
                 $extension = strtolower($file->extensionName);
@@ -185,6 +192,12 @@ class Models extends CActiveRecord
     }
     
     protected function afterFind(){
+        if (($this->scenario=='update')&&($this->accessories))
+        {
+            $arr = json_decode($this->accessories);
+            $this->accessories = implode(', ', $arr);
+        }
+        
         if (($this->scenario=='update') && ($file = CUploadedFile::getInstance($this, 'photo')))
         $this->deleteDocumentPhoto();
         if (($this->scenario=='update') && ($files = CUploadedFile::getInstancesByName('photo_other')))
@@ -289,7 +302,7 @@ class Models extends CActiveRecord
     public static function randomId()
     {
         $connection = Yii::app()->db;  
-        $sql = 'SELECT cms_models.id, model_name, price, old_price, photo, cms_category.category_name 
+        $sql = 'SELECT cms_models.id, model_name, price, old_price, photo, cms_category.category_name, cms_brand.brand 
                 FROM cms_models JOIN cms_brand JOIN cms_modelCategory JOIN cms_category
                                 ON cms_models.brand_id = cms_brand.id AND  cms_models.brand_id = cms_modelCategory.id AND cms_modelCategory.category_id = cms_category.id
                 ORDER BY RAND() 

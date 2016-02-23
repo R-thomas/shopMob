@@ -21,6 +21,12 @@
 	</div>
     
     <div class="row">
+		<?php echo $form->labelEx($model,'vendor_code'); ?>
+		<?php echo $form->textField($model,'vendor_code',array('size'=>60,'maxlength'=>255, 'autocomplete'=>'off')); ?>
+		<?php echo $form->error($model,'vendor_code'); ?>
+	</div>
+    
+    <div class="row">
 		<?php echo $form->labelEx($model,'old_price'); ?>
 		<?php echo $form->textField($model,'old_price', array('autocomplete'=>'off')); ?>
 		<?php echo $form->error($model,'old_price'); ?>
@@ -68,6 +74,19 @@
                 */
         ?>
 	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textArea($model,'description'); ?>
+		<?php echo $form->error($model,'description'); ?>
+	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'accessories'); ?>
+		<?php echo $form->textArea($model,'accessories'); ?>
+		<?php echo $form->error($model,'accessories'); ?>
+	</div>
+    
     <hr />
     <h2>Характеристики</h2>    
     <?php

@@ -10,7 +10,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Поля со звездочкой (<span class="required">*</span>) обязательны к заполнению.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -18,6 +18,12 @@
 		<?php echo $form->labelEx($model,'model_name'); ?>
 		<?php echo $form->textField($model,'model_name',array('size'=>60,'maxlength'=>255, 'autocomplete'=>'off')); ?>
 		<?php echo $form->error($model,'model_name'); ?>
+	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'vendor_code'); ?>
+		<?php echo $form->textField($model,'vendor_code',array('size'=>60,'maxlength'=>255, 'autocomplete'=>'off')); ?>
+		<?php echo $form->error($model,'vendor_code'); ?>
 	</div>
     
     <div class="row">
@@ -68,6 +74,19 @@
                 */
         ?>
 	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textArea($model,'description', array('style'=>'width:90%; height: 200px')); ?>
+		<?php echo $form->error($model,'description'); ?>
+	</div>
+    
+    <div class="row">
+		<?php echo $form->labelEx($model,'accessories'); ?>
+		<?php echo $form->textArea($model,'accessories', array('style'=>'width:50%; height: 100px')); ?>
+		<?php echo $form->error($model,'accessories'); ?>
+	</div>
+    
     <hr />
     <h2>Характеристики</h2>    
     <?php
