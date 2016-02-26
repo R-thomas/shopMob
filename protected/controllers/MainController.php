@@ -114,7 +114,6 @@ class MainController extends Controller
         $criteria = new CDbCriteria;
         $criteria->addInCondition('vendor_code', $accessories);
         $slider = Models::model()->findAll($criteria);
-        
         $char = Characteristics::cardChar($id);
         
         $this->render('product',

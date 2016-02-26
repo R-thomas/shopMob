@@ -53,7 +53,10 @@ return array(
             'showScriptName' => false,
 		),
         
-        
+        'shoppingCart' =>
+            array(
+                'class' => 'extensions.shopping-cart.EShoppingCart',
+            ),
         
         
 		

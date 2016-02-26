@@ -35,20 +35,46 @@
 }
 
 .product_photo img{
-    max-height: 345px;
+    max-height: 95%;
     max-width: 95%;
 }
 
 .product_photo_slider{
     height: 80px;
     border: 1px solid #dbdbdb;
+    padding: 0;
     display: flex; 
     align-items: center; 
     justify-content: center;
 }
 
+.slider1_item{
+    padding: 0;
+}
+
+#carousel1{
+    width: 100%;
+}
+
+.product_carousel1{
+    width: 75%;
+    margin: auto;
+}
+
+.slider1_item{
+    height: 80px;
+    display: flex; 
+    align-items: center; 
+    justify-content:  center;
+}
+
+
 .carousel-control.right, .carousel-control.left{
     background: none;
+}
+
+.left_slider1, .right_slider1{
+    font-size: 20px !important;
 }
 
 .product_info{
@@ -198,6 +224,7 @@
 
 .product_description_additionally_slider img{
     max-height: 180px;
+    max-width: 95%;
 }
 
 .product_characteristics_text{
@@ -212,6 +239,83 @@
     margin-top: 20px;
 }
 
+.carousel_photo{
+    height: 155px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.carousel_photo img{
+    max-width: 95%;
+    max-height: 95%;
+}
+
+.product_accessories_name{
+    font: 14px arial, sans-serif;
+    color: #6b6b6b;
+    text-align: center;
+}
+
+.carousel-control.right, .carousel-control.left{
+    width: 7%;
+}
+
+.product_carousel2{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#bg{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 50;
+}
+
+.product_modal_contaner{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#show{
+    width: 50%;
+    height: 70%;
+    background-color: #fff;
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    display: none;
+    z-index: 100; 
+    align-items: center; 
+    justify-content: center;
+    display: none;
+}
+
+#show>img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#content_modal_close{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
 
 @media screen and (max-width: 767px){
     .product_wrap{
@@ -229,6 +333,13 @@
     .product_description_additionally_slider{
         border-left: none;
         border-right: none;
+    }
+    
+    #show{
+        width: 80%;
+        height: 70%;
+        top: 15%;
+        left: 10%;
     }
 }
 

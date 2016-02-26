@@ -1,16 +1,17 @@
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/product.style.css" rel="stylesheet"/>
-
+<div class="product_modal_contaner"><div id="show"></div></div>
+<div id="bg"></div>
 <div class="row product_wrap">
     <div class="row product_contaner">
         <div class="row prod_contaner">
             <div class="col-md-120 col-sm-120 col-xs-120 product_header">
-                <h1 class="text-uppercase"><?php echo $model->brandModel->brand.' '.$model->model_name ?></h1>
+                <h1 class="text-uppercase"><?php echo ($model->categoryId->category_id == 1?'Мобильный телефон':($model->categoryId->category_id == 2?'Планшет':($model->categoryId->category_id == 3?'Ноутбук':''))).' '.$model->brandModel->brand.' '.$model->model_name ?></h1>
             </div>
         </div>
         <div class="row">
             <div class="col-md-80 col-sm-120 col-xs-120 product_wr1">
                 <div class="col-md-60 col-sm-60 col-xs-120 product_photo">
-                    <div class="col-md-120 col-sm-120 col-xs-120 product_photo_main">
+                    <div class="col-md-120 col-sm-120 col-xs-120 product_photo_main" id="item">
                         <?php echo '<img src="../../../upload/images/'.$model->photo.'" />' ?>
                     </div>
                     <div class="col-md-120 col-sm-120 col-xs-120 product_photo_slider">
@@ -18,13 +19,13 @@
                     </div>
                 </div>
                 <div class="col-md-60 col-sm-60 col-xs-120 product_info">
-                    <p class="text-uppercase product_info_presence"><?php echo $model->quantity>0?'В наличии':'Нет в наличии'; ?></p>
+                    <p class="text-uppercase product_info_presence"><?php echo $model->quantity>0?'В наличии':'Под заказ'; ?></p>
                     <p class="product_info_vendor_code">Артикул: <?php echo $model->vendor_code; ?></p>
                     <div>
                         <span class="product_info_price_title">Цена: </span><span class="product_info_price"><?php echo $model->price; ?> р&nbsp;&nbsp;&nbsp;</span><span class="product_info_old_price"><s><?php echo $model->old_price!=0?$model->old_price.' р':''; ?></s></span>
                     </div>
                     <div class="product_info_orderbutton">
-                        <p>Заказать</p>
+                        <p><?php echo $model->quantity>0?'Купить':'Заказать'; ?></p>
                     </div>
                     <div class="product_information product_information1">
                         <p>Работаем 7 дней в неделю</p>
@@ -59,14 +60,26 @@
                     
                 </div>
                 <div class="col-md-120 col-sm-120 col-xs-120 product_description">
-                    <div class="product_description_additionally">
-                        <div class="product_description_additionally_header">
-                            <p>С этим товаром покупают</p>
-                        </div>
-                        <div class="product_description_additionally_slider">
-                            <?php CommonHelper::getSliderFourColumn($slider) ?>
-                        </div>
-                    </div>
+                    <?php if(count($slider)>0)
+                    {
+                        echo '
+                            <div class="product_description_additionally">
+                                <div class="product_description_additionally_header">
+                                    <p>С этим товаром покупают</p>
+                                </div>
+                                <div class="product_description_additionally_slider">';
+                    }
+                    ?>
+                    <?php CommonHelper::getSliderFourColumn($slider) ?>
+                    <?php if(count($slider)>0)
+                    {                
+                        echo '</div>
+                            </div>
+                        ';
+                    }
+                    ?>
+                    
+                    
                     <?php echo $model->description!=''?'<div class="product_characteristics_text">
                         <p class="product_characteristics_text_title text-uppercase">Описание</p>
                         '.$model->description.'</div>':'';?>
