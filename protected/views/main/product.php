@@ -24,9 +24,9 @@
                     <div>
                         <span class="product_info_price_title">Цена: </span><span class="product_info_price"><?php echo $model->price; ?> р&nbsp;&nbsp;&nbsp;</span><span class="product_info_old_price"><s><?php echo $model->old_price!=0?$model->old_price.' р':''; ?></s></span>
                     </div>
-                    <div class="product_info_orderbutton">
-                        <p><?php echo $model->quantity>0?'Купить':'Заказать'; ?></p>
-                    </div>
+                    <?php echo CHtml::form();?>
+                    <?php echo CHtml::submitButton($model->quantity>0?'Купить':'Заказать', array('class'=>'product_info_orderbutton', 'name'=>'submit')) ?>
+                    <?php echo CHtml::endForm();?>
                     <div class="product_information product_information1">
                         <p>Работаем 7 дней в неделю</p>
                     </div>

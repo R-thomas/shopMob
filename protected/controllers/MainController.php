@@ -2,7 +2,7 @@
 	
 class MainController extends Controller
 {
-    public $layout='//layouts/main'; 
+    public $layout='//layouts/main';
     
     public function actionIndex2()
     {
@@ -103,12 +103,27 @@ class MainController extends Controller
     
     public function actionCart()
     {
-        $this->render('cart');
+        
+        if(isset($_POST['submit_cart']))
+        {
+            Yii::app()->shoppingCart->remove($_POST['submit_cart']);
+        }
+        
+        $this->render('cart', 
+            array(
+                'positions'=>$positions,
+                'cost'=>$cost
+            )
+        );
     }
     
     public function actionProduct($id)
     {
         $model = Models::model()->findByPk($id);
+        if(isset($_POST['submit']))
+        {
+            Yii::app()->shoppingCart->put($model);
+        }
         
         $accessories = explode(', ', $model->accessories);
         $criteria = new CDbCriteria;

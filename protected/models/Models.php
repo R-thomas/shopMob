@@ -16,11 +16,21 @@
  * @property integer $novelty
  * @property integer $bestPrice
  */
-class Models extends CActiveRecord
+class Models extends CActiveRecord implements IECartPosition
 {
 	/**
 	 * @return string the associated database table name
 	 */
+     
+    function getId(){
+        return $this->id;
+    }
+
+    function getPrice(){
+        return $this->price;
+    }
+    
+     
 	public function tableName()
 	{
 		return '{{models}}';

@@ -18,6 +18,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+        'application.extensions.shoppingCart.*',
 	),
 
 	'modules'=>array(
@@ -55,7 +56,7 @@ return array(
         
         'shoppingCart' =>
             array(
-                'class' => 'extensions.shopping-cart.EShoppingCart',
+                'class' => 'application.extensions.shoppingCart.EShoppingCart',
             ),
         
         

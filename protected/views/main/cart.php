@@ -19,66 +19,60 @@
                 <p>Сумма&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
         </div>
-        <div class="col-md-120 col-sm-120 col-xs-120 cart_content_order">
-            <div class="col-md-120 col-sm-120 col-xs-120 cart_content_order_inner">
-                <div class="col-md-25 col-sm-35 col-xs-120 cart_content_order_inner1">
-                    <div class="col-md-20 col-sm-20 col-xs-10 cart_content_order_remove">
-                        <span class="glyphicon glyphicon-remove-sign"></span>
-                    </div>
-                    <div class="col-md-100 col-sm-100 col-xs-110 cart_content_order_img">
-                        <img src="../../../upload/images/04aa75777bc3ab537799ad44207c4cfb.jpg"/>
-                    </div>
-                    
-                </div>
-                <div class="col-md-95 col-sm-85 col-xs-120 cart_content_order_inner2">
-                    <div class="col-md-48 col-sm-120 col-xs-120 cart_content_order_name">
-                        <p>Lenovo A1000 Lenovo A1000 Lenovo A1000 Lenovo A1000</p>
-                    </div>
-                    <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val1">
-                        <span class="cart_order_title">Цена:&nbsp;</span><span class="cart_order_price_val">12000 p</span>
-                    </div>
-                    <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val2">
-                        <span class="cart_order_title">Количество:&nbsp;</span><span class="order_minus">&nbsp;&nbsp;-&nbsp;&nbsp;</span><input type="text" value="1" class="cart_order_input"/><span class="order_plus">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
-                    </div>
-                    <div class="col-md-22 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val3">
-                        <span class="cart_order_title">Сумма:&nbsp;</span><span class="cart_order_price_val">24000 р</span>
-                    </div>
-                </div>
+        <?php 
+              $positions = Yii::app()->shoppingCart->getPositions();
+              $cost = Yii::app()->shoppingCart->getCost();
                 
-            </div>
-        </div>
+              if($positions)
+              {
+                echo CHtml::form('', '', array('id'=>'my_form'));
+                foreach($positions as $position)
+                {
+                echo '
+                    <div class="col-md-120 col-sm-120 col-xs-120 cart_content_order">
+                        <div class="col-md-120 col-sm-120 col-xs-120 cart_content_order_inner">
+                            <div class="col-md-25 col-sm-35 col-xs-120 cart_content_order_inner1">
+                                <div class="col-md-20 col-sm-20 col-xs-10 cart_content_order_remove">'
+                                    .CHtml::checkBox('submit_cart', false, array('value'=>$position->id, 'id'=>$position->id, 'style'=>'display:none', 'class'=>'ccc')).
+                                    CHtml::label('', $position->id, array('class'=>'glyphicon glyphicon-remove-sign'))  .'
+                                </div>
+                                <div class="col-md-100 col-sm-100 col-xs-110 cart_content_order_img">
+                                    <img src="../../../upload/images/'.$position->photo.'"/>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-95 col-sm-85 col-xs-120 cart_content_order_inner2">
+                                <div class="col-md-48 col-sm-120 col-xs-120 cart_content_order_name">
+                                    <p>'.$position->brandModel->brand.' '.$position->model_name.'</p>
+                                </div>
+                                <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val1">
+                                    <span class="cart_order_title">Цена:&nbsp;</span><span class="cart_order_price_val">'.$position->getPrice().' p</span>
+                                </div>
+                                <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val2">
+                                    <span class="cart_order_title">Количество:&nbsp;</span><span class="order_minus">&nbsp;&nbsp;-&nbsp;&nbsp;</span><input type="text" value="'.$position->getQuantity().'" class="cart_order_input"/><span class="order_plus">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
+                                </div>
+                                <div class="col-md-22 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val3">
+                                    <span class="cart_order_title">Сумма:&nbsp;</span><span class="cart_order_price_val">'.$position->getSumPrice().' р</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                ';
+                }
+                echo CHtml::endForm();
+              }
+              else
+              {
+                echo '<p>Корзина пуста...</p>';
+              }
+              //echo CHtml::submitButton('отправить');
+                 
+        ?>
         
-        <div class="col-md-120 col-sm-120 col-xs-120 cart_content_order">
-            <div class="col-md-120 col-sm-120 col-xs-120 cart_content_order_inner">
-                <div class="col-md-25 col-sm-35 col-xs-120 cart_content_order_inner1">
-                    <div class="col-md-20 col-sm-20 col-xs-10 cart_content_order_remove">
-                        <span class="glyphicon glyphicon-remove-sign"></span>
-                    </div>
-                    <div class="col-md-100 col-sm-100 col-xs-110 cart_content_order_img">
-                        <img src="../../../upload/images/04aa75777bc3ab537799ad44207c4cfb.jpg"/>
-                    </div>
-                    
-                </div>
-                <div class="col-md-95 col-sm-85 col-xs-120 cart_content_order_inner2">
-                    <div class="col-md-48 col-sm-120 col-xs-120 cart_content_order_name">
-                        <p>Lenovo A1000 Lenovo A1000 Lenovo A1000 Lenovo A1000</p>
-                    </div>
-                    <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val1">
-                        <span class="cart_order_title">Цена:&nbsp;</span><span class="cart_order_price_val">12000 p</span>
-                    </div>
-                    <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val2">
-                        <span class="cart_order_title">Количество:&nbsp;</span><span class="order_minus">&nbsp;&nbsp;-&nbsp;&nbsp;</span><input type="text" value="1" class="cart_order_input"/><span class="order_plus">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
-                    </div>
-                    <div class="col-md-22 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val3">
-                        <span class="cart_order_title">Сумма:&nbsp;</span><span class="cart_order_price_val">24000 р</span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
         
         <div class="col-md-120 col-sm-120 col-xs-120 cart_content_head cart_content_total">
-            <p class="text-right">Итого: <span>150000 р&nbsp;</span>&nbsp;</p>
+            <p class="text-right">Итого: <span><?php echo $cost; ?> р&nbsp;</span>&nbsp;</p>
         </div>
         
         <div class="col-md-120 col-sm-120 col-xs-120 cart_an_order">

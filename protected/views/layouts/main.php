@@ -57,8 +57,8 @@
                     
                     <div class="col-md-20 col-md-push-40 col-sm-12 col-xs-30 header_cart">
                         <div class="header_cart_cont">
-                            <div class="header_cart_count"><a href="#"><span class="count">5</span><img src="../../../images/cart.png" class="img-responsive"/></a></div>
-                            <div class="header_cart_text"><a href="#"><span class="header_cart_link">Корзина</span><br />140000 руб</a></div>
+                            <div class="header_cart_count"><a href="<?php echo Yii::app()->request->baseUrl; ?>/main/cart"><span class="count"><?php echo Yii::app()->shoppingCart->getCount(); ?></span><img src="../../../images/cart.png" class="img-responsive"/></a></div>
+                            <div class="header_cart_text"><a href="<?php echo Yii::app()->request->baseUrl; ?>/main/cart"><span class="header_cart_link">Корзина</span><br /><?php echo Yii::app()->shoppingCart->getCost(); ?> руб</a></div>
                         </div>
                     </div>
                     <div class="hidden-lg hidden-md col-sm-18 col-xs-30 header_geo">

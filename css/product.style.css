@@ -112,15 +112,13 @@
     height: 40px;
     background-color: #ec3a40;
     margin: 30px 0 40px 0;
-}
-
-.product_info_orderbutton p{
     font: 18px tahoma, sans-serif;
     color: #fff;
-    padding-top: 8px;
     text-align: center;
     cursor: pointer;
+    border: none;
 }
+
 
 .product_information{
     width: 93%;
