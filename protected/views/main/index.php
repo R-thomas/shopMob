@@ -55,6 +55,7 @@
         </div>
     </div>    
 </div>
+<?php echo CHtml::form();?>
 <div class="row content_index_popular">
     <div class="content_index_popular_container">
         <div class="row">
@@ -115,8 +116,29 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>
+                                ';
+                                                           
+                                 
+                        echo '</div>
+                        <script>
+                            $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                            $.ajax({
+                                \'type\':\'POST\',
+                                \'dataType\':\'json\',
+                                \'success\':function(data){
+                                    $("#count_update").text(data[1]);
+                                    $("#sum_update").text(data[0]);
+                                    $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    
+                                },
+                                \'url\':\'/main/index2\',
+                                \'cache\':false,
+                                \'data\': ({\'id\':'.$topGoods->id.'})})
+                        });
+                        </script>
+
+                        ';
                     }
                     
                     else if ($j == 1)
@@ -130,8 +152,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>  
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 2)
@@ -145,8 +183,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 3)
@@ -160,8 +214,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else
@@ -197,8 +267,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_new'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 1)
@@ -212,8 +298,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_new'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 2)
@@ -227,8 +329,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_new'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>  
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 3)
@@ -242,8 +360,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_new'.$topGoods->id.'">'.($topGoods->quantity>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods->id.'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else
@@ -316,8 +450,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods['id'].'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 1)
@@ -331,8 +481,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods['id'].'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 2)
@@ -346,8 +512,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods['id'].'})})
+                            });
+                            </script>
+                            ';
                     }
                     
                     else if ($j == 3)
@@ -361,8 +543,24 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy">Купить</div>   
-                            </div>';
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
+                            <script>
+                                $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                $.ajax({
+                                    \'type\':\'POST\',
+                                    \'dataType\':\'json\',
+                                    \'success\':function(data){
+                                        $("#count_update").text(data[1]);
+                                        $("#sum_update").text(data[0]);
+                                        $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                    },
+                                    \'url\':\'/main/index2\',
+                                    \'cache\':false,
+                                    \'data\': ({\'id\':'.$topGoods['id'].'})})
+                            });
+                            </script>    
+                            ';
                     }
                     
                     else
@@ -375,6 +573,7 @@
         </div>
     </div>
 </div> 
+<?php echo CHtml::endForm();?>
 <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
 <div class="row content_news">
     <div class="row">
@@ -431,5 +630,6 @@
             </script>
         </div>
     </div>
-</div> 
+</div>
+ 
 

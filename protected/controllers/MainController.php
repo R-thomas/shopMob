@@ -9,6 +9,20 @@ class MainController extends Controller
         $banner = Banner::model()->findAll();
         $news = News::model()->findAll();
         $topSales = Models::model()->findAll('top = 1');
+        
+        
+               
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            Yii::app()->shoppingCart->put(Models::model()->findByPk($_POST['id']));
+            $data[0] = Yii::app()->shoppingCart->getCost();
+            $data[1] = Yii::app()->shoppingCart->getCount();
+            echo json_encode($data);
+            
+            
+            // Завершаем приложение
+            Yii::app()->end();
+        }
         $novelty = Models::model()->findAll('novelty = 1');
         $random = Models::randomId();
                 
@@ -109,6 +123,38 @@ class MainController extends Controller
             Yii::app()->shoppingCart->remove($_POST['submit_cart']);
         }
         
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            $pos_first = Yii::app()->shoppingCart->getPositions();
+            foreach($pos_first as $position) 
+            {
+                if($position->id == $_POST['id'])
+                {
+                    $quantity = $position->getQuantity();
+                }
+                
+            }
+            Yii::app()->shoppingCart->update((Models::model()->findByPk($_POST['id'])), $_POST['button']=='minus'?($quantity>1?$quantity-1:$quantity):$quantity+1);
+            $pos = Yii::app()->shoppingCart->getPositions();
+            $data[0] = Yii::app()->shoppingCart->getCost();
+            $data[1] = Yii::app()->shoppingCart->getCount();
+            foreach($pos as $position) 
+            {
+                if($position->id == $_POST['id'])
+                {
+                    $data[2] = $position->getQuantity();
+                    $data[3] = $position->getSumPrice();
+                }
+                
+            }
+            
+            echo json_encode($data);
+            
+            
+            // Завершаем приложение
+            Yii::app()->end();
+        }
+        
         $this->render('cart', 
             array(
                 'positions'=>$positions,
@@ -120,9 +166,19 @@ class MainController extends Controller
     public function actionProduct($id)
     {
         $model = Models::model()->findByPk($id);
-        if(isset($_POST['submit']))
+        if(Yii::app()->request->getPost('submit'))
         {
             Yii::app()->shoppingCart->put($model);
+        }
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            Yii::app()->shoppingCart->put($model);
+            $data[0] = Yii::app()->shoppingCart->getCost();
+            $data[1] = Yii::app()->shoppingCart->getCount();
+            echo json_encode($data);
+            
+            // Завершаем приложение
+            Yii::app()->end();
         }
         
         $accessories = explode(', ', $model->accessories);
@@ -131,14 +187,17 @@ class MainController extends Controller
         $slider = Models::model()->findAll($criteria);
         $char = Characteristics::cardChar($id);
         
+        
         $this->render('product',
             array(
                 'model' => $model,
                 'char' => $char,
-                'slider' => $slider
+                'slider' => $slider,
             )
         );
     }
+    
+    
     
     
 }

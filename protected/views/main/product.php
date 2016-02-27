@@ -25,7 +25,23 @@
                         <span class="product_info_price_title">Цена: </span><span class="product_info_price"><?php echo $model->price; ?> р&nbsp;&nbsp;&nbsp;</span><span class="product_info_old_price"><s><?php echo $model->old_price!=0?$model->old_price.' р':''; ?></s></span>
                     </div>
                     <?php echo CHtml::form();?>
-                    <?php echo CHtml::submitButton($model->quantity>0?'Купить':'Заказать', array('class'=>'product_info_orderbutton', 'name'=>'submit')) ?>
+                    <?php
+                   	      echo CHtml::ajaxSubmitButton($model->quantity>0?'Купить':'Заказать', '', array(
+                            'type' => 'POST',
+                            'dataType' => 'json',
+                            'success' => 'function(data){
+                                                $("#count_update").text(data[1]);
+                                                $("#sum_update").text(data[0]);
+                                                $(".index_modal_dialog").css({"display": "block", "opacity": "0"}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({"display": "block"});
+                                            }',
+                            ),
+                            array(
+                                'type' => 'submit',
+                                'class'=>'product_info_orderbutton', 
+                                'name'=>'submit'
+                            ));
+                    ?>
+                    
                     <?php echo CHtml::endForm();?>
                     <div class="product_information product_information1">
                         <p>Работаем 7 дней в неделю</p>

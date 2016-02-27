@@ -57,8 +57,10 @@
                     
                     <div class="col-md-20 col-md-push-40 col-sm-12 col-xs-30 header_cart">
                         <div class="header_cart_cont">
-                            <div class="header_cart_count"><a href="<?php echo Yii::app()->request->baseUrl; ?>/main/cart"><span class="count"><?php echo Yii::app()->shoppingCart->getCount(); ?></span><img src="../../../images/cart.png" class="img-responsive"/></a></div>
-                            <div class="header_cart_text"><a href="<?php echo Yii::app()->request->baseUrl; ?>/main/cart"><span class="header_cart_link">Корзина</span><br /><?php echo Yii::app()->shoppingCart->getCost(); ?> руб</a></div>
+                            <a href="<?php echo Yii::app()->request->baseUrl; ?>/main/cart">
+                            <div class="header_cart_count"><span class="count" id="count_update"><?php echo Yii::app()->shoppingCart->getCount(); ?></span><img src="../../../images/cart.png" class="img-responsive"/></div>
+                            <div class="header_cart_text"><span class="header_cart_link">Корзина</span><br /><span id="sum_update"><?php echo Yii::app()->shoppingCart->getCost(); ?></span> руб</div>
+                            </a>
                         </div>
                     </div>
                     <div class="hidden-lg hidden-md col-sm-18 col-xs-30 header_geo">
@@ -91,7 +93,7 @@
             
             
             <?php echo $content; ?>
-            
+            <div class="index_modal_dialog"><div class="index_modal_dialog_inner"><p>Товар добавлен в корзину!</p></div></div>
             <div class="row seo_text">
                 <div class="col-md-120 col-sm-120 col-xs-120">
                     <p>Добро пожаловать в интернет – магазин цифровой техники "Мобильный мир"!</p>

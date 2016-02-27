@@ -49,10 +49,50 @@
                                     <span class="cart_order_title">Цена:&nbsp;</span><span class="cart_order_price_val">'.$position->getPrice().' p</span>
                                 </div>
                                 <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val2">
-                                    <span class="cart_order_title">Количество:&nbsp;</span><span class="order_minus">&nbsp;&nbsp;-&nbsp;&nbsp;</span><input type="text" value="'.$position->getQuantity().'" class="cart_order_input"/><span class="order_plus">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
+                                    <span class="cart_order_title">Количество:&nbsp;</span>
+                                    <span class="order_minus" id="minus'.$position->id.'">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+                                    <input type="text" value="'.$position->getQuantity().'" class="cart_order_input" id="cart_order_input'.$position->id.'"/>
+                                    <span class="order_plus" id="plus'.$position->id.'">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
+                                    <script>
+                                        $(\'body\').on(\'click\',\'#minus'.$position->id.'\',function(){
+                                        $.ajax({
+                                            \'type\':\'POST\',
+                                            \'dataType\':\'json\',
+                                            \'success\':function(data){
+                                                $("#count_update").text(data[1]);
+                                                $("#sum_update, #cart_total").text(data[0]);
+                                                $("#cart_order_input'.$position->id.'").val(data[2]);
+                                                $("#cart_order_price_val'.$position->id.'").text(data[3]+\' р\');
+                                                
+                                                
+                                            },
+                                            \'url\':\'/main/cart\',
+                                            \'cache\':false,
+                                            \'data\': ({\'id\':'.$position->id.', 
+                                                        \'button\':\'minus\'})})
+                                        });
+                                        
+                                        $(\'body\').on(\'click\',\'#plus'.$position->id.'\',function(){
+                                        $.ajax({
+                                            \'type\':\'POST\',
+                                            \'dataType\':\'json\',
+                                            \'success\':function(data){
+                                                $("#count_update").text(data[1]);
+                                                $("#sum_update, #cart_total").text(data[0]);
+                                                $("#cart_order_input'.$position->id.'").val(data[2]);
+                                                $("#cart_order_price_val'.$position->id.'").text(data[3]+\' р\');
+                                                
+                                                
+                                            },
+                                            \'url\':\'/main/cart\',
+                                            \'cache\':false,
+                                            \'data\': ({\'id\':'.$position->id.', 
+                                                        \'button\':\'plus\'})})
+                                        });
+                                    </script> 
                                 </div>
                                 <div class="col-md-22 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val3">
-                                    <span class="cart_order_title">Сумма:&nbsp;</span><span class="cart_order_price_val">'.$position->getSumPrice().' р</span>
+                                    <span class="cart_order_title">Сумма:&nbsp;</span><span class="cart_order_price_val" id="cart_order_price_val'.$position->id.'">'.$position->getSumPrice().' р</span>
                                 </div>
                             </div>
                             
@@ -72,7 +112,7 @@
         
         
         <div class="col-md-120 col-sm-120 col-xs-120 cart_content_head cart_content_total">
-            <p class="text-right">Итого: <span><?php echo $cost; ?> р&nbsp;</span>&nbsp;</p>
+            <p class="text-right">Итого: <span id="cart_total"><?php echo $cost; ?></span><span>&nbsp;р</span>&nbsp;</p>
         </div>
         
         <div class="col-md-120 col-sm-120 col-xs-120 cart_an_order">

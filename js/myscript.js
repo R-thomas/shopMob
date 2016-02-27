@@ -70,12 +70,14 @@ $(document).ready(function(){
     })
     
     $('.product_modal_contaner').height($(window).height());
-    $(function(){
-    $(window).resize(function() {
-          $('.product_modal_contaner').height($(window).height());
+        $(function(){
+        $(window).resize(function() {
+              $('.product_modal_contaner').height($(window).height());
+        })
     })
-})
-
+    
+    
+                        
     
 });
 
