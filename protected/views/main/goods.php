@@ -112,7 +112,7 @@
             <div class="col-md-80 col-sm-120 col-xs-120 goods_content_goods" id="goods_content_goods">
                 <div class="row">
                     
-                    
+                    <?php echo CHtml::form();?>
                     <?php 
                           $j = 1;  
                           foreach ($model as $goods)
@@ -122,16 +122,33 @@
                             {
                                 
                                 echo '<div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
-                                      <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
-                                      <div class="content_description"><a href="#">'.$goods->categoryId->category->category_name.'></a>
-                                          <div class="content_tel_title"><a href="#">'.$goods->brandModel->brand
-                                                                                      .' '.$goods->model_name
-                                                                                      .'</a></div>    
+                                          <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
+                                          <div class="content_description"><a href="#">'.$goods->categoryId->category->category_name.'></a>
+                                              <div class="content_tel_title"><a href="#">'.$goods->brandModel->brand
+                                                                                          .' '.$goods->model_name
+                                                                                          .'</a></div>    
+                                          </div>
+                                          <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
+                                          <p class="content_price">'.$goods->price.' р</p>
+                                          <div class="content_button_buy" id="submit'.$goods->id.'">Купить</div>   
                                       </div>
-                                      <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
-                                      <p class="content_price">'.$goods->price.' р</p>
-                                      <div class="content_button_buy">Купить</div>   
-                                  </div>';
+                                        <script>
+                                            $(\'body\').on(\'click\',\'#submit'.$goods->id.'\',function(){
+                                            $.ajax({
+                                                \'type\':\'POST\',
+                                                \'dataType\':\'json\',
+                                                \'success\':function(data){
+                                                    $("#count_update").text(data[1]);
+                                                    $("#sum_update").text(data[0]);
+                                                    $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                                    
+                                                },
+                                                \'url\':\'/main/index2\',
+                                                \'cache\':false,
+                                                \'data\': ({\'id\':'.$goods->id.'})})
+                                        });
+                                        </script>
+                                      ';
                             }
                             
                             
@@ -148,8 +165,25 @@
                                       </div>
                                       <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
                                       <p class="content_price">'.$goods->price.' р</p>
-                                      <div class="content_button_buy">Купить</div>   
-                                  </div>';
+                                      <div class="content_button_buy" id="submit'.$goods->id.'">Купить</div>   
+                                  </div>
+                                  <script>
+                                        $(\'body\').on(\'click\',\'#submit'.$goods->id.'\',function(){
+                                        $.ajax({
+                                            \'type\':\'POST\',
+                                            \'dataType\':\'json\',
+                                            \'success\':function(data){
+                                                $("#count_update").text(data[1]);
+                                                $("#sum_update").text(data[0]);
+                                                $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                                
+                                            },
+                                            \'url\':\'/main/index2\',
+                                            \'cache\':false,
+                                            \'data\': ({\'id\':'.$goods->id.'})})
+                                    });
+                                    </script>
+                                  ';
                             }
                             
                             
@@ -157,7 +191,7 @@
                           }  
                     
                     ?>
-                    
+                    <?php echo CHtml::endForm();?>
                     
                </div> 
                <?$this->widget('CLinkPager', array(

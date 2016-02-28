@@ -51,7 +51,7 @@
                                 <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val2">
                                     <span class="cart_order_title">Количество:&nbsp;</span>
                                     <span class="order_minus" id="minus'.$position->id.'">&nbsp;&nbsp;-&nbsp;&nbsp;</span>
-                                    <input type="text" value="'.$position->getQuantity().'" class="cart_order_input" id="cart_order_input'.$position->id.'"/>
+                                    <input type="text" value="'.$position->getQuantity().'" class="cart_order_input" id="cart_order_input'.$position->id.'" disabled style="background-color: #fff;"/>
                                     <span class="order_plus" id="plus'.$position->id.'">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
                                     <script>
                                         $(\'body\').on(\'click\',\'#minus'.$position->id.'\',function(){
@@ -121,10 +121,24 @@
         
         <div class="col-md-120 col-sm-120 col-xs-120 cart_an_order">
             <div class="cart_order_form">
-                <input type="text" placeholder="Имя..." class="cart_order_form_name"/><span class="asterisk">&nbsp;*</span>
-                <input type="text" placeholder="Номер телефона..." class="cart_order_form_tel"/><span class="asterisk">&nbsp;*</span>
-                <input type="text" placeholder="Email..." class="cart_order_form_email"/><span class="asterisk">&nbsp;*</span>
-                <input type="submit" value="Оформить заказ" class="cart_order_form_submit"/>
+            
+                <?php $form=$this->beginWidget('CActiveForm', array(
+                    	'id'=>'orders-form',
+                    	// Please note: When you enable ajax validation, make sure the corresponding
+                    	// controller action is handling ajax validation correctly.
+                    	// There is a call to performAjaxValidation() commented in generated controller code.
+                    	// See class documentation of CActiveForm for details on this.
+                    	'enableAjaxValidation'=>false,
+                    )); ?>
+
+        		<?php echo $form->textField($order,'name',array('class'=>'cart_order_form_name', 'placeholder'=>'Имя...')); ?><span class="asterisk">&nbsp;*</span>
+        		<?php echo $form->error($order,'name'); ?>
+                <?php echo $form->textField($order,'tel',array('class'=>'cart_order_form_tel', 'placeholder'=>'Номер телефона...')); ?><span class="asterisk">&nbsp;*</span>
+		        <?php echo $form->error($order,'tel'); ?>
+                <?php echo $form->textField($order,'email',array('class'=>'cart_order_form_email', 'placeholder'=>'Email...')); ?><span class="asterisk">&nbsp;*</span>
+		        <?php echo $form->error($order,'email'); ?>
+                <?php echo CHtml::submitButton('Оформить заказ', array('class'=>'cart_order_form_submit', 'name'=>'order')); ?>
+                <?php $this->endWidget(); ?>
             </div>
         </div>
     </div>

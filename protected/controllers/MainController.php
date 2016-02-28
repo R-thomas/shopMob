@@ -3,9 +3,11 @@
 class MainController extends Controller
 {
     public $layout='//layouts/main';
+    public $menu;
     
     public function actionIndex2()
     {
+        $this->menu = Category::model()->findAll();
         $banner = Banner::model()->findAll();
         $news = News::model()->findAll();
         $topSales = Models::model()->findAll('top = 1');
@@ -43,7 +45,7 @@ class MainController extends Controller
     
     public function actionGoods($category_id)
     {
-        
+        $this->menu = Category::model()->findAll();
         $a = Yii::app()->getRequest()->getQueryString();
         
         $sql = array();
@@ -65,15 +67,17 @@ class MainController extends Controller
             }
         }
         
-        
-        
-        
-               
-            //$sel = new CDbCriteria;
-            //$sel->addCondition('t.value = "4,5"');
-            //$select = CharacteristicValue::model()->findAll($sel);
-              
-                   
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            Yii::app()->shoppingCart->put(Models::model()->findByPk($_POST['id']));
+            $data[0] = Yii::app()->shoppingCart->getCost();
+            $data[1] = Yii::app()->shoppingCart->getCount();
+            echo json_encode($data);
+            
+            
+            // Завершаем приложение
+            Yii::app()->end();
+        }
                    
         $brand = ModelCategory::model()->findAll('category_id = :category_id', array(':category_id' => $category_id));
         
@@ -117,7 +121,7 @@ class MainController extends Controller
     
     public function actionCart()
     {
-        
+        $this->menu = Category::model()->findAll();
         if(isset($_POST['submit_cart']))
         {
             Yii::app()->shoppingCart->remove($_POST['submit_cart']);
@@ -155,16 +159,41 @@ class MainController extends Controller
             Yii::app()->end();
         }
         
-        $this->render('cart', 
-            array(
-                'positions'=>$positions,
-                'cost'=>$cost
-            )
-        );
+        $order = new Orders;
+        if (isset($_POST['Orders']))
+        {
+            $items = Yii::app()->shoppingCart->getPositions();
+            $id = array();
+            $quant = array();
+            $sum = array();
+            $cost = Yii::app()->shoppingCart->getCost();
+            foreach($items as $item)
+            {
+                $name[] = $item->brandModel->brand.' '.$item->model_name;
+                $quant[] = $item->getQuantity();
+                $sum[] = $item->getSumPrice();
+            }
+            
+            $order->attributes = $_POST['Orders'];
+            $order->model_id = json_encode($name);
+            $order->quantity = json_encode($quant);
+            $order->sum = json_encode($sum);
+            $order->total = $cost;
+            if ($order->save())
+            {
+                Yii::app()->shoppingCart->clear();
+                echo '111';
+            }
+        }
+        
+        $this->render('cart', array(
+            'order'=>$order
+        ));
     }
     
     public function actionProduct($id)
     {
+        $this->menu = Category::model()->findAll();
         $model = Models::model()->findByPk($id);
         if(Yii::app()->request->getPost('submit'))
         {

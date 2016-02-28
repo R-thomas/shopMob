@@ -1,0 +1,46 @@
+thead tr th{
+    padding: 14px 10px 14px 5px;
+    border-left: 1px solid #fff;
+    background-color: #4F9BC6;
+}
+
+.sort-link{
+    color: #fff;
+    text-decoration: none;
+}
+
+tr.filters{
+    display: none;
+}
+
+tr.odd{
+    background-color: #E5F1F4;
+}
+
+tr.odd td{
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    padding: 20px 0 20px 0;
+}
+
+tr.even{
+    background-color: #F8F8F8;
+}
+
+tr.even td{
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    padding: 20px 0 20px 0;
+}
+
+tr.selected{
+    background-color: #BCE774;
+}
+
+.bold{
+    font: bold 14px arial, sans-serif;
+}
+
+.quantity{
+    width: 100px;
+}

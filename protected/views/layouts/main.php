@@ -75,14 +75,20 @@
                     </div>
                 </div>
                 <nav>
+
                     <div class="header_nav" id="header_nav_toggle">
                         <ul class="menu">
-                            <li class="nav_items"><a href="#">Телефоны</a></li>
-                            <li class="nav_items"><a href="#">Планшеты</a></li>
-                            <li class="nav_items"><a href="#">Ноутбуки</a></li>
-                            <li class="nav_items"><a href="#">Асессуары</a></li>
-                            <li class="nav_items"><a href="#">Портативная техника</a></li>
-                            <li class="nav_items"><a href="#">Носители информации</a></li>
+                        <?php
+	                           foreach($this->menu as $item)
+                               {
+                                if($item->category_name != 'Услуги')
+                                {
+                                    echo '<li class="nav_items"><a href="/main/goods/category_id/'.$item->id.'">'.$item->category_name.'</a></li>'."\n";
+                                }
+                                
+                               }
+                        ?>
+                            
                             <li><a href="#">Услуги</a></li>
                         </ul>
                     </div>

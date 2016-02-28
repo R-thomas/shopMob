@@ -17,9 +17,11 @@ $this->menu=array(
             'value'=>$model->brandModel->brand,
         ),
 		'model_name',
+        'vendor_code',
         'old_price',
 		'price',
 		'quantity',
+        'description',
         'photo' => array(
             'name'=>'photo',
             'type'=>'raw',

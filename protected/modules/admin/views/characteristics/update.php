@@ -30,6 +30,6 @@ $this->menu=array(
 ?>
 <h1>Редактирование характеристики "<?php echo $model->characteristic_name; ?>"</h1>
 
-<?php $this->renderPartial('_form_update', array('model'=>$model,
+<?php $this->renderPartial('_form', array('model'=>$model,
                                           'models'=>$models,
                                           'list'=>$list,)); ?>

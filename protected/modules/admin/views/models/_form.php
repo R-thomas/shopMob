@@ -77,13 +77,13 @@
     
     <div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description'); ?>
+		<?php echo $form->textArea($model,'description', array('style'=>'width:90%; height: 200px')); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
     
     <div class="row">
 		<?php echo $form->labelEx($model,'accessories'); ?>
-		<?php echo $form->textArea($model,'accessories'); ?>
+		<?php echo $form->textArea($model,'accessories', array('style'=>'width:50%; height: 100px')); ?>
 		<?php echo $form->error($model,'accessories'); ?>
 	</div>
     

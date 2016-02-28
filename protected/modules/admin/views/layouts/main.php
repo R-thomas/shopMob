@@ -31,6 +31,9 @@
 			'items'=>array(
 				array('label'=>'К сайту', 
                       'url'=>array('/main/index')),
+                array('label'=>'Заказы', 
+                      'url'=>array('/admin/orders'), 
+                      'active' => Yii::app()->controller->id == 'orders'),  
                 array('label'=>'Категории', 
                       'url'=>array('/admin/category'), 
                       'active' => Yii::app()->controller->id =='category' || 
