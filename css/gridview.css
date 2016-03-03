@@ -9,10 +9,6 @@ thead tr th{
     text-decoration: none;
 }
 
-tr.filters{
-    display: none;
-}
-
 tr.odd{
     background-color: #E5F1F4;
 }
@@ -20,7 +16,7 @@ tr.odd{
 tr.odd td{
     border-top: 1px solid #fff;
     border-left: 1px solid #fff;
-    padding: 20px 0 20px 0;
+    padding: 20px 5px 20px 5px;
 }
 
 tr.even{
@@ -30,7 +26,7 @@ tr.even{
 tr.even td{
     border-top: 1px solid #fff;
     border-left: 1px solid #fff;
-    padding: 20px 0 20px 0;
+    padding: 20px 5px 20px 5px;
 }
 
 tr.selected{
@@ -43,4 +39,20 @@ tr.selected{
 
 .quantity{
     width: 100px;
+}
+
+tr.even td.number, tr.odd td.number{
+    width: 40px;
+}
+
+td input{
+    width: 100%;
+}
+
+tr.even td.checkbox-column, tr.odd td.checkbox-column{
+    padding: 20px 0 20px 0;
+}
+
+tr.even td.checkbox-column input, tr.odd td.checkbox-column input{
+    margin: 0;
 }

@@ -33,6 +33,7 @@
                                                 $("#count_update").text(data[1]);
                                                 $("#sum_update").text(data[0]);
                                                 $(".index_modal_dialog").css({"display": "block", "opacity": "0"}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({"display": "block"});
+                                                $(\'.loader\').css({\'display\':\'none\'});
                                             }',
                             ),
                             array(
@@ -41,6 +42,11 @@
                                 'name'=>'submit'
                             ));
                     ?>
+                    <script>
+                        $('.product_info_orderbutton').on('click', function(){
+                            $('.loader').css({'display':'block'});
+                        })
+                    </script>
                     
                     <?php echo CHtml::endForm();?>
                     <div class="product_information product_information1">
@@ -68,7 +74,7 @@
                         {
                             echo ($item['parent_id']==0 
                                   ?'<p class="product_characteristics_content_title text-uppercase">'.$item['characteristic_name'].'</p>' 
-                                  :'<p>'.$item['characteristic_name'].': '.$item['value'].' '.$item['unit'].'</p>');
+                                  :'<p>'.(isset($item['value'])?$item['characteristic_name']:'').(isset($item['value'])?': ':'').(isset($item['value'])?$item['value']:'').' '.(isset($item['value'])?$item['unit']:'').'</p>');
                         }
 	                         
                     ?>
@@ -112,7 +118,7 @@
                         {
                             echo ($item['parent_id']==0 
                                   ?'<p class="product_characteristics_content_title text-uppercase">'.$item['characteristic_name'].'</p>' 
-                                  :'<p>'.$item['characteristic_name'].': '.$item['value'].' '.$item['unit'].'</p>');
+                                  :'<p>'.(isset($item['value'])?$item['characteristic_name']:'').(isset($item['value'])?': ':'').(isset($item['value'])?$item['value']:'').' '.(isset($item['value'])?$item['unit']:'').'</p>');
                         }
 	                         
                     ?>
@@ -127,3 +133,38 @@
         </div>
     </div>
 </div>
+<div class="loader_bg"><img src="../../../images/KFLtA.png" class="loader" width="100"  /></div>
+<style>
+
+.loader{
+    position: fixed;
+    top: 45%;
+    left: 45%;
+    display: none;
+    -webkit-animation: preloader 1.5s infinite linear;
+    -moz-animation: preloader 1.5s infinite linear;
+    -ms-animation: preloader 1.5s infinite linear;
+    -o-animation: preloader 1.5s infinite linear;
+    animation: preloader 1.5s infinite linear;
+}
+
+@-webkit-keyframes preloader {
+    to { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes preloader {
+    to { -moz-transform: rotate(360deg); }
+}
+
+@-ms-keyframes preloader {
+    to { -ms-transform: rotate(360deg); }
+}
+
+@-o-keyframes preloader {
+    to { -o-transform: rotate(360deg); }
+}
+
+@keyframes preloader {
+    to { transform: rotate(360deg); }
+}
+</style> 

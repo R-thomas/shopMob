@@ -72,7 +72,7 @@ class ModelsController extends Controller
         $criteria->params = array(':category'=>$category);
         
         $modelChar = Characteristics::model()->findAll($criteria);
-        
+        $modelCharVal = new CharacteristicValue;
         
         
         
@@ -97,18 +97,19 @@ class ModelsController extends Controller
         
             if(isset($_POST['characteristicValue']))
             {
+		$modelCharVal = new CharacteristicValue;
                 foreach ($_POST['characteristicValue'] as $k=>$item)
                 {
-                    $modelCharVal = new CharacteristicValue;
+                    $modelCharVal->id = false;
+                    $modelCharVal->isNewRecord = true;
                     $modelCharVal->value = $item; 
                     $modelCharVal->characteristic_id = $k;
                     $modelCharVal->model_id = $modelId;
                     $save = $modelCharVal->save();    
-                }
-                if($save)
-                $this->refresh();    
+                }   
             }
-        
+	
+        	
         }
 
 		$this->render('create',array(
@@ -143,17 +144,13 @@ class ModelsController extends Controller
 			{
                 if(isset($_POST['characteristicValue']))
                 {
+                    
                     foreach ($_POST['characteristicValue'] as $k=>$item)
                     {
-                        $criteria = new CDbCriteria;
-                        $criteria->condition = '(characteristic_id = :k)&(model_id = :id)';
-                        $criteria->params = array(':k'=>$k, ':id'=>$id);
-                        $modelCharVal = CharacteristicValue::model()->find($criteria);
-                        $modelCharVal->value = $item;
-                        $save = $modelCharVal->save(false);    
+                        $modelCharVal = CharacteristicValue::model()->updateAll(array('value'=>$item), 'characteristic_id = :k AND model_id = :id', array(':k'=>$k, ':id'=>$id));
                     }
-                    if($save)
-                    $this->refresh();    
+                    if(isset($modelCharVal))
+                        $this->refresh();   
                 }
 			}
 		}
@@ -187,33 +184,33 @@ class ModelsController extends Controller
 	 */
 	public function actionIndex($brand, $category)
 	{
-	    $models = Models::model()->findByPk($_POST['id']);
+	    
 	    if (isset($_POST['top'])&isset($_POST['id']))
         {
+$models = Models::model()->findByPk($_POST['id']);
             $models->top == 0 ? $models->top = 1 : $models->top = 0;    
-            if($models->save())
-                $this->refresh();
+            $models->save(true, array('top'));
         }
         
         if (isset($_POST['promotion'])&isset($_POST['id']))
         {
+$models = Models::model()->findByPk($_POST['id']);
             $models->promotion == 0 ? $models->promotion = 1 : $models->promotion = 0;    
-            if($models->save())
-                $this->refresh();
+            $models->save(true, array('promotion'));
         }
         
         if (isset($_POST['novelty'])&isset($_POST['id']))
         {
+$models = Models::model()->findByPk($_POST['id']);
             $models->novelty == 0 ? $models->novelty = 1 : $models->novelty = 0;    
-            if($models->save())
-                $this->refresh();
+            $models->save(true, array('novelty'));
         }
         
         if (isset($_POST['bestPrice'])&isset($_POST['id']))
         {
+$models = Models::model()->findByPk($_POST['id']);
             $models->bestPrice == 0?$models->bestPrice = 1:$models->bestPrice = 0;    
-            if($models->save())
-                $this->refresh();
+            $models->save(true, array('bestPrice'));
         }
         
 		$model=new Models('search');

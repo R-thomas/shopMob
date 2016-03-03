@@ -94,7 +94,7 @@
           {
             echo ($item['parent_id']!=0   ?   '&nbsp;&nbsp;&nbsp;'   :   '<br/><b><u>').
             $item['characteristic_name'].
-            ($item['parent_id']!=0   ?   '<br/>&nbsp;&nbsp;&nbsp;'.CHtml::textField('characteristicValue['.$item['id'].']', $item['value']).'<br/>'   :   "</u></b><br/>");
+            ($item['parent_id']!=0 ?   '<br/>&nbsp;&nbsp;&nbsp;'.CHtml::textField('characteristicValue['.$item['id'].']', (isset($item['value'])?$item['value']:'')).'<br/>'   :   "</u></b><br/>");
           }	       
     ?>
     

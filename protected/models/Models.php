@@ -294,6 +294,8 @@ class Models extends CActiveRecord implements IECartPosition
             }
             else
             {
+		if(isset($item['value']))
+		{
                 $arr = $arr
                        .'&nbsp;&nbsp;'
                        .$item['characteristic_name']
@@ -304,6 +306,7 @@ class Models extends CActiveRecord implements IECartPosition
                        .'&nbsp;&nbsp;'
                        .$item['unit']
                        .'<br/>';
+		}
             }
         }
         return $arr;

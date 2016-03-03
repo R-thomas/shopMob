@@ -32,14 +32,14 @@ class Orders extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, tel, email', 'required'),
-			array('total', 'numerical', 'integerOnly'=>true),
+			array('total, status', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('tel, email', 'length', 'max'=>100),
             array('email', 'email'),
             array('tel', 'match', 'pattern'=>'/^([+]?[0-9-() ]+)$/', 'message'=>'Неверный формат номера телефона'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, tel, email, model_id, quantity, sum, total', 'safe', 'on'=>'search'),
+			array('id, status, name, tel, email, model_id, quantity, sum, total', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +60,8 @@ class Orders extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id' => 'Номер заказа',
+            'status' => 'Статус заказа',            
 			'name' => 'Имя',
 			'tel' => 'Телефон',
 			'email' => 'Email',
@@ -90,6 +91,7 @@ class Orders extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+        $criteria->compare('status',$this->status);        
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('tel',$this->tel,true);
 		$criteria->compare('email',$this->email,true);

@@ -55,6 +55,7 @@
                                     <span class="order_plus" id="plus'.$position->id.'">&nbsp;&nbsp;+&nbsp;&nbsp;</span>
                                     <script>
                                         $(\'body\').on(\'click\',\'#minus'.$position->id.'\',function(){
+                                            $(\'.loader\').css({\'display\':\'block\'});
                                         $.ajax({
                                             \'type\':\'POST\',
                                             \'dataType\':\'json\',
@@ -63,7 +64,7 @@
                                                 $("#sum_update, #cart_total").text(data[0]);
                                                 $("#cart_order_input'.$position->id.'").val(data[2]);
                                                 $("#cart_order_price_val'.$position->id.'").text(data[3]+\' р\');
-                                                
+                                                $(\'.loader\').css({\'display\':\'none\'});
                                                 
                                             },
                                             \'url\':\'/main/cart\',
@@ -73,6 +74,7 @@
                                         });
                                         
                                         $(\'body\').on(\'click\',\'#plus'.$position->id.'\',function(){
+                                            $(\'.loader\').css({\'display\':\'block\'});
                                         $.ajax({
                                             \'type\':\'POST\',
                                             \'dataType\':\'json\',
@@ -81,6 +83,7 @@
                                                 $("#sum_update, #cart_total").text(data[0]);
                                                 $("#cart_order_input'.$position->id.'").val(data[2]);
                                                 $("#cart_order_price_val'.$position->id.'").text(data[3]+\' р\');
+                                                $(\'.loader\').css({\'display\':\'none\'});
                                                 
                                                 
                                             },
@@ -143,3 +146,37 @@
         </div>
     </div>
 </div>
+<div><img src="../../../images/KFLtA.png" class="loader" width="100"  /></div>
+<style>
+.loader{
+    position: fixed;
+    top: 45%;
+    left: 45%;
+    display: none;
+    -webkit-animation: preloader 1.5s infinite linear;
+    -moz-animation: preloader 1.5s infinite linear;
+    -ms-animation: preloader 1.5s infinite linear;
+    -o-animation: preloader 1.5s infinite linear;
+    animation: preloader 1.5s infinite linear;
+}
+
+@-webkit-keyframes preloader {
+    to { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes preloader {
+    to { -moz-transform: rotate(360deg); }
+}
+
+@-ms-keyframes preloader {
+    to { -ms-transform: rotate(360deg); }
+}
+
+@-o-keyframes preloader {
+    to { -o-transform: rotate(360deg); }
+}
+
+@keyframes preloader {
+    to { transform: rotate(360deg); }
+}
+</style>

@@ -67,11 +67,16 @@ class OrdersController extends Controller
 	 */
 	public function actionIndex()
 	{
-	   $this->layout = '/layouts/column1';
+	    $this->layout = '/layouts/column1';
 		$model=new Orders('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Orders']))
 			$model->attributes=$_GET['Orders'];
+        
+        if(isset($_POST['drop_status']) && isset($_POST['id']))
+        {
+            $setStatus = Orders::model()->updateByPk($_POST['id'], array('status'=>$_POST['drop_status']));
+        }     
 
 		$this->render('index',array(
 			'model'=>$model,

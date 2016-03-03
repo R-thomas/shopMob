@@ -45,9 +45,171 @@ class MainController extends Controller
     
     public function actionGoods($category_id)
     {
+        //главное меню
         $this->menu = Category::model()->findAll();
-        $a = Yii::app()->getRequest()->getQueryString();
+        //echo '<pre>'; print_r($_GET); echo '</pre>';
+        $criteria = new CDbCriteria;
+        if(isset($_GET))
+        {
+            if(key($_GET) == 'common')
+            {
+                $bz = key($_GET);
+                foreach($_GET as $items)
+                {
+                    $query = $items;
+                    break;
+                    
+                }
+                if (is_array($query))
+                {
+                    $filter = array();
+                    foreach($query as $item)
+                    {
+                        $filter[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
+                    }
+                    $sql = implode(' UNION ', $filter);
+                    $connection = Yii::app()->db; 
+                    $model = $connection->createCommand($sql)->queryAll();
+                    foreach ($model as $item)
+                    {
+                        $t1[] = $item['id'];
+                    }
+                    
+                    
+                }
+            }
+            
+            else if(key($_GET) == 'brand')
+            {
+                //
+            }
+            
+            else if(key($_GET) == 'type' || key($_GET) == 'form' || key($_GET) == 'os' || key($_GET) == 'sim' || key($_GET) == 'protection' || key($_GET) == 'screen' || key($_GET) == 'core' || key($_GET) == 'core_frequency' || key($_GET) == 'wifi'  || key($_GET) == 'GPS')
+            { 
+                $bz = key($_GET);
+                foreach($_GET as $items)
+                {
+                    $query = $items;
+                    break;
+                    
+                }
+                if (is_array($query))
+                {
+                    $filter = array();
+                    foreach($query as $item)
+                    {
+                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE value="'.$item.'"';
+                    }
+                    $sql = implode(' UNION ', $filter);
+                    $connection = Yii::app()->db; 
+                    $model = $connection->createCommand($sql)->queryAll();
+                    
+                    foreach ($model as $item)
+                    {
+                        $t1[] = $item['model_id'];
+                    }
+                }
+            }
+            
+            else if(key($_GET) == 'diagonal')
+            { 
+                $bz = key($_GET);
+                foreach($_GET as $items)
+                {
+                    $query = $items;
+                    break;
+                    
+                }
+                if (is_array($query))
+                {
+                    
+                    $filter = array();
+                    foreach($query as $item)
+                    {
+                        explode('-', $item);
+                        
+                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE value="'.$item.'"';
+                    }
+                    $sql = implode(' UNION ', $filter);
+                    $connection = Yii::app()->db; 
+                    $model = $connection->createCommand($sql)->queryAll();
+                    
+                    foreach ($model as $item)
+                    {
+                        $t1[] = $item['model_id'];
+                    }
+                }
+            }
+            
+            
+            
+            
+            
+            $i = 0;
+            foreach($_GET as $k=>$items)
+            {
+                $i++;
+                if($i==2)
+                {
+                    $querys = $items;
+                    if (is_array($querys))
+                        {
+                            $filter = array();
+                            foreach($querys as $itemt)
+                            {
+                                $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE value="'.$itemt.'"';
+                            }
+                            $sql = implode(' UNION ', $filter);
+                           
+                            $connection = Yii::app()->db; 
+                            $model = $connection->createCommand($sql)->queryAll();
+                            foreach ($model as $item)
+                            {
+                                $t2[] = $item['model_id'];
+                            }
+                           
+                            
+                        }
+                }
+                
+                if($i==3)
+                {
+                    $query2 = $items;
+                    if (is_array($query2))
+                        {
+                            $filter = array();
+                            foreach($query2 as $itemt)
+                            {
+                                $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE value="'.$itemt.'"';
+                            }
+                            $sql = implode(' UNION ', $filter);
+                           
+                            $connection = Yii::app()->db; 
+                            $model = $connection->createCommand($sql)->queryAll();
+                            foreach ($model as $itemt)
+                            {
+                                $t3[] = $itemt['model_id'];
+                            }
+                            
+                            
+                        }
+                }
+                
+                
+                
+            }
+            echo '<pre>t1'; print_r($t1); echo '</pre>';
+            echo '<pre>t2'; print_r($t2); echo '</pre>';
+            echo '<pre>t3'; print_r($t3); echo '</pre>';
+        }
+        if($t1&&$t2)
+        $z = array_intersect($t1, $t2);
+        if($z&&$t3)
+        $z = array_intersect($z, $t3);
+        echo '<pre>'; print_r($z); echo '</pre>';
         
+        $a = Yii::app()->getRequest()->getQueryString();
+        /*
         $sql = array();
         if (isset($_GET['aaa'][0]))
         {
@@ -67,6 +229,8 @@ class MainController extends Controller
             }
         }
         
+        */
+        
         if(Yii::app()->request->isAjaxRequest)
         {
             Yii::app()->shoppingCart->put(Models::model()->findByPk($_POST['id']));
@@ -78,22 +242,40 @@ class MainController extends Controller
             // Завершаем приложение
             Yii::app()->end();
         }
-                   
+        
+                  
         $brand = ModelCategory::model()->findAll('category_id = :category_id', array(':category_id' => $category_id));
         
-        $array = array();
-        foreach ($brand as $item)
+        
+            $array = array();
+            foreach ($brand as $item)
+            {
+                $array[] = $item->brand_id;
+            }
+        
+        
+        //Бренды для фильтров
+        $criter = new CDbCriteria;
+        $criter->addInCondition('id', $array);
+        $brands = Brand::model()->findAll($criter);
+         
+        //Товары
+        if($z)
         {
-            $array[] = $item->brand_id;
+            $criteria->addInCondition('id', $z);
         }
+        if(!$z&&$t1)
+        {
+            $criteria->addInCondition('id', $t1);
+        }         
         
-        
-        $criteria = new CDbCriteria;
         $criteria->addInCondition('brand_id', $array);
+        
+        /*
         if(isset($modelId[0])){
             $criteria->addInCondition('id', $modelId);
         }
-        
+        */
            
         //пагинация 
         $count = Models::model()->count($criteria);
@@ -102,17 +284,54 @@ class MainController extends Controller
         $pages->applyLimit($criteria);
         
         $model = Models::model()->findAll($criteria);
-        
+        $ids = array();
+        if(!$z)
+        {
+            foreach($model as $item)
+            {
+                $ids[] = $item->id;
+            }
+        }
+        else if (!$z&&$t1)
+        {
+            $ids = $t1;
+        }
+        else if ($z)
+        {
+            $ids = $z;
+        }
+        $ids_query = implode(', ', $ids);
+        echo '<pre>'; print_r($ids_query); echo '</pre>';
+        $sql_query = 'SELECT (
+                        SELECT COUNT( z.id ) AS ip68
+                        FROM cms_characteristicValue AS z
+                        WHERE model_id
+                        IN ('.$ids_query.') 
+                        AND value =  "ip68"
+                        ) AS ip68, (
+                        
+                        SELECT COUNT( x.id ) AS ip67
+                        FROM cms_characteristicValue x
+                        WHERE model_id
+                        IN ('.$ids_query.') 
+                        AND value =  "ip67"
+                        ) AS ip67
+                      ';
+        $connection = Yii::app()->db; 
+        $count = $connection->createCommand($sql_query)->queryAll();
+        echo '<pre>'; print_r($count); echo '</pre>';
+        /*
         $models = array();
         foreach ($model as $item)
         {
             $models[]=$item->id; 
         }
-             
+        */     
                 
         $this->render('goods', array(
             'model' => $model,
             'pages' => $pages,
+            'brands' => $brands,
             'category_id' => $category_id,
             'models' => $models,
             'a' => $a

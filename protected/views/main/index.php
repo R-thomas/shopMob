@@ -124,6 +124,7 @@
                         echo '</div>
                         <script>
                             $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                $(\'.loader\').css({\'display\':\'block\'});
                             $.ajax({
                                 \'type\':\'POST\',
                                 \'dataType\':\'json\',
@@ -131,7 +132,7 @@
                                     $("#count_update").text(data[1]);
                                     $("#sum_update").text(data[0]);
                                     $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
-                                    
+                                    $(\'.loader\').css({\'display\':\'none\'});
                                 },
                                 \'url\':\'/main/index2\',
                                 \'cache\':false,
@@ -157,6 +158,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -164,6 +166,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -188,6 +191,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -195,6 +199,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -219,6 +224,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -226,6 +232,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -272,6 +279,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -279,6 +287,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -303,6 +312,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -310,6 +320,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -334,6 +345,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -341,6 +353,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -365,6 +378,7 @@
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_new'.$topGoods->id.'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -372,6 +386,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -451,10 +466,11 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -462,6 +478,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -482,10 +499,11 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -493,6 +511,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -513,10 +532,11 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -524,6 +544,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -544,10 +565,11 @@
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
                             </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
+                                    $(\'.loader\').css({\'display\':\'block\'});
                                 $.ajax({
                                     \'type\':\'POST\',
                                     \'dataType\':\'json\',
@@ -555,6 +577,7 @@
                                         $("#count_update").text(data[1]);
                                         $("#sum_update").text(data[0]);
                                         $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
+                                        $(\'.loader\').css({\'display\':\'none\'});
                                     },
                                     \'url\':\'/main/index2\',
                                     \'cache\':false,
@@ -632,5 +655,38 @@
         </div>
     </div>
 </div>
- 
+<div><img src="../../../images/KFLtA.png" class="loader" width="100"  /></div>
+<style>
+.loader{
+    position: fixed;
+    top: 45%;
+    left: 45%;
+    display: none;
+    -webkit-animation: preloader 1.5s infinite linear;
+    -moz-animation: preloader 1.5s infinite linear;
+    -ms-animation: preloader 1.5s infinite linear;
+    -o-animation: preloader 1.5s infinite linear;
+    animation: preloader 1.5s infinite linear;
+}
+
+@-webkit-keyframes preloader {
+    to { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes preloader {
+    to { -moz-transform: rotate(360deg); }
+}
+
+@-ms-keyframes preloader {
+    to { -ms-transform: rotate(360deg); }
+}
+
+@-o-keyframes preloader {
+    to { -o-transform: rotate(360deg); }
+}
+
+@keyframes preloader {
+    to { transform: rotate(360deg); }
+}
+</style> 
 
