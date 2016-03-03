@@ -35,7 +35,7 @@
                 
                 <?php 
                     echo CHtml::form('', 'get', array('id'=>'my_form'));
-                	echo Characteristics::filterRender($category_id, $model);
+                	echo Characteristics::filterRender($category_id, $model, $count);
                     echo CHtml::submitButton('Отправить' , array('style' => 'display:none'));
                     echo CHtml::endForm();
                 ?>
