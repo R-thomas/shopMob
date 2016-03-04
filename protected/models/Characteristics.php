@@ -220,7 +220,7 @@ class Characteristics extends CActiveRecord
         return $char;
     }*/
     
-    public static function filterRender($category, $model, $count)
+    public static function filterRender($category, $model, $count, $count_maker, $count_top, $count_promotion, $count_novelty, $count_bestPrice)
     {
         if($category == 1)
         {
@@ -230,24 +230,24 @@ class Characteristics extends CActiveRecord
                   <div class="filter_selected">
                       <div class="selected_item">
                          <div>
-                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc">
+                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc" style = "display:none">
                              <label class="goods_content_label" for="promotion" disabled><span class="glyphicon glyphicon-unchecked"></span>
-                             <span class="selected_value">Акции</span>
+                             <span class="selected_value">Акции ('.$count_promotion.')</span>
                          </div>
                          <div>
                              <input type="checkbox" name="common[]" value="top" id="top" class="ccc" style = "display:none" >
                              <label class="goods_content_label" for="top" disabled><span class="glyphicon glyphicon-unchecked"></span> 
-                             <span class="selected_value">Хит продаж</span>
+                             <span class="selected_value">Хит продаж ('.$count_top.')</span>
                          </div>
                          <div>
                              <input type="checkbox" name="common[]" value="novelty" id="novelty" class="ccc" style = "display:none" >
                              <label class="goods_content_label" for="novelty" disabled><span class="glyphicon glyphicon-unchecked"></span> 
-                             <span class="selected_value">Новинка</span>
+                             <span class="selected_value">Новинка ('.$count_novelty.')</span>
                          </div>
                          <div>
                              <input type="checkbox" name="common[]" value="bestPrice" id="bestPrice" class="ccc" style = "display:none" >
                              <label class="goods_content_label" for="bestPrice" disabled><span class="glyphicon glyphicon-unchecked"></span> 
-                             <span class="selected_value">Лучшая цена</span>
+                             <span class="selected_value">Лучшая цена ('.$count_bestPrice.')</span>
                          </div>
                          <p>Производитель</p>';
                          $arr = array();
@@ -256,14 +256,25 @@ class Characteristics extends CActiveRecord
                     $arr[] = $item->brandModel->brand;
                  }
                          
-                 $m = array_unique($arr);        
-                 foreach($m as $item)
+                 $m = array_unique($arr); 
+                 $j = 0;      
+                 foreach($m as $k=>$item)
                  {
-                    echo '<div>
-                             <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" >
-                             <label class="goods_content_label" for="brand_'.$item.'" disabled><span class="glyphicon glyphicon-unchecked"></span>  
-                             <span class="selected_value">'.$item.'</span>
-                         </div>';
+                    $j++;
+                    $i = 0;
+                    foreach($count_maker as $n=>$maker)
+                    {
+                        $i++;
+                        if($j == $i)
+                        {
+                            echo '<div>
+                                 <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" >
+                                 <label class="goods_content_label" for="brand_'.$item.'" disabled><span class="glyphicon glyphicon-unchecked"></span>  
+                                 <span class="selected_value">'.$item.' ('.$maker.')</span>
+                             </div>';
+                        }
+                    }
+                    
                  } 
                             
                  echo    '
@@ -619,28 +630,28 @@ class Characteristics extends CActiveRecord
                                 <span class="selected_value">до 4 Гб ('.$count[0]["rom_0_4"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="8" id="ram_8" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="ram_8" disabled><span class="glyphicon glyphicon-unchecked"></span>   
+                                <input type="checkbox" name="rom[]" value="8" id="rom_8" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="rom_8" disabled><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">8 Гб ('.$count[0]["rom_8"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="16" id="ram_16" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="ram_3-16" disabled><span class="glyphicon glyphicon-unchecked"></span>   
+                                <input type="checkbox" name="rom[]" value="16" id="rom_16" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="rom_16" disabled><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">16 Гб ('.$count[0]["rom_16"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="32" id="ram_32" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="ram_32" disabled><span class="glyphicon glyphicon-unchecked"></span>   
+                                <input type="checkbox" name="rom[]" value="32" id="rom_32" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="rom_32" disabled><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">32 Гб ('.$count[0]["rom_32"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="64" id="ram_64" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="ram_64" disabled><span class="glyphicon glyphicon-unchecked"></span>   
+                                <input type="checkbox" name="rom[]" value="64" id="rom_64" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="rom_64" disabled><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">64 Гб ('.$count[0]["rom_64"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="128" id="ram_128" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="ram_128" disabled><span class="glyphicon glyphicon-unchecked"></span>   
+                                <input type="checkbox" name="rom[]" value="128" id="rom_128" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="rom_128" disabled><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">128 Гб ('.$count[0]["rom_128"].')</span></label>
                             </div>
                         </div>  
