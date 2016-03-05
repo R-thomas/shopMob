@@ -9,6 +9,7 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Мобильный мир - административная панель',
     'language' => 'ru',
+    'charset'=>'UTF-8',
     'defaultController' => 'main',
 
 	// preloading 'log' component

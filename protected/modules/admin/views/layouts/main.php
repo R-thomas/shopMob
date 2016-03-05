@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="language" content="en">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="ru"/>
 
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection">
@@ -43,6 +43,9 @@
                       'active' => Yii::app()->controller->id == 'goods' || 
                                   Yii::app()->controller->id =='modelCategory' || 
                                   Yii::app()->controller->id =='models'),
+                array('label'=>'Загрузка/Выгрузка', 
+                      'url'=>array('/admin/download'), 
+                      'active' => Yii::app()->controller->id == 'download'),                  
                 array('label'=>'Слайдер', 
                       'url'=>array('/admin/banner'), 
                       'active' => Yii::app()->controller->id == 'banner'),  

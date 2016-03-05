@@ -28,7 +28,7 @@ class ModelsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','file'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -97,16 +97,25 @@ class ModelsController extends Controller
         
             if(isset($_POST['characteristicValue']))
             {
-		$modelCharVal = new CharacteristicValue;
+                $modelCharVal = new CharacteristicValue;
                 foreach ($_POST['characteristicValue'] as $k=>$item)
                 {
                     $modelCharVal->id = false;
                     $modelCharVal->isNewRecord = true;
-                    $modelCharVal->value = $item; 
+                    if($_POST['characteristicValue'][$k] != '')
+                    {
+                        $modelCharVal->value = $item; 
+                    }
+                    else
+                    {
+                        $modelCharVal->value = '-';
+                    }
                     $modelCharVal->characteristic_id = $k;
                     $modelCharVal->model_id = $modelId;
                     $save = $modelCharVal->save();    
-                }   
+                }
+                if($save)
+                    $this->refresh();   
             }
 	
         	
@@ -176,6 +185,43 @@ class ModelsController extends Controller
 		$model->delete();
 		if(!isset($_GET['ajax']))
 			$this->redirect(array('/admin/models/index/category/'.$category.'/brand/'.$brand));
+	}
+    
+    public function actionFile()
+	{
+	    $model = Models::model()->findAll();
+        
+        
+        
+         
+	    $file_name = 'export.csv'; // название файла
+        $file = fopen($file_name,"w"); // открываем файл для записи, если его нет, то создаем его в текущей папке, где расположен скрипт
+        foreach($model as $item)
+        {
+            $csv_file = array($item->vendor_code, 
+                              $item->brandModel->brand, 
+                              $item->model_name, 
+                              $item->price, 
+                              $item->old_price, 
+                              $item->photo, 
+                              $item->photo_other, 
+                              $item->quantity, 
+                              $item->accessories, 
+                              $item->top, 
+                              $item->promotion, 
+                              $item->novelty, 
+                              $item_bestPrice);
+            fputcsv($file, $csv_file, ";"); // записываем в файл строки
+        }
+        
+        fclose($file); // закрываем файл
+        
+        // задаем заголовки. то есть задаем всплывающее окошко, которое позволяет нам сохранить файл.
+        header('Content-type: application/csv'); // указываем, что это csv документ
+        header("Content-Disposition: inline; filename=".$file_name); // указываем файл, с которым будем работать
+        readfile($file_name); // считываем файл
+        unlink($file_name); // удаляем файл. то есть когда вы сохраните файл на локальном компе, то после он удалится с сервера
+
 	}
 
 	

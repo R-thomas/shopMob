@@ -99,8 +99,8 @@ class Category extends CActiveRecord
         foreach($model as $cat)
         {
             $array[] = array('label' => $cat->category_name,
-                             'url' => array('/admin/modelCategory/'.$cat->id), 
-                             'active' => Yii::app()->request->requestUri == '/admin/modelCategory/'.$cat->id
+                             'url' => array('/admin/'.(Yii::app()->controller->id == "download"?Yii::app()->controller->id:"modelCategory").'/'.$cat->id), 
+                             'active' => Yii::app()->request->requestUri == '/admin/'.(Yii::app()->controller->id == "download"?Yii::app()->controller->id:"modelCategory").'/'.$cat->id
                              );
         }
         return $array;
