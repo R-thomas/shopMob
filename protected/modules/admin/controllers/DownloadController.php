@@ -5,6 +5,7 @@ class DownloadController extends Controller
     public $layout='/layouts/column2-2';
 	public function actionIndex($id = false)
 	{
+	   $models = new CsvUpload;
 	   if($id)
        {
             if(isset($_POST['yt0']))
@@ -36,7 +37,8 @@ class DownloadController extends Controller
                                   'Старая цена', 
                                   'Главная фотография', 
                                   'Другие фотографии', 
-                                  'Количество', 
+                                  'Количество',
+                                  'Описание', 
                                   'Сопутствующие товары', 
                                   'Топ продаж', 
                                   'Акция', 
@@ -91,7 +93,8 @@ class DownloadController extends Controller
                                       $item->photo, 
                                       (is_array(json_decode($item->photo_other))?implode(', ', json_decode($item->photo_other)):json_decode($item->photo_other)), 
                                       $item->quantity, 
-                                      (is_array(json_decode($item->accessories))?implode(', ', json_decode($item->accessories)):json_decode($item->accessories)), 
+                                      $item->description,                                      
+                                      (is_array(json_decode($item->accessories))?implode(', ', json_decode($item->accessories)):$item->accessories), 
                                       $item->top, 
                                       $item->promotion, 
                                       $item->novelty, 
@@ -128,7 +131,7 @@ class DownloadController extends Controller
                 Yii::app()->end();
             }
             
-            $models = new CsvUpload;
+            
             if(isset($_POST['CsvUpload']))
             {
                 $brand = ModelCategory::model()->findAll('category_id = :id', array(':id'=>$id));
@@ -150,37 +153,130 @@ class DownloadController extends Controller
                     $basename = $filename . '.' . $extension;
                     $file->saveAs('upload/csv' . '/' . $basename);
                     $path_csv = Yii::app()->request->baseUrl.'upload/csv/'.$basename;
-                    if (($handle = fopen($path_csv, "r")) !== FALSE) {
+                    if (($handle = fopen($path_csv, "r")) !== false) {
                         
-                      $modelModels = new Models;
-                      while (($data = fgetcsv($handle, 5000, ";")) !== FALSE) {
+                      
+                      $modelCharacteristicValue = new CharacteristicValue;
+                      $modelCharacteristics = Characteristics::model()->findAll('category_id = :id', array(':id' => $id));
+                      $modelModelsOld = Models::model()->findAll();
+                      
+                      $counter = 0;
+                      while (($data = fgetcsv($handle, 5000, ";")) !== false) 
+                      {
+                        $counter++; 
+                        if($counter == 1)
+                            continue;
                         
-                        $modelModels->id = false;
-                        $modelModels->isNewRecord = true;
-                        $modelModels->vendor_code = $data[0];
+                        // если есть такой бренд, то продолжаем
+                        $modelModels = new Models;    
+                        $i = 0;
                         foreach($model as $item)
                         {
                             if($item->brand == $data[1])
                             {
+                                $i = 1;
                                 $modelModels->brand_id = $item->id;
+                                $brand_id_update = $item->id;
                             }
-                        }      
+                        }
+                        // если бренда нет, идем на следующую итерацию
+                        if($i == 0)
+                            continue; 
+                        
+                        $reset_while = 0;
+                        
+                        foreach($modelModelsOld as $item)
+                        {
+                            //если запись уже есть в базе, обновляем
+                            if($item->vendor_code == $data[0])
+                            {
+                                $description = iconv('Windows-1251', 'UTF-8', $data[8]);
+                                Models::model()->updateAll(array('vendor_code'=>$data[0],
+                                                                 'brand_id'=>$brand_id_update,
+                                                                 'model_name'=>$data[2],
+                                                                 'price'=>$data[3],
+                                                                 'old_price'=>$data[4],
+                                                                 'photo'=>$data[5],
+                                                                 'photo_other'=>json_encode(explode(', ', $data[6])),
+                                                                 'quantity'=>$data[7],
+                                                                 'description'=>$description,
+                                                                 'accessories'=>json_encode(explode(', ', $data[9])),
+                                                                 'top'=>$data[10],
+                                                                 'promotion'=>$data[11],
+                                                                 'novelty'=>$data[12],
+                                                                 'bestPrice'=>$data[13]
+                                                                 ), 
+                                                           'vendor_code = :code', 
+                                                           array(':code'=>$data[0]));
+                                                           
+                                
+                                $id_update = $item->id;
+                                $j = 14;                           
+                                foreach($modelCharacteristics as $k=>$items)
+                                {
+                                    if($items->parent_id != 0)
+                                    {
+                                        $value = iconv('Windows-1251', 'UTF-8', $data[$j]);
+                                        CharacteristicValue::model()->updateAll(array('value'=>$value), 
+                                                                                'model_id = :id_update AND characteristic_id = :characteristic_id',
+                                                                                array(':id_update'=>$id_update, ':characteristic_id'=>$items->id));
+                                    
+                                    $j++;   
+                                    }
+                                    if($j == 51){
+                                        break;
+                                    }
+                                    
+                                }                          
+                                $reset_while = 1;                         
+                            }                        
+                        }
+                        // если обновили, пропускаем итерацию
+                        if($reset_while == 1)
+                            continue;
+                        // если нет, записываем новые данные    
+                        $modelModels->vendor_code = $data[0];
                         $modelModels->model_name = $data[2];
                         $modelModels->price = $data[3];
                         $modelModels->old_price = $data[4];
                         $modelModels->photo = $data[5];
-                        $modelModels->photo_other = $data[6];
+                        $modelModels->photo_other = json_encode(explode(', ', $data[6]));
                         $modelModels->quantity = $data[7];
-                        $modelModels->accessories = $data[8];
-                        $modelModels->top = $data[9];
-                        $modelModels->promotion = $data[10];
-                        $modelModels->novelty = $data[11];
-                        $modelModels->bestPrice = $data[12];
+                        $description = iconv('Windows-1251', 'UTF-8', $data[8]);
+                        $modelModels->description = $description;
+                        $modelModels->accessories = json_encode(explode(', ', $data[9]));
+                        $modelModels->top = $data[10];
+                        $modelModels->promotion = $data[11];
+                        $modelModels->novelty = $data[12];
+                        $modelModels->bestPrice = $data[13];
                         
                         if($modelModels->save(false))
                         {
-                            //
-                        }
+                            $id_model = $modelModels->id; 
+                            $j = 14;
+                            
+                            foreach($modelCharacteristics as $k=>$item)
+                            {
+                                if($item->parent_id != 0)
+                                {
+                                    $modelCharacteristicValue->id = false;
+                                    $modelCharacteristicValue->isNewRecord = true;
+                                    $value = iconv('Windows-1251', 'UTF-8', $data[$j]);
+                                    $modelCharacteristicValue->value = $value;
+                                    $modelCharacteristicValue->characteristic_id = $item->id;
+                                    $modelCharacteristicValue->model_id = $id_model;
+                                    if($modelCharacteristicValue->save(false))
+                                    {
+                                        $j++;
+                                    }    
+                                }
+                                if($j == 51)
+                                    break;
+                                }
+                                
+                            }   
+                        
+                        
                       }
                       fclose($handle);
                       unlink($path_csv);

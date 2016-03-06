@@ -161,9 +161,12 @@ class Models extends CActiveRecord implements IECartPosition
                 $this->photo = $basename;   
             }
             else{
+                
                 if($this->scenario == 'update')
                     unset($this->photo);
             }
+            
+            
             
             if ($files = CUploadedFile::getInstancesByName('photo_other'))
             {
@@ -213,6 +216,10 @@ class Models extends CActiveRecord implements IECartPosition
         if (($this->scenario=='update') && ($files = CUploadedFile::getInstancesByName('photo_other')))
         $this->deleteDocumentPhoto_other();
         
+    }
+    
+    protected function afterSave(){
+        $id_update = $this->id;
     }
  
     public function deleteDocument(){
