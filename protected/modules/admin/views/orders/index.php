@@ -41,19 +41,25 @@
 		'model_id'=>array(
             'name'=>'model_id',
             'type' => 'html',
-            'value' => 'implode("<br/><br/>", json_decode($data->model_id))',
+            'value' => 'is_array(json_decode($data->model_id)) ? 
+                        implode("<br/><br/>", json_decode($data->model_id)) : 
+                        ""',
             'htmlOptions' => array('class'=>'bold')
             ),
 		'quantity'=>array(
             'name'=>'quantity',
             'type' => 'html',
-            'value' => 'implode("<br/><br/>", json_decode($data->quantity))',
+            'value' => 'is_array(json_decode($data->quantity)) ? 
+                        implode("<br/><br/>", json_decode($data->quantity)) : 
+                        ""',
             'htmlOptions' => array('class'=>'bold quantity')
             ),
 		'sum'=>array(
             'name'=>'sum',
             'type' => 'html',
-            'value' => 'implode("<br/><br/>", json_decode($data->sum))',
+            'value' => 'is_array(json_decode($data->sum)) ? 
+                        implode("<br/><br/>", json_decode($data->sum)) : 
+                        ""',
             'htmlOptions' => array('class'=>'bold quantity')
             ),
 		'total'=>array(

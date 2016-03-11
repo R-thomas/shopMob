@@ -5,7 +5,7 @@ class MainController extends Controller
     public $layout='//layouts/main';
     public $menu;
     
-    public function actionIndex2()
+    public function actionIndex()
     {
         $this->menu = Category::model()->findAll();
         $banner = Banner::model()->findAll();
@@ -38,493 +38,491 @@ class MainController extends Controller
         ));
     }
     
-    public function actionIndex(){
-        $this->layout = '//layouts/zagl';
-        $this->render('zaglushka');
-    }
-    
+        
     public function actionGoods($category_id)
     {
+
         if ($category_id == 1)
         {
+            
             $cat = $category_id;
-        //главное меню
-        $this->menu = Category::model()->findAll();
-        
-        $criteria = new CDbCriteria;
-        if(isset($_GET))
-        {
-            if(key($_GET) == 'common')
+            //главное меню
+            $this->menu = Category::model()->findAll();
+            
+            $criteria = new CDbCriteria;
+            if(isset($_GET))
             {
-                $bz = key($_GET);
-                foreach($_GET as $items)
+                if(key($_GET) == 'common')
                 {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    $filter = array();
-                    foreach($query as $item)
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
                     {
-                        $filter[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['id'];
-                    }
-                    
-                    
-                }
-            }
-            
-            else if(key($_GET) == 'brand')
-            {
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        $filter[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            else if(key($_GET) == 'type' || key($_GET) == 'form' || key($_GET) == 'os' || key($_GET) == 'sim' || key($_GET) == 'protection' || key($_GET) == 'screen' || key($_GET) == 'core' || key($_GET) == 'core_frequency' || key($_GET) == 'wifi'  || key($_GET) == 'GPS')
-            { 
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE value="'.$item.'"';
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            else if(key($_GET) == 'diagonal')
-            { 
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        $items = explode('-', $item);
-                        $item_finish = implode(' AND ', $items);
-                       
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
+                        $query = $items;
+                        break;
                         
                     }
-                    $sql = implode(' UNION ', $filter);
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
+                    if (is_array($query))
                     {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            else if(key($_GET) == 'camera')
-            { 
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        $items = explode('-', $item);
-                        $item_finish = implode(' AND ', $items);
-                       
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                        
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            else if(key($_GET) == 'front_camera')
-            { 
-                
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        if($item == 'нет')
+                        $filter = array();
+                        foreach($query as $item)
                         {
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
+                            $filter[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
                         }
-                        else
+                        $sql = implode(' UNION ', $filter);
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['id'];
+                        }
+                        
+                        
+                    }
+                }
+                
+                else if(key($_GET) == 'brand')
+                {
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        $filter = array();
+                        foreach($query as $item)
+                        {
+                            $filter[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
+                        }
+                        $sql = implode(' UNION ', $filter);
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                else if(key($_GET) == 'type' || key($_GET) == 'form' || key($_GET) == 'os' || key($_GET) == 'sim' || key($_GET) == 'protection' || key($_GET) == 'screen' || key($_GET) == 'core' || key($_GET) == 'core_frequency' || key($_GET) == 'wifi'  || key($_GET) == 'GPS')
+                { 
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        $filter = array();
+                        foreach($query as $item)
+                        {
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE value="'.$item.'"';
+                        }
+                        $sql = implode(' UNION ', $filter);
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                else if(key($_GET) == 'diagonal')
+                { 
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        
+                        $filter = array();
+                        foreach($query as $item)
                         {
                             $items = explode('-', $item);
                             $item_finish = implode(' AND ', $items);
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
+                           
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
+                            
                         }
+                        $sql = implode(' UNION ', $filter);
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                else if(key($_GET) == 'camera')
+                { 
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
                         
                     }
-                    $sql = implode(' UNION ', $filter);
-                    
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
+                    if (is_array($query))
                     {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            else if(key($_GET) == 'ram')
-            { 
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        $items = explode('-', $item);
-                        $item_finish = implode(' AND ', $items);
-                        
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                        
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            else if(key($_GET) == 'rom')
-            { 
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        if($item == '0.1-4')
+                        $filter = array();
+                        foreach($query as $item)
                         {
                             $items = explode('-', $item);
                             $item_finish = implode(' AND ', $items);
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
+                           
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
+                            
                         }
-                        else
+                        $sql = implode(' UNION ', $filter);
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
                         {
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item.') AND characteristic_id = 26';
+                            $t1[] = $item['model_id'];
                         }
-                        
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['model_id'];
                     }
                 }
-            }
-            
-            else if(key($_GET) == 'battery')
-            { 
-                $bz = key($_GET);
-                foreach($_GET as $items)
-                {
-                    $query = $items;
-                    break;
-                    
-                }
-                if (is_array($query))
-                {
-                    
-                    $filter = array();
-                    foreach($query as $item)
-                    {
-                        $items = explode('-', $item);
-                        $item_finish = implode(' AND ', $items);
-                        
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
-                        
-                    }
-                    $sql = implode(' UNION ', $filter);
-                    
-                    $connection = Yii::app()->db; 
-                    $model = $connection->createCommand($sql)->queryAll();
-                    
-                    foreach ($model as $item)
-                    {
-                        $t1[] = $item['model_id'];
-                    }
-                }
-            }
-            
-            
-            
-            $i = 0;
-            foreach($_GET as $k=>$items)
-            {
                 
-                $i++;
-                if($i==2)
+                else if(key($_GET) == 'front_camera')
+                { 
+                    
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        
+                        $filter = array();
+                        foreach($query as $item)
+                        {
+                            if($item == 'нет')
+                            {
+                                $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
+                            }
+                            else
+                            {
+                                $items = explode('-', $item);
+                                $item_finish = implode(' AND ', $items);
+                                $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
+                            }
+                            
+                        }
+                        $sql = implode(' UNION ', $filter);
+                        
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                else if(key($_GET) == 'ram')
+                { 
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        
+                        $filter = array();
+                        foreach($query as $item)
+                        {
+                            $items = explode('-', $item);
+                            $item_finish = implode(' AND ', $items);
+                            
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
+                            
+                        }
+                        $sql = implode(' UNION ', $filter);
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                else if(key($_GET) == 'rom')
+                { 
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        
+                        $filter = array();
+                        foreach($query as $item)
+                        {
+                            if($item == '0.1-4')
+                            {
+                                $items = explode('-', $item);
+                                $item_finish = implode(' AND ', $items);
+                                $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
+                            }
+                            else
+                            {
+                                $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item.') AND characteristic_id = 26';
+                            }
+                            
+                        }
+                        $sql = implode(' UNION ', $filter);
+                        
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                else if(key($_GET) == 'battery')
+                { 
+                    $bz = key($_GET);
+                    foreach($_GET as $items)
+                    {
+                        $query = $items;
+                        break;
+                        
+                    }
+                    if (is_array($query))
+                    {
+                        
+                        $filter = array();
+                        foreach($query as $item)
+                        {
+                            $items = explode('-', $item);
+                            $item_finish = implode(' AND ', $items);
+                            
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
+                            
+                        }
+                        $sql = implode(' UNION ', $filter);
+                        
+                        $connection = Yii::app()->db; 
+                        $model = $connection->createCommand($sql)->queryAll();
+                        
+                        foreach ($model as $item)
+                        {
+                            $t1[] = $item['model_id'];
+                        }
+                    }
+                }
+                
+                
+                
+                $i = 0;
+                foreach($_GET as $k=>$items)
                 {
                     
-                    
-                    if($k == 'common')
-                    {
-                        $querys = $items;
-                        if (is_array($querys))
-                        {
-                            foreach($querys as $item)
-                            {
-                                
-                                $filter2[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
-                                
-                            }
-                            $sql = implode(' UNION ', $filter2);
-                           
-                            $connection = Yii::app()->db; 
-                            $model = $connection->createCommand($sql)->queryAll();
-                            foreach ($model as $item)
-                            {
-                                $t2[] = $item['id'];
-                            }
-                        }
-                        
-                    }
-                    
-                    elseif($k == 'brand')
-                    {
-                        $querys = $items;
-                        if (is_array($querys))
-                        {
-                            foreach($querys as $item)
-                            {
-                                $items = explode('-', $item);
-                                $item_finish = implode(' AND ', $items);
-                                
-                                $filter2[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
-                                
-                            }
-                            $sql = implode(' UNION ', $filter2);
-                            
-                            $connection = Yii::app()->db; 
-                            $model = $connection->createCommand($sql)->queryAll();
-                            
-                            foreach ($model as $item)
-                            {
-                                $t2[] = $item['model_id'];
-                            }
-                        }
-                        
-                    }
-                    
-                    elseif($k == 'diagonal')
-                    {
-                        $querys = $items;
-                        if (is_array($querys))
-                        {
-                            foreach($querys as $item)
-                            {
-                                $items = explode('-', $item);
-                                $item_finish = implode(' AND ', $items);
-                                
-                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
-                                
-                            }
-                            $sql = implode(' UNION ', $filter2);
-                            
-                            $connection = Yii::app()->db; 
-                            $model = $connection->createCommand($sql)->queryAll();
-                            
-                            foreach ($model as $item)
-                            {
-                                $t2[] = $item['model_id'];
-                            }
-                        }
-                        
-                    }
-                    
-                    elseif($k == 'camera')
+                    $i++;
+                    if($i==2)
                     {
                         
-                        $querys = $items;
-                        if (is_array($querys))
-                        {
-                            foreach($querys as $item)
-                            {
-                                $items = explode('-', $item);
-                                $item_finish = implode(' AND ', $items);
-                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                                
-                            }
-                            $sql = implode(' UNION ', $filter3);
-                           
-                            $connection = Yii::app()->db; 
-                            $model = $connection->createCommand($sql)->queryAll();
-                            
-                            foreach ($model as $item)
-                            {
-                                $t2[] = $item['model_id'];
-
-                            }
-                        }
                         
-                    }
-                    
-                    elseif($k == 'front_camera')
-                    {
-                        $querys = $items;
-                        
-                        if (is_array($querys))
+                        if($k == 'common')
                         {
-                            foreach($querys as $item)
-                            {
-                                if($item == 'нет')
-                                {
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
-                                    
-                                }
-                                else
-                                {
-                                    $items = explode('-', $item);
-                                    $item_finish = implode(' AND ', $items);
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
-                                    
-                                }
-                                
-                            }
-                            $sql = implode(' UNION ', $filter4);
-                            
-                            $connection = Yii::app()->db; 
-                            $model = $connection->createCommand($sql)->queryAll();
-                            foreach ($model as $item)
-                            {
-                                $t2[] = $item['model_id'];
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                    elseif($k == 'ram')
-                    {
-                        $querys = $items;
-                        if (is_array($querys))
-                        {
-                            foreach($querys as $item)
-                            {
-                                $items = explode('-', $item);
-                                $item_finish = implode(' AND ', $items);
-                                
-                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                                
-                            }
-                            $sql = implode(' UNION ', $filter5);
-                            
-                            $connection = Yii::app()->db; 
-                            $model = $connection->createCommand($sql)->queryAll();
-                            
-                            foreach ($model as $item)
-                            {
-                                $t2[] = $item['model_id'];
-                            }
-                        }
-                        
-                    }
-                    
-                    elseif($k == 'rom')
-                    {
-                        $querys = $items;
-                        if($querys[0] == '0.1-4')
-                        {
+                            $querys = $items;
                             if (is_array($querys))
                             {
                                 foreach($querys as $item)
+                                {
+                                    
+                                    $filter2[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
+                                    
+                                }
+                                $sql = implode(' UNION ', $filter2);
+                               
+                                $connection = Yii::app()->db; 
+                                $model = $connection->createCommand($sql)->queryAll();
+                                foreach ($model as $item)
+                                {
+                                    $t2[] = $item['id'];
+                                }
+                            }
+                            
+                        }
+                        
+                        elseif($k == 'brand')
+                        {
+                            $querys = $items;
+                            if (is_array($querys))
+                            {
+                                foreach($querys as $item)
+                                {
+                                    $items = explode('-', $item);
+                                    $item_finish = implode(' AND ', $items);
+                                    
+                                    $filter2[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
+                                    
+                                }
+                                $sql = implode(' UNION ', $filter2);
+                                
+                                $connection = Yii::app()->db; 
+                                $model = $connection->createCommand($sql)->queryAll();
+                                
+                                foreach ($model as $item)
+                                {
+                                    $t2[] = $item['model_id'];
+                                }
+                            }
+                            
+                        }
+                        
+                        elseif($k == 'diagonal')
+                        {
+                            $querys = $items;
+                            if (is_array($querys))
+                            {
+                                foreach($querys as $item)
+                                {
+                                    $items = explode('-', $item);
+                                    $item_finish = implode(' AND ', $items);
+                                    
+                                    $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
+                                    
+                                }
+                                $sql = implode(' UNION ', $filter2);
+                                
+                                $connection = Yii::app()->db; 
+                                $model = $connection->createCommand($sql)->queryAll();
+                                
+                                foreach ($model as $item)
+                                {
+                                    $t2[] = $item['model_id'];
+                                }
+                            }
+                            
+                        }
+                        
+                        elseif($k == 'camera')
+                        {
+                            
+                            $querys = $items;
+                            if (is_array($querys))
+                            {
+                                foreach($querys as $item)
+                                {
+                                    $items = explode('-', $item);
+                                    $item_finish = implode(' AND ', $items);
+                                    $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
+                                    
+                                }
+                                $sql = implode(' UNION ', $filter3);
+                               
+                                $connection = Yii::app()->db; 
+                                $model = $connection->createCommand($sql)->queryAll();
+                                
+                                foreach ($model as $item)
+                                {
+                                    $t2[] = $item['model_id'];
+    
+                                }
+                            }
+                            
+                        }
+                        
+                        elseif($k == 'front_camera')
+                        {
+                            $querys = $items;
+                            
+                            if (is_array($querys))
+                            {
+                                foreach($querys as $item)
+                                {
+                                    if($item == 'нет')
+                                    {
+                                        $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
+                                        
+                                    }
+                                    else
+                                    {
+                                        $items = explode('-', $item);
+                                        $item_finish = implode(' AND ', $items);
+                                        $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
+                                        
+                                    }
+                                    
+                                }
+                                $sql = implode(' UNION ', $filter4);
+                                
+                                $connection = Yii::app()->db; 
+                                $model = $connection->createCommand($sql)->queryAll();
+                                foreach ($model as $item)
+                                {
+                                    $t2[] = $item['model_id'];
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        elseif($k == 'ram')
+                        {
+                            $querys = $items;
+                            if (is_array($querys))
+                            {
+                                foreach($querys as $item)
+                                {
+                                    $items = explode('-', $item);
+                                    $item_finish = implode(' AND ', $items);
+                                    
+                                    $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
+                                    
+                                }
+                                $sql = implode(' UNION ', $filter5);
+                                
+                                $connection = Yii::app()->db; 
+                                $model = $connection->createCommand($sql)->queryAll();
+                                
+                                foreach ($model as $item)
+                                {
+                                    $t2[] = $item['model_id'];
+                                }
+                            }
+                            
+                        }
+                        
+                        elseif($k == 'rom')
+                        {
+                            $querys = $items;
+                            if($querys[0] == '0.1-4')
+                            {
+                                if (is_array($querys))
+                                {
+                                    foreach($querys as $item)
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
@@ -972,7 +970,7 @@ class MainController extends Controller
                                 
                             }
                            
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
@@ -1498,7 +1496,7 @@ class MainController extends Controller
         
         
         //sql запрос - возвращает количество моделей по каждой характеристике в фильтре
-        $count = Models::filterCategory1($ids_query);
+        $count = Models::filterCategory($ids_query, $category_id);
         
         //подсчет количества производителей
         $count_maker_arr = array();
@@ -1553,7 +1551,7 @@ class MainController extends Controller
             $cat = $category_id;
         //главное меню
         $this->menu = Category::model()->findAll();
-        echo '<pre>'; print_r($_GET); echo '</pre>';
+        
         $criteria = new CDbCriteria;
         if(isset($_GET))
         {
@@ -1612,7 +1610,7 @@ class MainController extends Controller
                 }
             }
             
-            else if(key($_GET) == 'type' || key($_GET) == 'form' || key($_GET) == 'os' || key($_GET) == 'sim' || key($_GET) == 'protection' || key($_GET) == 'screen' || key($_GET) == 'core' || key($_GET) == 'core_frequency' || key($_GET) == 'wifi'  || key($_GET) == 'GPS')
+            else if(key($_GET) == 'type' || key($_GET) == 'os' || key($_GET) == 'sim' || key($_GET) == 'screen' || key($_GET) == 'core' || key($_GET) == 'core_frequency' || key($_GET) == 'GPS')
             { 
                 $bz = key($_GET);
                 foreach($_GET as $items)
@@ -1656,9 +1654,9 @@ class MainController extends Controller
                     {
                         $items = explode('-', $item);
                         $item_finish = implode(' AND ', $items);
-                        echo '<pre>'; print_r($item_finish); echo '</pre>';
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
-                        echo '<pre>'; print_r($filter); echo '</pre>';
+                        
+                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 57';
+                        
                     }
                     $sql = implode(' UNION ', $filter);
                     $connection = Yii::app()->db; 
@@ -1687,9 +1685,9 @@ class MainController extends Controller
                     {
                         $items = explode('-', $item);
                         $item_finish = implode(' AND ', $items);
-                        echo '<pre>'; print_r($item_finish); echo '</pre>';
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                        echo '<pre>'; print_r($filter); echo '</pre>';
+                        
+                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 65';
+                        
                     }
                     $sql = implode(' UNION ', $filter);
                     $connection = Yii::app()->db; 
@@ -1720,18 +1718,18 @@ class MainController extends Controller
                     {
                         if($item == 'нет')
                         {
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 66';
                         }
                         else
                         {
                             $items = explode('-', $item);
                             $item_finish = implode(' AND ', $items);
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 66';
                         }
                         
                     }
                     $sql = implode(' UNION ', $filter);
-                    echo '<pre>'; print_r($sql); echo '</pre>';
+                    
                     $connection = Yii::app()->db; 
                     $model = $connection->createCommand($sql)->queryAll();
                     
@@ -1759,9 +1757,9 @@ class MainController extends Controller
                     {
                         $items = explode('-', $item);
                         $item_finish = implode(' AND ', $items);
-                        echo '<pre>'; print_r($item_finish); echo '</pre>';
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                        echo '<pre>'; print_r($filter); echo '</pre>';
+                        
+                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 68';
+                        
                     }
                     $sql = implode(' UNION ', $filter);
                     $connection = Yii::app()->db; 
@@ -1793,11 +1791,11 @@ class MainController extends Controller
                         {
                             $items = explode('-', $item);
                             $item_finish = implode(' AND ', $items);
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 69';
                         }
                         else
                         {
-                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item.') AND characteristic_id = 26';
+                            $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item.') AND characteristic_id = 69';
                         }
                         
                     }
@@ -1830,12 +1828,12 @@ class MainController extends Controller
                     {
                         $items = explode('-', $item);
                         $item_finish = implode(' AND ', $items);
-                        echo '<pre>'; print_r($item_finish); echo '</pre>';
-                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
-                        echo '<pre>'; print_r($filter); echo '</pre>';
+                        
+                        $filter[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 80';
+                        
                     }
                     $sql = implode(' UNION ', $filter);
-                    echo '<pre>'; print_r($sql); echo '</pre>';
+                    
                     $connection = Yii::app()->db; 
                     $model = $connection->createCommand($sql)->queryAll();
                     
@@ -1866,10 +1864,10 @@ class MainController extends Controller
                             {
                                 
                                 $filter2[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             foreach ($model as $item)
@@ -1889,12 +1887,12 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
+                               
                                 $filter2[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
@@ -1915,12 +1913,12 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                               
+                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 57';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
@@ -1942,11 +1940,11 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                                echo '<pre>'; print_r($filter3); echo '</pre>';
+                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 65';
+                               
                             }
                             $sql = implode(' UNION ', $filter3);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
@@ -1969,20 +1967,20 @@ class MainController extends Controller
                             {
                                 if($item == 'нет')
                                 {
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 66';
+                                    
                                 }
                                 else
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 66';
+                                    
                                 }
                                 
                             }
                             $sql = implode(' UNION ', $filter4);
-                            echo '<pre>_____-'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             foreach ($model as $item)
@@ -2003,12 +2001,12 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                                echo '<pre>'; print_r($filter5); echo '</pre>';
+                                
+                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 68';
+                                
                             }
                             $sql = implode(' UNION ', $filter5);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
@@ -2031,12 +2029,12 @@ class MainController extends Controller
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 69';
+                                   
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                               
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
@@ -2052,11 +2050,11 @@ class MainController extends Controller
                             {
                                 foreach($querys as $item2)
                                 {
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 69';
+                                    
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                                
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
@@ -2080,12 +2078,12 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
-                                echo '<pre>'; print_r($filter7); echo '</pre>';
+                                
+                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 80';
+                                
                             }
                             $sql = implode(' UNION ', $filter7);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
@@ -2123,6 +2121,7 @@ class MainController extends Controller
                 
                 if($i==3)
                 {
+                    
                     if($k == 'common')
                     {
                         $querys = $items;
@@ -2132,16 +2131,15 @@ class MainController extends Controller
                             {
                                 
                                 $filter2[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
-                            echo '<pre>$model$model$model'; print_r($model); echo '</pre>';
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['id'];
+                                $t2[] = $item['id'];
                             }
                         }
                         
@@ -2154,18 +2152,20 @@ class MainController extends Controller
                         {
                             foreach($querys as $item)
                             {
-                                
+                                $items = explode('-', $item);
+                                $item_finish = implode(' AND ', $items);
+                               
                                 $filter2[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2180,18 +2180,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                               
+                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 57';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2207,17 +2207,17 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                                echo '<pre>'; print_r($filter3); echo '</pre>';
+                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 65';
+                               
                             }
                             $sql = implode(' UNION ', $filter3);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
 
                             }
                         }
@@ -2234,25 +2234,25 @@ class MainController extends Controller
                             {
                                 if($item == 'нет')
                                 {
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 66';
+                                    
                                 }
                                 else
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 66';
+                                    
                                 }
                                 
                             }
                             $sql = implode(' UNION ', $filter4);
-                            echo '<pre>_____-'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                             
                         }
@@ -2268,18 +2268,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                                echo '<pre>'; print_r($filter5); echo '</pre>';
+                                
+                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 68';
+                                
                             }
                             $sql = implode(' UNION ', $filter5);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2296,39 +2296,38 @@ class MainController extends Controller
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 69';
+                                   
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                               
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
                                 foreach ($model as $item)
                                 {
-                                    $t3[] = $item['model_id'];
+                                    $t2[] = $item['model_id'];
                                 }
                             }
                         }
                         else
                         {
-                            echo $k.'>>>>>';
                             if (is_array($querys))
                             {
                                 foreach($querys as $item2)
                                 {
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 69';
+                                    
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                                
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
                                 foreach ($model as $item)
                                 {
-                                    $t3[] = $item['model_id'];
+                                    $t2[] = $item['model_id'];
                                 }
                             }
                         }
@@ -2346,18 +2345,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
-                                echo '<pre>'; print_r($filter7); echo '</pre>';
+                                
+                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 80';
+                                
                             }
                             $sql = implode(' UNION ', $filter7);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2376,10 +2375,10 @@ class MainController extends Controller
                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
-                            $t3 = array();
+                            $t2 = array();
                             foreach ($model as $item)
                             {
-                                $t3[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             } 
                         }
                     }
@@ -2388,6 +2387,7 @@ class MainController extends Controller
                 
                 if($i==4)
                 {
+                    
                     if($k == 'common')
                     {
                         $querys = $items;
@@ -2397,16 +2397,15 @@ class MainController extends Controller
                             {
                                 
                                 $filter2[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
-                            echo '<pre>$model$model$model'; print_r($model); echo '</pre>';
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['id'];
+                                $t2[] = $item['id'];
                             }
                         }
                         
@@ -2419,18 +2418,20 @@ class MainController extends Controller
                         {
                             foreach($querys as $item)
                             {
-                                
+                                $items = explode('-', $item);
+                                $item_finish = implode(' AND ', $items);
+                               
                                 $filter2[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2445,18 +2446,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                               
+                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 57';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2472,17 +2473,17 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                                echo '<pre>'; print_r($filter3); echo '</pre>';
+                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 65';
+                               
                             }
                             $sql = implode(' UNION ', $filter3);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
 
                             }
                         }
@@ -2499,25 +2500,25 @@ class MainController extends Controller
                             {
                                 if($item == 'нет')
                                 {
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 66';
+                                    
                                 }
                                 else
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 66';
+                                    
                                 }
                                 
                             }
                             $sql = implode(' UNION ', $filter4);
-                            echo '<pre>_____-'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                             
                         }
@@ -2533,18 +2534,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                                echo '<pre>'; print_r($filter5); echo '</pre>';
+                                
+                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 68';
+                                
                             }
                             $sql = implode(' UNION ', $filter5);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2561,39 +2562,38 @@ class MainController extends Controller
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 69';
+                                   
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                               
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
                                 foreach ($model as $item)
                                 {
-                                    $t4[] = $item['model_id'];
+                                    $t2[] = $item['model_id'];
                                 }
                             }
                         }
                         else
                         {
-                            echo $k.'>>>>>';
                             if (is_array($querys))
                             {
                                 foreach($querys as $item2)
                                 {
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 69';
+                                    
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                                
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
                                 foreach ($model as $item)
                                 {
-                                    $t4[] = $item['model_id'];
+                                    $t2[] = $item['model_id'];
                                 }
                             }
                         }
@@ -2611,18 +2611,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
-                                echo '<pre>'; print_r($filter7); echo '</pre>';
+                                
+                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 80';
+                                
                             }
                             $sql = implode(' UNION ', $filter7);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2641,10 +2641,10 @@ class MainController extends Controller
                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
-                            $t4 = array();
+                            $t2 = array();
                             foreach ($model as $item)
                             {
-                                $t4[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             } 
                         }
                     }
@@ -2652,6 +2652,7 @@ class MainController extends Controller
                 
                 if($i==5)
                 {
+                    
                     if($k == 'common')
                     {
                         $querys = $items;
@@ -2661,16 +2662,15 @@ class MainController extends Controller
                             {
                                 
                                 $filter2[] = 'SELECT id FROM {{models}} WHERE '.$item.'=1';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
-                            echo '<pre>$model$model$model'; print_r($model); echo '</pre>';
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['id'];
+                                $t2[] = $item['id'];
                             }
                         }
                         
@@ -2683,18 +2683,20 @@ class MainController extends Controller
                         {
                             foreach($querys as $item)
                             {
-                                
+                                $items = explode('-', $item);
+                                $item_finish = implode(' AND ', $items);
+                               
                                 $filter2[] = 'SELECT cms_models.id as model_id FROM cms_models JOIN cms_brand ON brand_id = cms_brand.id WHERE brand = "'.$item.'"';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2709,18 +2711,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 12';
-                                echo '<pre>'; print_r($filter2); echo '</pre>';
+                               
+                                $filter2[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 57';
+                                
                             }
                             $sql = implode(' UNION ', $filter2);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2736,17 +2738,17 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 21';
-                                echo '<pre>'; print_r($filter3); echo '</pre>';
+                                $filter3[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 65';
+                               
                             }
                             $sql = implode(' UNION ', $filter3);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
 
                             }
                         }
@@ -2763,25 +2765,25 @@ class MainController extends Controller
                             {
                                 if($item == 'нет')
                                 {
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = "'.$item.'") AND characteristic_id = 66';
+                                    
                                 }
                                 else
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 22';
-                                    echo '<pre>'; print_r($filter4); echo '</pre>';
+                                    $filter4[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 66';
+                                    
                                 }
                                 
                             }
                             $sql = implode(' UNION ', $filter4);
-                            echo '<pre>_____-'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                             
                         }
@@ -2797,18 +2799,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 25';
-                                echo '<pre>'; print_r($filter5); echo '</pre>';
+                                
+                                $filter5[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 68';
+                                
                             }
                             $sql = implode(' UNION ', $filter5);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2825,39 +2827,38 @@ class MainController extends Controller
                                 {
                                     $items = explode('-', $item);
                                     $item_finish = implode(' AND ', $items);
-                                    echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 69';
+                                   
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                               
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
                                 foreach ($model as $item)
                                 {
-                                    $t5[] = $item['model_id'];
+                                    $t2[] = $item['model_id'];
                                 }
                             }
                         }
                         else
                         {
-                            echo $k.'>>>>>';
                             if (is_array($querys))
                             {
                                 foreach($querys as $item2)
                                 {
-                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 26';
-                                    echo '<pre>'; print_r($filter6); echo '</pre>';
+                                    $filter6[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value = '.$item2.') AND characteristic_id = 69';
+                                    
                                 }
                                 $sql = implode(' UNION ', $filter6);
-                                echo '<pre>'; print_r($sql); echo '</pre>';
+                                
                                 $connection = Yii::app()->db; 
                                 $model = $connection->createCommand($sql)->queryAll();
                                 
                                 foreach ($model as $item)
                                 {
-                                    $t5[] = $item['model_id'];
+                                    $t2[] = $item['model_id'];
                                 }
                             }
                         }
@@ -2875,18 +2876,18 @@ class MainController extends Controller
                             {
                                 $items = explode('-', $item);
                                 $item_finish = implode(' AND ', $items);
-                                echo '<pre>'; print_r($item_finish); echo '</pre>';
-                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 41';
-                                echo '<pre>'; print_r($filter7); echo '</pre>';
+                                
+                                $filter7[] = 'SELECT DISTINCT model_id FROM {{characteristicValue}} WHERE (value BETWEEN '.$item_finish.') AND characteristic_id = 80';
+                                
                             }
                             $sql = implode(' UNION ', $filter7);
-                            echo '<pre>'; print_r($sql); echo '</pre>';
+                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
                             
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             }
                         }
                         
@@ -2905,31 +2906,26 @@ class MainController extends Controller
                            
                             $connection = Yii::app()->db; 
                             $model = $connection->createCommand($sql)->queryAll();
-                            $t5 = array();
+                            $t2 = array();
                             foreach ($model as $item)
                             {
-                                $t5[] = $item['model_id'];
+                                $t2[] = $item['model_id'];
                             } 
                         }
                     }
-                }
                 
             }
-            echo '<pre>t1'; print_r($t1); echo '</pre>';
-            echo '<pre>t2'; print_r($t2); echo '</pre>';
-            echo '<pre>t3'; print_r($t3); echo '</pre>';
-            echo '<pre>t4'; print_r($t4); echo '</pre>';
-            echo '<pre>t5'; print_r($t5); echo '</pre>';
+            
         }
-        if($t1&&$t2)
+        if(isset($t1)&& isset($t2))
         $z = array_intersect($t1, $t2);
-        if($z&&$t3)
+        if(isset($z)&&isset($t3))
         $z = array_intersect($z, $t3);
-        if($z&&$t4)
+        if(isset($z)&&isset($t4))
         $z = array_intersect($z, $t4);
-        if($z&&$t5)
+        if(isset($z)&&isset($t5))
         $z = array_intersect($z, $t5);
-        echo '<pre>'; print_r($z); echo '</pre>';
+        
         
         $a = Yii::app()->getRequest()->getQueryString();
         
@@ -2962,11 +2958,11 @@ class MainController extends Controller
         $brands = Brand::model()->findAll($criter);
          
         //Товары
-        if($z)
+        if(isset($z))
         {
             $criteria->addInCondition('id', $z);
         }
-        if(!$z&&$t1)
+        if(!isset($z)&&isset($t1))
         {
             $criteria->addInCondition('id', $t1);
         }         
@@ -2987,27 +2983,28 @@ class MainController extends Controller
         
         $model = Models::model()->findAll($criteria);
         $ids = array();
-        if(!$z)
+        if(!isset($z))
         {
             foreach($model as $item)
             {
                 $ids[] = $item->id;
             }
         }
-        else if (!$z&&$t1)
+        else if (!isset($z)&&isset($t1))
         {
             $ids = $t1;
         }
-        else if ($z)
+        else if (isset($z))
         {
             $ids = $z;
         }
         
         $ids_query = implode(', ', $ids);
-        echo '<pre> id для запроса '; print_r($ids_query); echo '</pre>';
+        
         
         //sql запрос - возвращает количество моделей по каждой характеристике в фильтре
-        $count = Models::filterCategory1($ids_query);
+        if($ids_query!='')
+            $count = Models::filterCategory($ids_query, $category_id);
         
         //подсчет количества производителей
         $count_maker_arr = array();
@@ -3056,8 +3053,7 @@ class MainController extends Controller
                 $count_bestPrice++;
             }
         }
-        }
-        
+        }}
         /*
         $models = array();
         foreach ($model as $item)
@@ -3145,13 +3141,70 @@ class MainController extends Controller
             if ($order->save())
             {
                 Yii::app()->shoppingCart->clear();
-                echo '111';
+                $this->redirect(array('success','id_order'=>$order->id));
+                
             }
         }
         
         $this->render('cart', array(
             'order'=>$order
         ));
+    }
+    
+    public function actionSuccess()
+    {
+        $this->menu = Category::model()->findAll();
+        $this->render('success');
+    }
+    
+    public function actionOrderNumber()
+    {
+        $this->menu = Category::model()->findAll();
+        $input = Yii::app()->request->getPost('input');
+        $input_int = (int)$input;
+        if($input_int !=0)
+        {
+            
+            $model = Orders::model()->findByPk($input_int);
+            if(gettype($model) != 'NULL')
+            {
+                $id = $model->id;
+                $status = $model->status;
+                if($status == 0 && $id !=0)
+                    $output = 'Новый';
+                elseif($status == 1 && $id !=0)
+                    $output = 'В обработке';
+                elseif($status == 2 && $id !=0)
+                    $output = 'Отправлен';
+                elseif($status == 3 && $id !=0)
+                    $output = 'Доставлен';
+                elseif($status == 4 && $id !=0)
+                    $output = 'Отменен';
+                elseif($status == 5 && $id !=0)
+                    $output = 'Отменен навсегда';
+                
+            }   
+            else
+                $output = 'Данные отсутствуют';     
+            
+            
+        }
+        else
+        {
+            $output = 'Неверный ввод';
+        }
+        
+             
+                        
+        
+ 
+        // если запрос асинхронный, то нам нужно отдать только данные
+        if(Yii::app()->request->isAjaxRequest){
+            echo CHtml::encode($output);
+            // Завершаем приложение
+            Yii::app()->end();
+        }
+        $this->render('orderNumber');
     }
     
     public function actionProduct($id)

@@ -26,6 +26,10 @@ $(document).ready(function(){
         
     }
     
+    var heightSuccess = $('.success_content_main_text').height();
+    $('.success_content_main_img').height(heightSuccess);
+    
+    
     $('#goods_filter_header').on('click', function(){
 	   $('.goods_filter').slideToggle(500);
 	})

@@ -1,7 +1,6 @@
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/goods.style.css" rel="stylesheet"/>
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/index.style.css" rel="stylesheet"/>
 
-
 <div class="row goods_content_wrap">
     <div class="col-md-120 col-sm-120 col-xs-120 goods_content">
         <div class="row goods_content_header">
@@ -121,17 +120,17 @@
                             if ($j == 1)
                             {
                                 
-                                echo '<div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
+                                echo '<a href="/main/product/'.$goods->id.'"><div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
                                           <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
-                                          <div class="content_description"><a href="#">'.$goods->categoryId->category->category_name.'></a>
-                                              <div class="content_tel_title"><a href="#">'.$goods->brandModel->brand
+                                          <div class="content_description"><a href="/main/goods/category_id/'.$goods->categoryId->category->id.'">'.$goods->categoryId->category->category_name.'></a>
+                                              <div class="content_tel_title"><a href="/main/product/'.$goods->id.'">'.$goods->brandModel->brand
                                                                                           .' '.$goods->model_name
                                                                                           .'</a></div>    
                                           </div>
                                           <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
                                           <p class="content_price">'.$goods->price.' р</p>
                                           <div class="content_button_buy" id="submit'.$goods->id.'">Купить</div>   
-                                      </div>
+                                      </div></a>
                                         <script>
                                             $(\'body\').on(\'click\',\'#submit'.$goods->id.'\',function(){
                                                 $(\'.loader\').css({\'display\':\'block\'});
@@ -144,7 +143,7 @@
                                                     $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
                                                     $(\'.loader\').css({\'display\':\'none\'});
                                                 },
-                                                \'url\':\'/main/index2\',
+                                                \'url\':\'/main/index\',
                                                 \'cache\':false,
                                                 \'data\': ({\'id\':'.$goods->id.'})})
                                         });
@@ -157,17 +156,17 @@
                             if ($j == 2)
                             {
                                 $j = 0;
-                                echo '<div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_second_item">
+                                echo '<a href="/main/product/'.$goods->id.'"><div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_second_item">
                                       <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
-                                      <div class="content_description"><a href="#">'.$goods->categoryId->category->category_name.'></a>
-                                          <div class="content_tel_title"><a href="#">'.$goods->brandModel->brand
+                                      <div class="content_description"><a href="/main/goods/category_id/'.$goods->categoryId->category->id.'">'.$goods->categoryId->category->category_name.'></a>
+                                          <div class="content_tel_title"><a href="/main/product/'.$goods->id.'">'.$goods->brandModel->brand
                                                                                       .' '.$goods->model_name
                                                                                       .'</a></div>    
                                       </div>
                                       <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
                                       <p class="content_price">'.$goods->price.' р</p>
                                       <div class="content_button_buy" id="submit'.$goods->id.'">Купить</div>   
-                                  </div>
+                                  </div></a>
                                   <script>
                                         $(\'body\').on(\'click\',\'#submit'.$goods->id.'\',function(){
                                             $(\'.loader\').css({\'display\':\'block\'});
@@ -180,7 +179,7 @@
                                                 $(\'.index_modal_dialog\').css({\'display\': \'block\', \'opacity\': \'0\'}).delay(500).animate({opacity: 0.6}, 300).delay(1500).animate({opacity: 0}, 300).css({\'display\': \'block\'});
                                                 $(\'.loader\').css({\'display\':\'none\'});
                                             },
-                                            \'url\':\'/main/index2\',
+                                            \'url\':\'/main/index\',
                                             \'cache\':false,
                                             \'data\': ({\'id\':'.$goods->id.'})})
                                     });

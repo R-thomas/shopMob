@@ -36,15 +36,15 @@
                                     .CHtml::checkBox('submit_cart', false, array('value'=>$position->id, 'id'=>$position->id, 'style'=>'display:none', 'class'=>'ccc')).
                                     CHtml::label('', $position->id, array('class'=>'glyphicon glyphicon-remove-sign'))  .'
                                 </div>
-                                <div class="col-md-100 col-sm-100 col-xs-110 cart_content_order_img">
+                                <a href="/main/product/'.$position->id.'"><div class="col-md-100 col-sm-100 col-xs-110 cart_content_order_img">
                                     <img src="../../../upload/images/'.$position->photo.'"/>
-                                </div>
+                                </div></a>
                                 
                             </div>
                             <div class="col-md-95 col-sm-85 col-xs-120 cart_content_order_inner2">
-                                <div class="col-md-48 col-sm-120 col-xs-120 cart_content_order_name">
+                                <a href="/main/product/'.$position->id.'"><div class="col-md-48 col-sm-120 col-xs-120 cart_content_order_name">
                                     <p>'.$position->brandModel->brand.' '.$position->model_name.'</p>
-                                </div>
+                                </div></a>
                                 <div class="col-md-25 col-sm-120 col-xs-120 cart_content_order_val cart_content_order_val1">
                                     <span class="cart_order_title">Цена:&nbsp;</span><span class="cart_order_price_val">'.$position->getPrice().' p</span>
                                 </div>
