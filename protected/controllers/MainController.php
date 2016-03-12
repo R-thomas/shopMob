@@ -38,10 +38,43 @@ class MainController extends Controller
         ));
     }
     
+    public function actionIndex2()
+    {
+        $this->menu = Category::model()->findAll();
+        $term = addcslashes(Yii::app()->getRequest()->getParam('term'), '%_'); //экранировать LIKE специальные символы
+        if (Yii::app()->request->isAjaxRequest && $term) {
+            $term_arr = explode(' ', $term);
+            if(isset($term_arr[1]))
+            {
+                $criteria = new CDbCriteria;
+                $criteria->condition = 'model_name LIKE :term2 AND brandModel.brand LIKE :term1';
+                $criteria->params = array(':term1' => "%$term_arr[0]%", ':term2' => "%$term_arr[1]%");
+            }
+            else
+            {
+                $criteria = new CDbCriteria;
+                $criteria->condition = 'model_name LIKE :term OR brandModel.brand LIKE :term';
+                $criteria->params = array(':term' => "%$term_arr[0]%");
+            }
+            $model = Models::model()->with('brandModel')->findAll($criteria);
+            
+            $result = array();
+            foreach ($model as $value) {
+                $label = $value->brandModel->brand.' '.$value->model_name;
+                $result[] = array('id' => $value['id'], 'label' => $label, 'value' => $label, 'href' => '/main/product/' . $value['id']);
+            }
+                
+            
+            
+            echo CJSON::encode($result);
+            Yii::app()->end();
+        }
+        $this->render('index2');
+    }
+    
         
     public function actionGoods($category_id)
     {
-
         if ($category_id == 1)
         {
             

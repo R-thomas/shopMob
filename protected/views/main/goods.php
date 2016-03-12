@@ -33,11 +33,15 @@
                 
                 
                 <?php 
-                    echo CHtml::form('', 'get', array('id'=>'my_form'));
+                    echo CHtml::form('', 'get', array('id'=>'my_form', 'name'=>'person'));
                 	echo Characteristics::filterRender($category_id, $model, $count, $count_maker, $count_top, $count_promotion, $count_novelty, $count_bestPrice);
                     echo CHtml::submitButton('Отправить' , array('style' => 'display:none'));
                     echo CHtml::endForm();
                 ?>
+                <script>
+                    //console.log(parseGetParams());
+                    //document.person.action='/main/goods/category_id/1?common[]=top&common[]=promotion'
+                </script>
                 <!--
                 <div class="goods_filter_selected">
                     <p>Экран <span class="glyphicon glyphicon-triangle-bottom"></p>

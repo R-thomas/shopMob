@@ -1,3 +1,7 @@
+.input-group{
+    float: left;    
+}
+
 .index_modal_dialog{
     width: 20%;
     height: 40px;
@@ -109,7 +113,7 @@ ul li a.navbar_top{
     border: 2px solid #ec3a40;
     background-color: #ec3a40;
     border-radius: 3px;
-    margin-left: 0;
+    margin-left: 3px;
     font: 12px tahoma, sans-serif;
     color: #fff;
     box-shadow: 0 0 5px -1px #d6d6d6;
@@ -307,6 +311,20 @@ ul li a.navbar_top{
 
 
 @media screen and (max-width: 767px){
+    
+    .index_modal_dialog{
+        width: 40%;
+        height: 40px;
+        background-color: #000;
+        position: fixed;
+        top: 7%;
+        left: 30%;
+        z-index: 100; 
+        border-radius: 5px;
+        display: none;
+        
+    }
+    
     .menu_top{
         height: 25px;
     }
