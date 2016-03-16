@@ -111,9 +111,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>    
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -148,9 +146,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>       
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -181,9 +177,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>       
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -214,9 +208,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>       
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -269,9 +261,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>    
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -302,8 +292,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name
                                                                                 .'</a></div>       
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
@@ -335,9 +324,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>       
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -368,9 +355,7 @@
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->brandModel->brand
-                                                                                .' '.$topGoods->model_name
-                                                                                .'</a></div>       
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods->old_price != 0?$topGoods->old_price.' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods->price.' р</p>
@@ -460,9 +445,7 @@
                         echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["brand"]
-                                                                                .' '.$topGoods["model_name"]
-                                                                                .'</a></div>    
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
@@ -493,9 +476,7 @@
                         echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["brand"]
-                                                                                .' '.$topGoods["model_name"]
-                                                                                .'</a></div>    
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
@@ -526,9 +507,7 @@
                         echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["brand"]
-                                                                                .' '.$topGoods["model_name"]
-                                                                                .'</a></div>    
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
@@ -559,9 +538,7 @@
                         echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
                                 <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
-                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["brand"]
-                                                                                .' '.$topGoods["model_name"]
-                                                                                .'</a></div>    
+                                    <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>

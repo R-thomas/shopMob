@@ -5,7 +5,7 @@
     <div class="row product_contaner">
         <div class="row prod_contaner">
             <div class="col-md-120 col-sm-120 col-xs-120 product_header">
-                <h1 class="text-uppercase"><?php echo ($model->categoryId->category_id == 1?'Мобильный телефон':($model->categoryId->category_id == 2?'Планшет':($model->categoryId->category_id == 3?'Ноутбук':''))).' '.$model->brandModel->brand.' '.$model->model_name ?></h1>
+                <h1 class="text-uppercase"><?php echo $model->model_name ?></h1>
             </div>
         </div>
         <div class="row">

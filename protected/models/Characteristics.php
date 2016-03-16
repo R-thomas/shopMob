@@ -1599,6 +1599,405 @@ class Characteristics extends CActiveRecord
                   ';
         }
         
+        
+        if($category == 3 && $count)
+        {
+            echo '<div class="goods_filter_selected">
+                    <p>Общие параметры <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                  </div>
+                  <div class="filter_selected">
+                      <div class="selected_item">
+                         <div>
+                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc" style = "display:none">
+                             <label class="goods_content_label" for="promotion" style="'.($count_promotion==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
+                             <span class="selected_value">Акции ('.$count_promotion.')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="common[]" value="top" id="top" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="top" style="'.($count_top==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">Хит продаж ('.$count_top.')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="common[]" value="novelty" id="novelty" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="novelty" style="'.($count_novelty==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">Новинка ('.$count_novelty.')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="common[]" value="bestPrice" id="bestPrice" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="bestPrice" style="'.($count_bestPrice==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">Лучшая цена ('.$count_bestPrice.')</span></label>
+                         </div>
+                         <p>Производитель</p>';
+                         $arr = array();
+                 foreach($model as $item)
+                 {
+                    $arr[] = $item->brandModel->brand;
+                 }
+                         
+                 $m = array_unique($arr); 
+                 $j = 0;      
+                 foreach($m as $k=>$item)
+                 {
+                    $j++;
+                    $i = 0;
+                    foreach($count_maker as $n=>$maker)
+                    {
+                        $i++;
+                        if($j == $i)
+                        {
+                            echo '<div>
+                                     <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" >
+                                     <label class="goods_content_label" for="brand_'.$item.'" style="'.($maker==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                     <span class="selected_value">'.$item.' ('.$maker.')</span></label>
+                                 </div>';
+                        }
+                    }
+                    
+                 } 
+                            
+                 echo    '
+                          <p>Тип</p>
+                          <div>
+                             <input type="checkbox" name="type[]" value="Ноутбук" id="type_notebook" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="type_notebook" style="'.($count[0]["notebook"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Ноутбук ('.$count[0]["notebook"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="type[]" value="Нетбук" id="type_netbook" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="type_netbook" style="'.($count[0]["tel"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>    
+                             <span class="selected_value">Нетбук ('.$count[0]["netbook"].')</span></label>
+                         </div>
+                         
+                         <p>Операционная система</p>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Linux" id="os_linux" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_linux" style="'.($count[0]["os_linux"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Linux ('.$count[0]["os_linux"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Windows 8" id="os_Windows_8" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Windows_8" style="'.($count[0]["os_Windows_8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Windows 8 ('.$count[0]["os_Windows_8"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Windows 7" id="os_Windows_7" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Windows_7" style="'.($count[0]["os_Windows_7"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Windows 7 ('.$count[0]["os_Windows_7"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Windows 10" id="os_Windows_10" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Windows_10" style="'.($count[0]["os_Windows_10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Windows 10 ('.$count[0]["os_Windows_10"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Mac OS" id="os_Mac_OS" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Mac_OS" style="'.($count[0]["os_Mac_OS"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Mac OS ('.$count[0]["os_Mac_OS"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Windows 8.1" id="os_Windows_81" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Windows_81" style="'.($count[0]["os_Windows_81"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Windows 8.1 ('.$count[0]["os_Windows_81"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Windows RT" id="os_Windows_RT" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Windows_RT" style="'.($count[0]["os_Windows_RT"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Windows RT ('.$count[0]["os_Windows_RT"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Linpus" id="os_Linpus" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="os_Linpus" style="'.($count[0]["os_Linpus"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Linpus ('.$count[0]["os_Linpus"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="os[]" value="Без ОС" id="no_os" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="no_os" style="'.($count[0]["no_os"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
+                             <span class="selected_value">Без ОС ('.$count[0]["no_os"].')</span></label>
+                         </div>
+                         
+                         
+                         
+                     </div>  
+                </div>
+                <div class="goods_filter_selected">
+                    <p>Экран <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                </div>
+                <div class="filter_selected">
+                      <div class="selected_item">
+                         <p>Диагональ экрана</p>
+                         <div>
+                             <input type="checkbox" name="diagonal[]" value="0-13" id="diagonal_0_13" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="diagonal_0_13" style="'.($count[0]["diagonal_0_13"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">до 13" ('.$count[0]["diagonal_0_13"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="diagonal[]" value="13-16" id="diagonal_13_16" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="diagonal_13_16" style="'.($count[0]["diagonal_13_16"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">13"-16" ('.$count[0]["diagonal_13_16"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="diagonal[]" value="16-18" id="diagonal_16_18" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="diagonal_16_18" style="'.($count[0]["diagonal_16_18"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">16"-18" ('.$count[0]["diagonal_16_18"].')</span></label>
+                         </div>
+                         <div>
+                             <input type="checkbox" name="diagonal[]" value="18-100" id="diagonal_18_100" class="ccc" style = "display:none" >
+                             <label class="goods_content_label" for="diagonal_18_100" style="'.($count[0]["diagonal_18_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                             <span class="selected_value">18" и более ('.$count[0]["diagonal_18_100"].')</span></label>
+                         </div>
+                         
+                         
+                      </div>  
+                    </div>
+                    <div class="goods_filter_selected">
+                        <p>Процессор <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                    </div>
+                    <div class="filter_selected">
+                        <div class="selected_item">
+                            <p>Процессор</p>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core i7" id="Intel_Core_i7" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_i7" style="'.($count[0]["Intel_Core_i7"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">Intel Core i7 ('.$count[0]["Intel_Core_i7"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core i5" id="Intel_Core_i5" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_i5" style="'.($count[0]["Intel_Core_i5"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core i5 ('.$count[0]["Intel_Core_i5"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core i3" id="Intel_Core_i3" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_i3" style="'.($count[0]["Intel_Core_i3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core i3 ('.$count[0]["Intel_Core_i3"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core M3" id="Intel_Core_M3" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_M3" style="'.($count[0]["Intel_Core_M3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core M3 ('.$count[0]["Intel_Core_M3"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core M" id="Intel_Core_M" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_M" style="'.($count[0]["Intel_Core_M"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core M ('.$count[0]["Intel_Core_M"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core Pentium" id="Intel_Core_Pentium" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_Pentium" style="'.($count[0]["Intel_Core_Pentium"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core Pentium ('.$count[0]["Intel_Core_Pentium"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core Celeron" id="Intel_Core_Celeron" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_Celeron" style="'.($count[0]["Intel_Core_Celeron"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core Celeron ('.$count[0]["Intel_Core_Celeron"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core Atom" id="Intel_Core_Atom" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Intel_Core_Atom" style="'.($count[0]["Intel_Core_Atom"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">Intel Core Atom ('.$count[0]["Intel_Core_Atom"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="nVidia" id="nVidia" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="nVidia" style="'.($count[0]["nVidia"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">nVidia ('.$count[0]["nVidia"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="AMD FX" id="AMD_FX" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="AMD_FX" style="'.($count[0]["AMD_FX"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">AMD FX ('.$count[0]["AMD_FX"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="AMD E" id="AMD_E" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="AMD_E" style="'.($count[0]["AMD_E"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">AMD E ('.$count[0]["AMD_E"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="AMD A10" id="AMD_A10" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="AMD_A10" style="'.($count[0]["AMD_A10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">AMD A10 ('.$count[0]["AMD_A10"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="AMD A8" id="AMD_A8" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="AMD_A8" style="'.($count[0]["AMD_A8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">AMD A8 ('.$count[0]["AMD_A8"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="AMD A6" id="AMD_A6" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="AMD_A6" style="'.($count[0]["AMD_A6"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">AMD A6 ('.$count[0]["AMD_A6"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="cpu_type[]" value="AMD A4" id="AMD_A4" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="AMD_A4" style="'.($count[0]["AMD_A4"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">AMD A4 ('.$count[0]["AMD_A4"].')</span></label>
+                            </div>
+                        
+                        
+                            <p>Количесвтво ядер</p>
+                            <div>
+                                <input type="checkbox" name="core[]" value="x2" id="core_x2" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="core_x2" style="'.($count[0]["core_x2"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">x2 ('.$count[0]["core_x2"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="core[]" value="x4" id="core_x4" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="core_x4" style="'.($count[0]["core_x4"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">x4 ('.$count[0]["core_x4"].')</span></label>
+                            </div>
+                            
+                            
+                        </div>  
+                    </div>
+                    <div class="goods_filter_selected">
+                        <p>Графический адаптер <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                    </div>
+                    <div class="filter_selected">
+                        <div class="selected_item">
+                            <p>Объем видеокарты</p>
+                            <div>
+                                <input type="checkbox" name="camera[]" value="0-3" id="0-3" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="0-3" style="'.($count[0]["cam_0_3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
+                                <span class="selected_value">... ('.$count[0]["cam_0_3"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="camera[]" value="3-5" id="3-5" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="3-5" style="'.($count[0]["cam_3_5"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">... ('.$count[0]["cam_3_5"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="camera[]" value="5-8" id="5-8" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="5-8" style="'.($count[0]["cam_5_8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">... ('.$count[0]["cam_5_8"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="camera[]" value="8-13" id="8-13" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="8-13" style="'.($count[0]["cam_8_13"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">... ('.$count[0]["cam_8_13"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="camera[]" value="13-20" id="13-20" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="13-20" style="'.($count[0]["cam_13_20"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">... ('.$count[0]["cam_13_20"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="camera[]" value="20-100" id="20-100" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="20-100" style="'.($count[0]["cam_20_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">... ('.$count[0]["cam_20_100"].')</span></label>
+                            </div>
+                            
+                        </div>  
+                    </div>
+                    <div class="goods_filter_selected">
+                        <p>Память <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                    </div>
+                    <div class="filter_selected">
+                        <div class="selected_item">
+                            <p>Оперативная память</p>
+                            <div>
+                                <input type="checkbox" name="ram[]" value="0.1-3.99" id="ram_0_399" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="ram_0_399" style="'.($count[0]["ram_0_399"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">до 4ГБ ('.$count[0]["ram_0_399"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="ram[]" value="4-6" id="ram_4_6" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="ram_4_6" style="'.($count[0]["ram_4_6"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">4-6 ГБ ('.$count[0]["ram_4_6"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="ram[]" value="8-10" id="ram_8_10" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="ram_8_10" style="'.($count[0]["ram_8_10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">8-10ГБ ('.$count[0]["ram_8_10"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="ram[]" value="12-100" id="ram_12_100" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="ram_12_100" style="'.($count[0]["ram_12_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">12 ГБ и более ('.$count[0]["ram_12_100"].')</span></label>
+                            </div>
+                            
+                        </div>  
+                    </div>
+                    <div class="goods_filter_selected">
+                        <p>Накопители данных <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                    </div>
+                    <div class="filter_selected">
+                        <div class="selected_item">
+                            
+                            <p>Жесткий диск HDD</p>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="0-499.99" id="HDD_0_499" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="HDD_0_499" style="'.($count[0]["HDD_0_499"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">до 500 ГБ ('.$count[0]["HDD_0_499"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="500-749.99" id="HDD_500_750" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="HDD_500_750" style="'.($count[0]["HDD_500_750"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">500-750 ГБ ('.$count[0]["HDD_500_750"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="750-999.99" id="HDD_750_1000" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="HDD_750_1000" style="'.($count[0]["HDD_750_1000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">750 ГБ - 1 ТБ ('.$count[0]["HDD_750_1000"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="1000-1999.99" id="HDD_1000_2000" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="HDD_1000_2000" style="'.($count[0]["HDD_1000_2000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">1ТБ - 2 ТБ ('.$count[0]["HDD_1000_2000"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="2000-10000" id="HDD_2000_10000" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="HDD_2000_10000" style="'.($count[0]["HDD_2000_10000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">2 ТБ и более ('.$count[0]["HDD_2000_10000"].')</span></label>
+                            </div>
+                            
+                            <p>Жесткий диск SSD</p>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="0-255.99" id="SSD_0_256" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="SSD_0_256" style="'.($count[0]["SSD_0_256"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">до 256 ГБ ('.$count[0]["SSD_0_256"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="256-511.99" id="SSD_256_512" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="SSD_256_512" style="'.($count[0]["SSD_256_512"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">256-512 ГБ ('.$count[0]["SSD_256_512"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="512-999.99" id="SSD_512_1000" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="SSD_512_1000" style="'.($count[0]["SSD_512_1000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">512ГБ-1ТБ ('.$count[0]["SSD_512_1000"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="GPS[]" value="1000-10000" id="SSD_1000_10000" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="SSD_1000_10000" style="'.($count[0]["SSD_1000_10000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
+                                <span class="selected_value">1ТБ и более ('.$count[0]["SSD_1000_10000"].')</span></label>
+                            </div>
+                            
+                        </div>  
+                    </div>
+                    <div class="goods_filter_selected">
+                        <p>Оптический привод <span class="glyphicon glyphicon-triangle-bottom"></span></p>
+                    </div>
+                    <div class="filter_selected">
+                        <div class="selected_item">
+                            <div>
+                                <input type="checkbox" name="battery[]" value="DVD" id="DVD" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="DVD" style="'.($count[0]["DVD"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">DVD ('.$count[0]["DVD"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="battery[]" value="Blu-Ray" id="Blu_Ray" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="Blu_Ray" style="'.($count[0]["Blu_Ray"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">Blu-Ray ('.$count[0]["Blu_Ray"].')</span></label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="battery[]" value="нет" id="no_DVD" class="ccc" style = "display:none" >
+                                <label class="goods_content_label" for="no_DVD" style="'.($count[0]["no_DVD"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">нет ('.$count[0]["no_DVD"].')</span></label>
+                            </div>
+                            
+                        </div>  
+                    </div>      
+                  ';
+        }
+        
     }
     
     

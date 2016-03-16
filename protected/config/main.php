@@ -61,7 +61,25 @@ return array(
                 'class' => 'application.extensions.shoppingCart.EShoppingCart',
             ),
         
-        
+        'mail' => array(
+             'class' => 'ext.yii-mail.YiiMail',
+             'transportType'=>'smtp',
+             'transportOptions'=>array(
+             'host'=>'smtp.gmail.com',
+             'username'=>'artem.donetsk@gmail.com',
+             'password'=>'1456RTHomaS',
+             'port'=>'465',
+             'encryption'=>'ssl',
+             ),
+             'viewPath' => 'application.views.mail',
+             'logging' => true,
+             'dryRun' => false
+             ),
+            'user'=>array(
+             // enable cookie-based authentication
+             'allowAutoLogin'=>true,
+         
+        ),
 		
 
 		// database settings are configured in database.php
@@ -99,6 +117,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'artem.donetsk@gmail.com',
 	),
 );

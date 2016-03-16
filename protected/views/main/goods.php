@@ -34,7 +34,7 @@
                 
                 <?php 
                     echo CHtml::form('', 'get', array('id'=>'my_form', 'name'=>'person'));
-                	echo Characteristics::filterRender($category_id, $model, $count, $count_maker, $count_top, $count_promotion, $count_novelty, $count_bestPrice);
+                	echo Characteristics::filterRender($category_id, $brand_name, $count, $count_maker, $count_top, $count_promotion, $count_novelty, $count_bestPrice);
                     echo CHtml::submitButton('Отправить' , array('style' => 'display:none'));
                     echo CHtml::endForm();
                 ?>
@@ -127,13 +127,11 @@
                                 echo '<a href="/main/product/'.$goods->id.'"><div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_first_item">
                                           <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
                                           <div class="content_description"><a href="/main/goods/category_id/'.$goods->categoryId->category->id.'">'.$goods->categoryId->category->category_name.'></a>
-                                              <div class="content_tel_title"><a href="/main/product/'.$goods->id.'">'.$goods->brandModel->brand
-                                                                                          .' '.$goods->model_name
-                                                                                          .'</a></div>    
+                                              <div class="content_tel_title"><a href="/main/product/'.$goods->id.'">'.$goods->model_name.'</a></div>    
                                           </div>
                                           <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
                                           <p class="content_price">'.$goods->price.' р</p>
-                                          <div class="content_button_buy" id="submit'.$goods->id.'">Купить</div>   
+                                          <div class="content_button_buy" id="submit'.$goods->id.'">'.($goods->quantity>0?'Купить':'Заказать').'</div>   
                                       </div></a>
                                         <script>
                                             $(\'body\').on(\'click\',\'#submit'.$goods->id.'\',function(){
@@ -163,13 +161,11 @@
                                 echo '<a href="/main/product/'.$goods->id.'"><div class="col-md-60 col-sm-60 col-xs-120 content_first_item goods_content_second_item">
                                       <div class="content_index_img"><img src="../../../upload/images/'.$goods->photo.'" /></div>
                                       <div class="content_description"><a href="/main/goods/category_id/'.$goods->categoryId->category->id.'">'.$goods->categoryId->category->category_name.'></a>
-                                          <div class="content_tel_title"><a href="/main/product/'.$goods->id.'">'.$goods->brandModel->brand
-                                                                                      .' '.$goods->model_name
-                                                                                      .'</a></div>    
+                                          <div class="content_tel_title"><a href="/main/product/'.$goods->id.'">'.$goods->model_name.'</a></div>    
                                       </div>
                                       <p class="content_old_price"><s>'.($goods->old_price != 0?$goods->old_price.' р':"").'</s></p>
                                       <p class="content_price">'.$goods->price.' р</p>
-                                      <div class="content_button_buy" id="submit'.$goods->id.'">Купить</div>   
+                                      <div class="content_button_buy" id="submit'.$goods->id.'">'.($goods->quantity>0?'Купить':'Заказать').'</div>   
                                   </div></a>
                                   <script>
                                         $(\'body\').on(\'click\',\'#submit'.$goods->id.'\',function(){

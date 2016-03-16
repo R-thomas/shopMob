@@ -168,7 +168,7 @@ class Models extends CActiveRecord implements IECartPosition
             
             
             
-            if ($files = CUploadedFile::getInstancesByName('photo_other'))
+            if ($files = CUploadedFile::getInstances($this, 'photo_other'))
             {
                 $array = array();
                 foreach ($files as $img)
@@ -1509,7 +1509,488 @@ class Models extends CActiveRecord implements IECartPosition
                 AND characteristic_id = 80
                 ) AS batar_more_8000
               ';             
-        }              
+        }  
+        
+        if($category_id == 3)
+        {
+            $sql_query = 'SELECT 
+                (SELECT COUNT( a1.id ) AS notebook
+                FROM cms_characteristicValue AS a1
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "ноутбук"
+                AND characteristic_id = 89
+                ) AS notebook,
+                
+                (SELECT COUNT( a2.id ) AS netbook
+                FROM cms_characteristicValue AS a2
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "нетбук"
+                AND characteristic_id = 89
+                ) AS netbook,
+                
+                (SELECT COUNT( a6.id ) AS os_linux
+                FROM cms_characteristicValue AS a6
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "linux"
+                AND characteristic_id = 90
+                ) AS os_linux,
+                
+                (SELECT COUNT( a7.id ) AS os_Windows_8
+                FROM cms_characteristicValue AS a7
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Windows 8"
+                AND characteristic_id = 90
+                ) AS os_Windows_8,
+                
+                (SELECT COUNT( a8.id ) AS os_Windows_7
+                FROM cms_characteristicValue AS a8
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Windows 7"
+                AND characteristic_id = 90
+                ) AS os_Windows_7,
+                
+                (SELECT COUNT( a801.id ) AS os_Windows_10
+                FROM cms_characteristicValue AS a801
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Windows 10"
+                AND characteristic_id = 90
+                ) AS os_Windows_10,
+                
+                (SELECT COUNT( a802.id ) AS os_Mac_OS
+                FROM cms_characteristicValue AS a802
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Mac OS"
+                AND characteristic_id = 90
+                ) AS os_Mac_OS,
+                
+                (SELECT COUNT( a803.id ) AS os_Windows_81
+                FROM cms_characteristicValue AS a803
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Windows 8.1"
+                AND characteristic_id = 90
+                ) AS os_Windows_81,
+                
+                (SELECT COUNT( a804.id ) AS os_Windows_RT
+                FROM cms_characteristicValue AS a804
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Windows RT"
+                AND characteristic_id = 90
+                ) AS os_Windows_RT,
+                
+                (SELECT COUNT( a805.id ) AS os_Linpus
+                FROM cms_characteristicValue AS a805
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Linpus"
+                AND characteristic_id = 90
+                ) AS os_Linpus,
+                
+                (SELECT COUNT( a806.id ) AS no_os
+                FROM cms_characteristicValue AS a806
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "нет"
+                AND characteristic_id = 90
+                ) AS no_os,
+                                  
+                (SELECT COUNT( a16.id ) AS diagonal_0_13
+                FROM cms_characteristicValue a16
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 0.1 AND 12.99)
+                AND characteristic_id = 94
+                ) AS diagonal_0_13,
+                
+                (SELECT COUNT( a17.id ) AS diagonal_13_16
+                FROM cms_characteristicValue a17
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 13 AND 15.99)
+                AND characteristic_id = 94
+                ) AS diagonal_13_16,
+                
+                (SELECT COUNT( a18.id ) AS diagonal_16_18
+                FROM cms_characteristicValue a18
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 16 AND 17.99)
+                AND characteristic_id = 94
+                ) AS diagonal_16_18,
+                
+                (SELECT COUNT( a20.id ) AS diagonal_18_100
+                FROM cms_characteristicValue a20
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 18 AND 1000)
+                AND characteristic_id = 94
+                ) AS diagonal_18_100,
+                
+                                
+                (SELECT COUNT( a27.id ) AS core_x2
+                FROM cms_characteristicValue a27
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "x2"
+                AND characteristic_id = 100
+                ) AS core_x2,
+                
+                (SELECT COUNT( a28.id ) AS core_x4
+                FROM cms_characteristicValue a28
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "x4"
+                AND characteristic_id = 100
+                ) AS core_x4,
+                
+                                
+                (SELECT COUNT( a31.id ) AS Intel_Core_i7
+                FROM cms_characteristicValue a31
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core i7"
+                AND characteristic_id = 98
+                ) AS Intel_Core_i7,
+                
+                (SELECT COUNT( a32.id ) AS Intel_Core_i5
+                FROM cms_characteristicValue a32
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core i5"
+                AND characteristic_id = 98
+                ) AS Intel_Core_i5,
+                
+                (SELECT COUNT( a33.id ) AS Intel_Core_i3
+                FROM cms_characteristicValue a33
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core i3"
+                AND characteristic_id = 98
+                ) AS Intel_Core_i3,
+                
+                (SELECT COUNT( a34.id ) AS Intel_Core_M3
+                FROM cms_characteristicValue a34
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core M3"
+                AND characteristic_id = 98
+                ) AS Intel_Core_M3,
+                
+                (SELECT COUNT( a35.id ) AS Intel_Core_M
+                FROM cms_characteristicValue a35
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core M"
+                AND characteristic_id = 98
+                ) AS Intel_Core_M,
+                
+                (SELECT COUNT( a36.id ) AS Intel_Core_Pentium
+                FROM cms_characteristicValue a36
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core Pentium"
+                AND characteristic_id = 98
+                ) AS Intel_Core_Pentium,
+                
+                (SELECT COUNT( a37.id ) AS Intel_Core_Celeron
+                FROM cms_characteristicValue a37
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core Celeron"
+                AND characteristic_id = 98
+                ) AS Intel_Core_Celeron,
+                
+                (SELECT COUNT( a38.id ) AS Intel_Core_Atom
+                FROM cms_characteristicValue a38
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "Intel Core Atom"
+                AND characteristic_id = 98
+                ) AS Intel_Core_Atom,
+                
+                (SELECT COUNT( a39.id ) AS nVidia
+                FROM cms_characteristicValue a39
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "nVidia"
+                AND characteristic_id = 98
+                ) AS nVidia,
+                
+                (SELECT COUNT( a40.id ) AS AMD_FX
+                FROM cms_characteristicValue a40
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "AMD FX"
+                AND characteristic_id = 98
+                ) AS AMD_FX,
+                
+                (SELECT COUNT( a41.id ) AS AMD_E
+                FROM cms_characteristicValue a41
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "AMD E"
+                AND characteristic_id = 98
+                ) AS AMD_E,
+                
+                (SELECT COUNT( a42.id ) AS AMD_A10
+                FROM cms_characteristicValue a42
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "AMD A10"
+                AND characteristic_id = 98
+                ) AS AMD_A10,
+                
+                (SELECT COUNT( a43.id ) AS AMD_A8
+                FROM cms_characteristicValue a43
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "AMD A8"
+                AND characteristic_id = 98
+                ) AS AMD_A8,
+                
+                (SELECT COUNT( a44.id ) AS AMD_A6
+                FROM cms_characteristicValue a44
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "AMD A6"
+                AND characteristic_id = 98
+                ) AS AMD_A6,
+                
+                (SELECT COUNT( a45.id ) AS AMD_A4
+                FROM cms_characteristicValue a45
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value =  "AMD A4"
+                AND characteristic_id = 98
+                ) AS AMD_A4,
+                
+                '/*для видео карты*/.'
+                
+                (SELECT COUNT( a47.id ) AS cam_0_3
+                FROM cms_characteristicValue a47
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 0.1 AND 2.9)
+                AND characteristic_id = 65
+                ) AS cam_0_3,
+                
+                (SELECT COUNT( a48.id ) AS cam_3_5
+                FROM cms_characteristicValue a48
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 3 AND 4.9)
+                AND characteristic_id = 65
+                ) AS cam_3_5,
+                
+                (SELECT COUNT( a49.id ) AS cam_5_8
+                FROM cms_characteristicValue a49
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 5 AND 7.9)
+                AND characteristic_id = 65
+                ) AS cam_5_8,
+                
+                (SELECT COUNT( a50.id ) AS cam_8_13
+                FROM cms_characteristicValue a50
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 8 AND 12.9)
+                AND characteristic_id = 65
+                ) AS cam_8_13,
+                
+                (SELECT COUNT( a51.id ) AS cam_13_20
+                FROM cms_characteristicValue a51
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 13 AND 19.9)
+                AND characteristic_id = 65
+                ) AS cam_13_20,
+                
+                (SELECT COUNT( a52.id ) AS cam_20_100
+                FROM cms_characteristicValue a52
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 20 AND 100)
+                AND characteristic_id = 65
+                ) AS cam_20_100,
+                
+                (SELECT COUNT( a53.id ) AS front_cam_0_2
+                FROM cms_characteristicValue a53
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 0.1 AND 1.9)
+                AND characteristic_id = 66
+                ) AS front_cam_0_2,
+                
+                (SELECT COUNT( a54.id ) AS front_cam_2_5
+                FROM cms_characteristicValue a54
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 2 AND 4.9)
+                AND characteristic_id = 66
+                ) AS front_cam_2_5,
+                
+                (SELECT COUNT( a55.id ) AS front_cam_5_100
+                FROM cms_characteristicValue a55
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 5 AND 100)
+                AND characteristic_id = 66
+                ) AS front_cam_5_100,
+                
+                (SELECT COUNT( a56.id ) AS front_cam_no
+                FROM cms_characteristicValue a56
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value = "нет"
+                AND characteristic_id = 66
+                ) AS front_cam_no,
+                
+                (SELECT COUNT( a57.id ) AS ram_0_399
+                FROM cms_characteristicValue a57
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 0.100 AND 3.99)
+                AND characteristic_id = 106
+                ) AS ram_0_399,
+                
+                (SELECT COUNT( a58.id ) AS ram_4_6
+                FROM cms_characteristicValue a58
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 4 AND 6)
+                AND characteristic_id = 106
+                ) AS ram_4_6,
+                
+                (SELECT COUNT( a59.id ) AS ram_8_10
+                FROM cms_characteristicValue a59
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 8 AND 10)
+                AND characteristic_id = 106
+                ) AS ram_8_10,
+                
+                (SELECT COUNT( a60.id ) AS ram_12_100
+                FROM cms_characteristicValue a60
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 12 AND 100)
+                AND characteristic_id = 106
+                ) AS ram_12_100,
+                
+                
+                
+                (SELECT COUNT( a62.id ) AS HDD_0_499
+                FROM cms_characteristicValue a62
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 0.1 AND 499.99)
+                AND characteristic_id = 109
+                ) AS HDD_0_499,
+                
+                (SELECT COUNT( a63.id ) AS HDD_500_750
+                FROM cms_characteristicValue a63
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 500 AND 749.99)
+                AND characteristic_id = 109
+                ) AS HDD_500_750,
+                
+                (SELECT COUNT( a64.id ) AS HDD_750_1000
+                FROM cms_characteristicValue a64
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 750 AND 999.99)
+                AND characteristic_id = 109
+                ) AS HDD_750_1000,
+                
+                (SELECT COUNT( a65.id ) AS HDD_1000_2000
+                FROM cms_characteristicValue a65
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 1000 AND 1999.99)
+                AND characteristic_id = 109
+                ) AS HDD_1000_2000,
+                
+                (SELECT COUNT( a66.id ) AS HDD_2000_10000
+                FROM cms_characteristicValue a66
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 2000 AND 10000)
+                AND characteristic_id = 109
+                ) AS HDD_2000_10000,
+                
+                
+                                        
+                (SELECT COUNT( a70.id ) AS SSD_0_256
+                FROM cms_characteristicValue a70
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 0.1 AND 255.99)
+                AND characteristic_id = 110
+                ) AS SSD_0_256,
+                
+                (SELECT COUNT( a71.id ) AS SSD_256_512
+                FROM cms_characteristicValue a71
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 256 AND 511.99)
+                AND characteristic_id = 110
+                ) AS SSD_256_512,
+                
+                (SELECT COUNT( a72.id ) AS SSD_512_1000
+                FROM cms_characteristicValue a72
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 512 AND 999.99)
+                AND characteristic_id = 110
+                ) AS SSD_512_1000,
+                
+                (SELECT COUNT( a73.id ) AS SSD_1000_10000
+                FROM cms_characteristicValue a73
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND (value BETWEEN 1000 AND 10000)
+                AND characteristic_id = 110
+                ) AS SSD_1000_10000,
+                
+                
+                
+                (SELECT COUNT( a74.id ) AS DVD
+                FROM cms_characteristicValue a74
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value = "DVD"
+                AND characteristic_id = 112
+                ) AS DVD,
+                
+                (SELECT COUNT( a75.id ) AS Blu_Ray
+                FROM cms_characteristicValue a75
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value = "Blu-Ray"
+                AND characteristic_id = 112
+                ) AS Blu_Ray,
+                
+                (SELECT COUNT( a76.id ) AS no_DVD
+                FROM cms_characteristicValue a76
+                WHERE model_id
+                IN ('.$ids_query.') 
+                AND value = "нет"
+                AND characteristic_id = 112
+                ) AS no_DVD
+                
+                
+              ';             
+        }                          
          
         $connection = Yii::app()->db; 
         $count = $connection->createCommand($sql_query)->queryAll();

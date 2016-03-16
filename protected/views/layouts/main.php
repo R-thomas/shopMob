@@ -85,11 +85,11 @@
                         <?php
                         $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                             //модель
-                            'model' => $searchModel,
+                            //'model' => $Models,
                             //атрибут модели
                             'attribute' => 'query',
                             //контроллер отдающий данные для выборки
-                            'source' => Yii::app()->createUrl('/main/index2'),
+                            'source' => Yii::app()->createUrl('/main/search'),
                             'id' => 'top-search-field',
                             'options' => array(
                                 //минимальное количество символов, после которого начнется поиск

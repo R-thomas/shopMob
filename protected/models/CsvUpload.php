@@ -9,6 +9,7 @@ class CsvUpload extends CFormModel
 		// will receive user inputs.
 		return array(
             array('csv','file','types'=>'csv', 'message'=>'Загрузите файл', 'allowEmpty'=>'true'),
+            array('photo_img','file','types'=>'jpg, jpeg, png', 'message'=>'Загрузите файл', 'allowEmpty'=>'true'),
 		);
 	}
     
@@ -16,6 +17,7 @@ class CsvUpload extends CFormModel
     {
       return array(
         'csvFile'=>'Выберите файл формата csv',
+        'photo_img'=>'Выберите файлы фотографий'
       );
     }
 
