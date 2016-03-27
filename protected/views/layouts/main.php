@@ -27,11 +27,11 @@
                 <div class="menu_top">
                     <div class="collapse navbar-collapse navbar_top">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#" class="navbar_top">О компании</a></li>
-                            <li><a href="#" class="navbar_top">Адреса Магазинов</a></li>
-                            <li><a href="#" class="navbar_top">Доставка и оплата</a></li>
-                            <li><a href="#" class="navbar_top">Контакты</a></li>
-                            <li><a href="#" class="navbar_top">Акции</a></li>
+                            <li><a href="/main/page/1" class="navbar_top">О компании</a></li>
+                            <li><a href="/main/map" class="navbar_top">Адреса Магазинов</a></li>
+                            <li><a href="/main/page/2" class="navbar_top">Доставка и оплата</a></li>
+                            <li><a href="/main/page/3" class="navbar_top">Контакты</a></li>
+                            <li><a href="/main/promotion" class="navbar_top">Акции</a></li>
                         </ul>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="hidden-lg hidden-md col-sm-12 col-xs-30  header_geo">
                         <div class="header_geo_cont">
-                            <div class="header_geo_img"><a href="#modal_tel" data-toggle="modal"><img src="../../../images/tel_large.png" class="img-responsive"/></a></div>
+                            <div class="header_geo_img2"><a href="#modal_tel" data-toggle="modal"><img src="../../../images/tel_large.png" class="img-responsive"/></a></div>
                         </div>
                     </div>
                     
@@ -65,7 +65,7 @@
                     </div>
                     <div class="hidden-lg hidden-md col-sm-18 col-xs-30 header_geo">
                         <div class="header_geo_cont menu_ico">
-                            <div class="header_geo_img"><img src="../../../images/menu.png" class="img-responsive"/></div>
+                            <div class="header_geo_img2"><img src="../../../images/menu.png" class="img-responsive"/></div>
                         </div>
                     </div>
                     <div class="col-md-40 col-md-pull-20 col-sm-120 col-xs-120 header_search">
@@ -205,5 +205,8 @@
     <!-- de all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/myscript.js"></script>
+    <script>
+        //alert ('Сайт в разработке!');
+    </script>
   </body>
 </html>

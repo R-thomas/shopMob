@@ -77,7 +77,13 @@
     
     <div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description', array('style'=>'width:90%; height: 200px')); ?>
+		<?php $this->widget('application.extensions.ckeditor.CKEditor', 
+                array( 'model'=>$model, 
+                    'attribute'=>'description', 
+                    'language'=>'ru', 
+                    'editorTemplate'=>'full', 
+                )); 
+        ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
     

@@ -12,5 +12,5 @@ return array(
 	'password' => '',
 	'charset' => 'utf8',
     'tablePrefix' => 'cms_',
-	
+	'schemaCachingDuration' => 10800
 );

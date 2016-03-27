@@ -38,6 +38,10 @@ $(document).ready(function(){
 	   $('#my_form').submit();
 	})
     
+    $('#desc').on('change', function(){
+	   $('.goods_form_desc').submit();
+	})
+    
     //карусели в карточке товара
     
     $('#carousel1').carousel({

@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-md-60 col-sm-60 col-xs-120 product_info">
-                    <p class="text-uppercase product_info_presence"><?php echo $model->quantity>0?'В наличии':'Под заказ'; ?></p>
+                    <p class="text-uppercase product_info_presence"><?php echo $model->quantity>0?'<span style="color:green;">В наличии</span>':'<span style="color:red;">Под заказ</span>'; ?></p>
                     <p class="product_info_vendor_code">Артикул: <?php echo $model->vendor_code; ?></p>
                     <div>
                         <span class="product_info_price_title">Цена: </span><span class="product_info_price"><?php echo $model->price; ?> р&nbsp;&nbsp;&nbsp;</span><span class="product_info_old_price"><s><?php echo $model->old_price!=0?$model->old_price.' р':''; ?></s></span>
@@ -59,9 +59,9 @@
                         <p>Оплата наличными при получении</p>
                     </div>
                     <div class="product_stickers">
-                        <?php echo $model->top!=0?'<div class="sticker1"><p>ТОП</p></div>':''; ?>
-                        <?php echo $model->promotion!=0?'<div class="sticker2"><p>Акция</p></div>':''; ?>
-                        <?php echo $model->old_price!=0?'<div class="sticker3"><p>Скидка</p></div>':''; ?>
+                        <?php echo $model->top!=0?'<div class="sticker1"><img src="../../../images/top.png" class="img-responsive"/></div>':''; ?>
+                        <?php echo $model->promotion!=0?'<div class="sticker2"><img src="../../../images/promotion.png" class="img-responsive"/></div>':''; ?>
+                        <?php echo $model->bestPrice!=0?'<div class="sticker3"><img src="../../../images/best_price.png" class="img-responsive"/></div>':''; ?>
                     </div>
                 </div>
                 <div class="hidden-lg hidden-md col-sm-120 col-xs-120 product_characteristics">
@@ -118,7 +118,7 @@
                         {
                             echo ($item['parent_id']==0 
                                   ?'<p class="product_characteristics_content_title text-uppercase">'.$item['characteristic_name'].'</p>' 
-                                  :'<p>'.(isset($item['value'])?$item['characteristic_name']:'').(isset($item['value'])?': ':'').(isset($item['value'])?$item['value']:'').' '.(isset($item['value'])?$item['unit']:'').'</p>');
+                                  :'<p>'.(isset($item['value'])?$item['characteristic_name']:'').(isset($item['value'])?': ':'').(isset($item['value'])?'<b>'.$item['value'].'</b>':'').' '.(isset($item['value'])?$item['unit']:'').'</p>');
                         }
 	                         
                     ?>

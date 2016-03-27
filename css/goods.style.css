@@ -1,3 +1,7 @@
+.goods_form_desc{
+    display: inline;
+}
+
 .goods_content_wrap{
     padding: 40px 20px;
 }
@@ -197,6 +201,9 @@ ul.yiiPager li.goods_selected_page a{
         border-top: 1px solid #ebebeb;
         border-bottom: 0;
     }
+    
+    
+    
     
     
 }

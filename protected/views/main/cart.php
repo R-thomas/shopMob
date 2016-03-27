@@ -1,5 +1,5 @@
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/cart.style.css" rel="stylesheet"/>
-
+<div class="row"></div>
 <div class="row cart_wrap">
     <div class="col-md-120 col-sm-120 col-xs-120 cart_content">
         <div class="col-md-120 col-sm-120 col-xs-120 cart_content_header">
@@ -107,7 +107,7 @@
               }
               else
               {
-                echo '<p>Корзина пуста...</p>';
+                echo '<div class="col-md-120 col-sm-120 col-xs-120 cart_clear"><p>Корзина пуста...</p></div>';
               }
               //echo CHtml::submitButton('отправить');
                  

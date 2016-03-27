@@ -208,6 +208,7 @@ class Models extends CActiveRecord implements IECartPosition
         if (($this->scenario=='update')&&($this->accessories))
         {
             $arr = json_decode($this->accessories);
+            if(isset($arr[0]))
             $this->accessories = implode(', ', $arr);
         }
         
@@ -322,7 +323,19 @@ class Models extends CActiveRecord implements IECartPosition
     public static function randomId()
     {
         $connection = Yii::app()->db;  
-        $sql = 'SELECT cms_models.id, model_name, price, old_price, photo, cms_category.category_name, cms_brand.brand, cms_category.id as category_id 
+        $sql = 'SELECT cms_models.id, 
+                       cms_models.quantity, 
+                       model_name, 
+                       price, 
+                       old_price, 
+                       photo, 
+                       cms_category.category_name, 
+                       cms_brand.brand, 
+                       cms_category.id as category_id,
+                       cms_models.top,
+                       cms_models.promotion,
+                       cms_models.novelty,
+                       cms_models.bestPrice
                 FROM cms_models JOIN cms_brand JOIN cms_modelCategory JOIN cms_category
                                 ON cms_models.brand_id = cms_brand.id AND  cms_models.brand_id = cms_modelCategory.id AND cms_modelCategory.category_id = cms_category.id
                 ORDER BY RAND() 
@@ -796,7 +809,7 @@ class Models extends CActiveRecord implements IECartPosition
                 FROM cms_characteristicValue a57
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 0.100 AND 0.512)
+                AND (value BETWEEN 0.100 AND 0.511)
                 AND characteristic_id = 25
                 ) AS ram_0_512,
                 
@@ -804,7 +817,7 @@ class Models extends CActiveRecord implements IECartPosition
                 FROM cms_characteristicValue a58
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 0.513 AND 0.999)
+                AND (value BETWEEN 0.512 AND 0.999)
                 AND characteristic_id = 25
                 ) AS ram_512_1,
                 
@@ -1774,85 +1787,46 @@ class Models extends CActiveRecord implements IECartPosition
                 
                 '/*для видео карты*/.'
                 
-                (SELECT COUNT( a47.id ) AS cam_0_3
+                (SELECT COUNT( a47.id ) AS integr
                 FROM cms_characteristicValue a47
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 0.1 AND 2.9)
-                AND characteristic_id = 65
-                ) AS cam_0_3,
+                AND value =  "Интегрированная"
+                AND characteristic_id = 102
+                ) AS integr,
                 
-                (SELECT COUNT( a48.id ) AS cam_3_5
+                (SELECT COUNT( a48.id ) AS FirePro
                 FROM cms_characteristicValue a48
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 3 AND 4.9)
-                AND characteristic_id = 65
-                ) AS cam_3_5,
+                AND value =  "AMD FirePro"
+                AND characteristic_id = 102
+                ) AS FirePro,
                 
-                (SELECT COUNT( a49.id ) AS cam_5_8
+                (SELECT COUNT( a49.id ) AS Radeon
                 FROM cms_characteristicValue a49
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 5 AND 7.9)
-                AND characteristic_id = 65
-                ) AS cam_5_8,
+                AND value =  "AMD Radeon"
+                AND characteristic_id = 102
+                ) AS Radeon,
                 
-                (SELECT COUNT( a50.id ) AS cam_8_13
+                (SELECT COUNT( a50.id ) AS GeForce
                 FROM cms_characteristicValue a50
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 8 AND 12.9)
-                AND characteristic_id = 65
-                ) AS cam_8_13,
+                AND value =  "nVidia GeForce"
+                AND characteristic_id = 102
+                ) AS GeForce,
                 
-                (SELECT COUNT( a51.id ) AS cam_13_20
+                (SELECT COUNT( a51.id ) AS Quadro
                 FROM cms_characteristicValue a51
                 WHERE model_id
                 IN ('.$ids_query.') 
-                AND (value BETWEEN 13 AND 19.9)
-                AND characteristic_id = 65
-                ) AS cam_13_20,
+                AND value =  "nVidia Quadro"
+                AND characteristic_id = 102
+                ) AS Quadro,
                 
-                (SELECT COUNT( a52.id ) AS cam_20_100
-                FROM cms_characteristicValue a52
-                WHERE model_id
-                IN ('.$ids_query.') 
-                AND (value BETWEEN 20 AND 100)
-                AND characteristic_id = 65
-                ) AS cam_20_100,
-                
-                (SELECT COUNT( a53.id ) AS front_cam_0_2
-                FROM cms_characteristicValue a53
-                WHERE model_id
-                IN ('.$ids_query.') 
-                AND (value BETWEEN 0.1 AND 1.9)
-                AND characteristic_id = 66
-                ) AS front_cam_0_2,
-                
-                (SELECT COUNT( a54.id ) AS front_cam_2_5
-                FROM cms_characteristicValue a54
-                WHERE model_id
-                IN ('.$ids_query.') 
-                AND (value BETWEEN 2 AND 4.9)
-                AND characteristic_id = 66
-                ) AS front_cam_2_5,
-                
-                (SELECT COUNT( a55.id ) AS front_cam_5_100
-                FROM cms_characteristicValue a55
-                WHERE model_id
-                IN ('.$ids_query.') 
-                AND (value BETWEEN 5 AND 100)
-                AND characteristic_id = 66
-                ) AS front_cam_5_100,
-                
-                (SELECT COUNT( a56.id ) AS front_cam_no
-                FROM cms_characteristicValue a56
-                WHERE model_id
-                IN ('.$ids_query.') 
-                AND value = "нет"
-                AND characteristic_id = 66
-                ) AS front_cam_no,
                 
                 (SELECT COUNT( a57.id ) AS ram_0_399
                 FROM cms_characteristicValue a57
@@ -1993,7 +1967,7 @@ class Models extends CActiveRecord implements IECartPosition
         }                          
          
         $connection = Yii::app()->db; 
-        $count = $connection->createCommand($sql_query)->queryAll();
+        $count = $connection->cache(1000)->createCommand($sql_query)->queryAll();
         return $count;
     }
 }

@@ -1,5 +1,6 @@
 .input-group{
-    float: left;    
+    float: left;
+    width: 150px;    
 }
 
 .index_modal_dialog{
@@ -197,10 +198,18 @@ ul li a.navbar_top{
 
 .header_geo_img{ 
     height: 38px;
-    border-left: 1px solid #c3c3c3;
 }
 
 .header_geo_img img{
+    margin: 0 auto;
+}
+
+.header_geo_img2{ 
+    height: 38px;
+    border-left: 1px solid #c3c3c3;
+}
+
+.header_geo_img2 img{
     margin: 0 auto;
 }
 
@@ -325,6 +334,11 @@ ul li a.navbar_top{
         
     }
     
+    .input-group{
+        float: left;
+        width: 80%;    
+    }
+    
     .menu_top{
         height: 25px;
     }
@@ -378,7 +392,7 @@ ul li a.navbar_top{
     }
     
     .header_input{
-        width: 80%;
+        width: 100%;
     }
     
     .header_submit{

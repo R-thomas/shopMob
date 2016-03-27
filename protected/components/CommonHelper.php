@@ -175,6 +175,10 @@ class CommonHelper{
                         echo '</div>';
                     }
                 }
+                else
+                {
+                    echo '</div>';
+                }
                 
                 echo '
               

@@ -9,7 +9,7 @@
     padding: 0;
 }
 
-.cart_content_header h1,{
+.cart_content_header h1{
     height: 60px;
     color: #676767;
     font: bold 18px arial, sans-serif;
@@ -346,7 +346,9 @@
     margin: 0;
 }
 
-
+.cart_clear{
+    padding: 20px;
+}
 
 
 

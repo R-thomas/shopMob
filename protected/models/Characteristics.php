@@ -605,16 +605,7 @@ class Characteristics extends CActiveRecord
                                 </span> 
                                 <span class="selected_value">x2 ('.$count[0]["x2"].')</span></label>
                             </div>
-                            <div>
-                                <input type="checkbox" name="core[]" value="x3" id="core_x3" class="ccc" style = "display:none" '.($count[0]["x3"]==0?"disabled":"").'>
-                                <label class="goods_content_label" for="core_x3" style="'.($count[0]["x3"]==0?"opacity: 0.5; cursor:default;":"").'">
-                                <span class="'.(isset($_GET['core']) ? 
-                                        (in_array ("x3", $_GET['core']) ? 
-                                        "glyphicon glyphicon-check":"glyphicon glyphicon-unchecked"):
-                                        "glyphicon glyphicon-unchecked").'">
-                                </span> 
-                                <span class="selected_value">x3 ('.$count[0]["x3"].')</span></label>
-                            </div>
+                            
                             <div>
                                 <input type="checkbox" name="core[]" value="x4" id="core_x4" class="ccc" style = "display:none" '.($count[0]["x4"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x4" style="'.($count[0]["x4"]==0?"opacity: 0.5; cursor:default;":"").'">
@@ -904,7 +895,7 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Оперативная память</p>
                             <div>
-                                <input type="checkbox" name="ram[]" value="0.1-0.512" id="ram_0.1-0.512" class="ccc" style = "display:none" '.($count[0]["ram_0_512"]==0?"disabled":"").'>
+                                <input type="checkbox" name="ram[]" value="0.1-0.511" id="ram_0.1-0.512" class="ccc" style = "display:none" '.($count[0]["ram_0_512"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_0.1-0.512" style="'.($count[0]["ram_0_512"]==0?"opacity: 0.5; cursor:default;":"").'">
                                 <span class="'.(isset($_GET['ram']) ? 
                                         (in_array ("0.1-0.512", $_GET['ram']) ? 
@@ -951,7 +942,7 @@ class Characteristics extends CActiveRecord
                                         "glyphicon glyphicon-check":"glyphicon glyphicon-unchecked"):
                                         "glyphicon glyphicon-unchecked").'">
                                 </span>  
-                                <span class="selected_value">более 3Гб ('.$count[0]["ram_3_100"].')</span></label>
+                                <span class="selected_value">3Гб и более ('.$count[0]["ram_3_100"].')</span></label>
                             </div>
                             <p>Встроенная память</p>
                             <div>
@@ -1146,22 +1137,22 @@ class Characteristics extends CActiveRecord
                   <div class="filter_selected">
                       <div class="selected_item">
                          <div>
-                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc" style = "display:none">
+                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc" style = "display:none" '.($count_promotion==0?"disabled":"").'>
                              <label class="goods_content_label" for="promotion" style="'.($count_promotion==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
                              <span class="selected_value">Акции ('.$count_promotion.')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="common[]" value="top" id="top" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="common[]" value="top" id="top" class="ccc" style = "display:none" '.($count_top==0?"disabled":"").'>
                              <label class="goods_content_label" for="top" style="'.($count_top==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Хит продаж ('.$count_top.')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="common[]" value="novelty" id="novelty" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="common[]" value="novelty" id="novelty" class="ccc" style = "display:none" '.($count_novelty==0?"disabled":"").'>
                              <label class="goods_content_label" for="novelty" style="'.($count_novelty==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Новинка ('.$count_novelty.')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="common[]" value="bestPrice" id="bestPrice" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="common[]" value="bestPrice" id="bestPrice" class="ccc" style = "display:none" '.($count_bestPrice==0?"disabled":"").'>
                              <label class="goods_content_label" for="bestPrice" style="'.($count_bestPrice==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Лучшая цена ('.$count_bestPrice.')</span></label>
                          </div>
@@ -1184,7 +1175,7 @@ class Characteristics extends CActiveRecord
                         if($j == $i)
                         {
                             echo '<div>
-                                 <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" >
+                                 <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" '.($maker==0?"disabled":"").'>
                                  <label class="goods_content_label" for="brand_'.$item.'" style="'.($maker==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                  <span class="selected_value">'.$item.' ('.$maker.')</span></label>
                              </div>';
@@ -1196,46 +1187,46 @@ class Characteristics extends CActiveRecord
                  echo    '
                           <p>Тип</p>
                           <div>
-                             <input type="checkbox" name="type[]" value="Планшет" id="type_smartphone" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="type[]" value="Планшет" id="type_smartphone" class="ccc" style = "display:none" '.($count[0]["smart"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="type_smartphone" style="'.($count[0]["smart"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Планшет ('.$count[0]["smart"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="type[]" value="трансформер" id="type_telephone" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="type[]" value="трансформер" id="type_telephone" class="ccc" style = "display:none" '.($count[0]["tel"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="type_telephone" style="'.($count[0]["tel"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>    
                              <span class="selected_value">Трансформер ('.$count[0]["tel"].')</span></label>
                          </div>
                          
                          <p>Операционная система</p>
                          <div>
-                             <input type="checkbox" name="os[]" value="Android" id="os_android" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Android" id="os_android" class="ccc" style = "display:none" '.($count[0]["android"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_android" style="'.($count[0]["android"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Android ('.$count[0]["android"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="iOS" id="os_iOS" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="iOS" id="os_iOS" class="ccc" style = "display:none" '.($count[0]["ios"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_iOS" style="'.($count[0]["ios"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">iOS ('.$count[0]["ios"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Windows" id="os_windows" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Windows" id="os_windows" class="ccc" style = "display:none" '.($count[0]["windows"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_windows" style="'.($count[0]["windows"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Windows ('.$count[0]["windows"].')</span></label>
                          </div>
                          
                          <p>Количество Sim-карт</p>
                          <div>
-                             <input type="checkbox" name="sim[]" value="1 sim" id="sim1" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="sim[]" value="1 sim" id="sim1" class="ccc" style = "display:none" '.($count[0]["1sim"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="sim1" style="'.($count[0]["1sim"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">1 sim ('.$count[0]["1sim"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="sim[]" value="2 sim" id="sim2" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="sim[]" value="2 sim" id="sim2" class="ccc" style = "display:none" '.($count[0]["2sim"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="sim2" style="'.($count[0]["2sim"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">2 sim ('.$count[0]["2sim"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="sim[]" value="нет" id="sim3" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="sim[]" value="нет" id="sim3" class="ccc" style = "display:none" '.($count[0]["3sim"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="sim3" style="'.($count[0]["3sim"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">нет ('.$count[0]["3sim"].')</span></label>
                          </div>
@@ -1249,54 +1240,54 @@ class Characteristics extends CActiveRecord
                       <div class="selected_item">
                          <p>Диагональ экрана</p>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="0-7.5" id="less75" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="0-7.5" id="less75" class="ccc" style = "display:none" '.($count[0]["diagonal_0_75"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="less75" style="'.($count[0]["diagonal_0_75"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">до 7.5 ('.$count[0]["diagonal_0_75"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="7.6-8.0" id="76-80" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="7.6-8.0" id="76-80" class="ccc" style = "display:none" '.($count[0]["diagonal_76_80"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="76-80" style="'.($count[0]["diagonal_76_80"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">7.6-8.0 ('.$count[0]["diagonal_76_80"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="8.1-9.9" id="81-99" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="8.1-9.9" id="81-99" class="ccc" style = "display:none" '.($count[0]["diagonal_81_99"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="81-99" style="'.($count[0]["diagonal_81_99"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">8.1-9.9 ('.$count[0]["diagonal_81_99"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="10-100" id="10-100" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="10-100" id="10-100" class="ccc" style = "display:none" '.($count[0]["diagonal_100_1000"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="10-100" style="'.($count[0]["diagonal_100_1000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">свыше 10 ('.$count[0]["diagonal_100_1000"].')</span></label>
                          </div>
                          
                          <p>Тип экрана</p>
                          <div>
-                             <input type="checkbox" name="screen[]" value="TFT" id="screen_TFT" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="screen[]" value="TFT" id="screen_TFT" class="ccc" style = "display:none" '.($count[0]["TFT"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="screen_TFT" style="'.($count[0]["TFT"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">TFT ('.$count[0]["TFT"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="screen[]" value="TN" id="screen_TTN" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="screen[]" value="TN" id="screen_TTN" class="ccc" style = "display:none" '.($count[0]["TN"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="screen_TTN" style="'.($count[0]["TN"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">TN ('.$count[0]["TN"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="screen[]" value="Retina" id="screen_Retina" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="screen[]" value="Retina" id="screen_Retina" class="ccc" style = "display:none" '.($count[0]["Retina"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="screen_Retina" style="'.($count[0]["Retina"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Retina ('.$count[0]["Retina"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="screen[]" value="IPS" id="screen_IPS" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="screen[]" value="IPS" id="screen_IPS" class="ccc" style = "display:none" '.($count[0]["IPS"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="screen_IPS" style="'.($count[0]["IPS"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">IPS ('.$count[0]["IPS"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="screen[]" value="Amoled" id="screen_Amoled" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="screen[]" value="Amoled" id="screen_Amoled" class="ccc" style = "display:none" '.($count[0]["Amoled"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="screen_Amoled" style="'.($count[0]["Amoled"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Amoled ('.$count[0]["Amoled"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="screen[]" value="SuperAmoled" id="screen_SuperAmoled" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="screen[]" value="SuperAmoled" id="screen_SuperAmoled" class="ccc" style = "display:none" '.($count[0]["SuperAmoled"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="screen_SuperAmoled" style="'.($count[0]["SuperAmoled"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">SuperAmoled ('.$count[0]["SuperAmoled"].')</span></label>
                          </div>
@@ -1309,108 +1300,108 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Количесвтво ядер</p>
                             <div>
-                                <input type="checkbox" name="core[]" value="x1" id="core_x1" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x1" id="core_x1" class="ccc" style = "display:none" '.($count[0]["x1"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x1" style="'.($count[0]["x1"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">x1 ('.$count[0]["x1"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core[]" value="x2" id="core_x2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x2" id="core_x2" class="ccc" style = "display:none" '.($count[0]["x2"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x2" style="'.($count[0]["x2"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">x2 ('.$count[0]["x2"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core[]" value="x3" id="core_x3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x3" id="core_x3" class="ccc" style = "display:none" '.($count[0]["x3"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x3" style="'.($count[0]["x3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">x3 ('.$count[0]["x3"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core[]" value="x4" id="core_x4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x4" id="core_x4" class="ccc" style = "display:none" '.($count[0]["x4"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x4" style="'.($count[0]["x4"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">x4 ('.$count[0]["x4"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core[]" value="x8" id="core_x8" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x8" id="core_x8" class="ccc" style = "display:none" '.($count[0]["x8"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x8" style="'.($count[0]["x8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">x8 ('.$count[0]["x8"].')</span></label>
                             </div>
                             <p>Частота процессора</p>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.0" id="frequency_1.0" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.0" id="frequency_1.0" class="ccc" style = "display:none" '.($count[0]["f10"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.0" style="'.($count[0]["f10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.0 ГГц ('.$count[0]["f10"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.1" id="frequency_1.1" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.1" id="frequency_1.1" class="ccc" style = "display:none" '.($count[0]["f11"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.1" style="'.($count[0]["f11"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.1 ГГц ('.$count[0]["f11"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.2" id="frequency_1.2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.2" id="frequency_1.2" class="ccc" style = "display:none" '.($count[0]["f12"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.2" style="'.($count[0]["f12"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.2 ГГц ('.$count[0]["f12"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.3" id="frequency_1.3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.3" id="frequency_1.3" class="ccc" style = "display:none" '.($count[0]["f13"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.3" style="'.($count[0]["f13"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.3 ГГц ('.$count[0]["f13"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.4" id="frequency_1.4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.4" id="frequency_1.4" class="ccc" style = "display:none" '.($count[0]["f14"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.4" style="'.($count[0]["f14"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.4 ГГц ('.$count[0]["f14"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.5" id="frequency_1.5" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.5" id="frequency_1.5" class="ccc" style = "display:none" '.($count[0]["f15"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.5" style="'.($count[0]["f15"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.5 ГГц ('.$count[0]["f15"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.6" id="frequency_1.6" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.6" id="frequency_1.6" class="ccc" style = "display:none" '.($count[0]["f16"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.6" style="'.($count[0]["f16"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.6 ГГц ('.$count[0]["f16"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.7" id="frequency_1.7" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.7" id="frequency_1.7" class="ccc" style = "display:none" '.($count[0]["f17"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.7" style="'.($count[0]["f17"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.7 ГГц ('.$count[0]["f17"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.8" id="frequency_1.8" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.8" id="frequency_1.8" class="ccc" style = "display:none" '.($count[0]["f18"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.8" style="'.($count[0]["f18"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.8 ГГц ('.$count[0]["f18"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="1.9" id="frequency_1.9" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="1.9" id="frequency_1.9" class="ccc" style = "display:none" '.($count[0]["f19"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_1.9" style="'.($count[0]["f19"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">1.9 ГГц ('.$count[0]["f19"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="2.0" id="frequency_2.0" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="2.0" id="frequency_2.0" class="ccc" style = "display:none" '.($count[0]["f20"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_2.0" style="'.($count[0]["f20"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
                                 <span class="selected_value">2.0 ГГц ('.$count[0]["f20"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="2.1" id="frequency_2.1" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="2.1" id="frequency_2.1" class="ccc" style = "display:none" '.($count[0]["f21"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_2.1" style="'.($count[0]["f21"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">2.1 ГГц ('.$count[0]["f21"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="2.2" id="frequency_2.2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="2.2" id="frequency_2.2" class="ccc" style = "display:none" '.($count[0]["f22"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_2.2" style="'.($count[0]["f22"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">2.2 ГГц ('.$count[0]["f22"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="2.3" id="frequency_2.3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="2.3" id="frequency_2.3" class="ccc" style = "display:none" '.($count[0]["f23"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_2.3" style="'.($count[0]["f23"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">2.3 ГГц ('.$count[0]["f23"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="2.4" id="frequency_2.4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="2.4" id="frequency_2.4" class="ccc" style = "display:none" '.($count[0]["f24"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_2.4" style="'.($count[0]["f24"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">2.4 ГГц ('.$count[0]["f24"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core_frequency[]" value="2.5" id="frequency_2.5" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core_frequency[]" value="2.5" id="frequency_2.5" class="ccc" style = "display:none" '.($count[0]["f25"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="frequency_2.5" style="'.($count[0]["f25"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">2.5 ГГц ('.$count[0]["f25"].')</span></label>
                             </div>
@@ -1423,53 +1414,53 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Основная камера</p>
                             <div>
-                                <input type="checkbox" name="camera[]" value="0-3" id="0-3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="camera[]" value="0-3" id="0-3" class="ccc" style = "display:none" '.($count[0]["cam_0_3"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="0-3" style="'.($count[0]["cam_0_3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
                                 <span class="selected_value">до 3 ('.$count[0]["cam_0_3"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="3-5" id="3-5" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="camera[]" value="3-5" id="3-5" class="ccc" style = "display:none" '.($count[0]["cam_3_5"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="3-5" style="'.($count[0]["cam_3_5"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">от 3 - до 5 ('.$count[0]["cam_3_5"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="5-8" id="5-8" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="camera[]" value="5-8" id="5-8" class="ccc" style = "display:none" '.($count[0]["cam_5_8"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="5-8" style="'.($count[0]["cam_5_8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">от 5 - до 8 ('.$count[0]["cam_5_8"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="8-13" id="8-13" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="camera[]" value="8-13" id="8-13" class="ccc" style = "display:none" '.($count[0]["cam_8_13"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="8-13" style="'.($count[0]["cam_8_13"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">от 8 - до 13 ('.$count[0]["cam_8_13"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="13-20" id="13-20" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="camera[]" value="13-20" id="13-20" class="ccc" style = "display:none" '.($count[0]["cam_13_20"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="13-20" style="'.($count[0]["cam_13_20"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">от 13 - до 20 ('.$count[0]["cam_13_20"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="20-100" id="20-100" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="camera[]" value="20-100" id="20-100" class="ccc" style = "display:none" '.($count[0]["cam_20_100"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="20-100" style="'.($count[0]["cam_20_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">более 20 ('.$count[0]["cam_20_100"].')</span></label>
                             </div>
                             <p>Фронтальная камера</p>
                             <div>
-                                <input type="checkbox" name="front_camera[]" value="0.1-2" id="front_0-2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="front_camera[]" value="0.1-2" id="front_0-2" class="ccc" style = "display:none" '.($count[0]["front_cam_0_2"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="front_0-2" style="'.($count[0]["front_cam_0_2"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">до 2 ('.$count[0]["front_cam_0_2"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="front_camera[]" value="2-5" id="front_2-5" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="front_camera[]" value="2-5" id="front_2-5" class="ccc" style = "display:none" '.($count[0]["front_cam_2_5"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="front_2-5" style="'.($count[0]["front_cam_2_5"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">от 2 - до 5 ('.$count[0]["front_cam_2_5"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="front_camera[]" value="5-100" id="front_5-100" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="front_camera[]" value="5-100" id="front_5-100" class="ccc" style = "display:none" '.($count[0]["front_cam_5_100"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="front_5-100" style="'.($count[0]["front_cam_5_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">более 5 ('.$count[0]["front_cam_5_100"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="front_camera[]" value="нет" id="front_no" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="front_camera[]" value="нет" id="front_no" class="ccc" style = "display:none" '.($count[0]["front_cam_no"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="front_no" style="'.($count[0]["front_cam_no"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">нет ('.$count[0]["front_cam_no"].')</span></label>
                             </div>
@@ -1482,58 +1473,58 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Оперативная память</p>
                             <div>
-                                <input type="checkbox" name="ram[]" value="0.1-0.512" id="ram_0.1-0.512" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="0.1-0.512" id="ram_0.1-0.512" class="ccc" style = "display:none" '.($count[0]["ram_0_512"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_0.1-0.512" style="'.($count[0]["ram_0_512"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">до 512 мб ('.$count[0]["ram_0_512"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="0.512-1" id="ram_0.512-1" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="0.512-1" id="ram_0.512-1" class="ccc" style = "display:none" '.($count[0]["ram_512_1"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_0.512-1" style="'.($count[0]["ram_512_1"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">512 мб - 1 Гб ('.$count[0]["ram_512_1"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="1-2" id="ram_1-2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="1-2" id="ram_1-2" class="ccc" style = "display:none" '.($count[0]["ram_1_2"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_1-2" style="'.($count[0]["ram_1_2"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">1Гб - 2 Гб ('.$count[0]["ram_1_2"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="2-3" id="ram_2-3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="2-3" id="ram_2-3" class="ccc" style = "display:none" '.($count[0]["ram_2_3"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_2-3" style="'.($count[0]["ram_2_3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">2Гб - 3Гб ('.$count[0]["ram_2_3"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="3-100" id="ram_3-100" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="3-100" id="ram_3-100" class="ccc" style = "display:none" '.($count[0]["ram_3_100"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_3-100" style="'.($count[0]["ram_3_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">более 3Гб ('.$count[0]["ram_3_100"].')</span></label>
                             </div>
                             <p>Встроенная память</p>
                             <div>
-                                <input type="checkbox" name="rom[]" value="0.1-4" id="rom_less4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="0.1-4" id="rom_less4" class="ccc" style = "display:none" '.($count[0]["rom_0_4"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="rom_less4" style="'.($count[0]["rom_0_4"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">до 4 Гб ('.$count[0]["rom_0_4"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="8" id="rom_8" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="8" id="rom_8" class="ccc" style = "display:none" '.($count[0]["rom_8"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="rom_8" style="'.($count[0]["rom_8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">8 Гб ('.$count[0]["rom_8"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="16" id="rom_16" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="16" id="rom_16" class="ccc" style = "display:none" '.($count[0]["rom_16"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="rom_16" style="'.($count[0]["rom_16"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">16 Гб ('.$count[0]["rom_16"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="32" id="rom_32" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="32" id="rom_32" class="ccc" style = "display:none" '.($count[0]["rom_32"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="rom_32" style="'.($count[0]["rom_32"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">32 Гб ('.$count[0]["rom_32"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="64" id="rom_64" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="64" id="rom_64" class="ccc" style = "display:none" '.($count[0]["rom_64"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="rom_64" style="'.($count[0]["rom_64"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">64 Гб ('.$count[0]["rom_64"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="rom[]" value="128" id="rom_128" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="128" id="rom_128" class="ccc" style = "display:none" '.($count[0]["rom_128"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="rom_128" style="'.($count[0]["rom_128"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                                 <span class="selected_value">128 Гб ('.$count[0]["rom_128"].')</span></label>
                             </div>
@@ -1547,22 +1538,22 @@ class Characteristics extends CActiveRecord
                             
                             <p>GPS</p>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="A-GPS" id="GPS_1" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="GPS[]" value="A-GPS" id="GPS_1" class="ccc" style = "display:none" '.($count[0]["gps_A_GPS"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="GPS_1" style="'.($count[0]["gps_A_GPS"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">A-GPS ('.$count[0]["gps_A_GPS"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="A-GPS/GPS" id="GPS_2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="GPS[]" value="A-GPS/GPS" id="GPS_2" class="ccc" style = "display:none" '.($count[0]["gps_A_GPS_GPS"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="GPS_2" style="'.($count[0]["gps_A_GPS_GPS"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">A-GPS/GPS ('.$count[0]["gps_A_GPS_GPS"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="GPS" id="GPS_3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="GPS[]" value="GPS" id="GPS_3" class="ccc" style = "display:none" '.($count[0]["gps_GPS"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="GPS_3" style="'.($count[0]["gps_GPS"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">GPS ('.$count[0]["gps_GPS"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="нет GPS" id="GPS_4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="GPS[]" value="нет GPS" id="GPS_4" class="ccc" style = "display:none" '.($count[0]["gps_no"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="GPS_4" style="'.($count[0]["gps_no"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">нет ('.$count[0]["gps_no"].')</span></label>
                             </div>
@@ -1575,22 +1566,22 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Емкость аккумулятора</p>
                             <div>
-                                <input type="checkbox" name="battery[]" value="0.1-3000" id="battery_0.1-3000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="battery[]" value="0.1-3000" id="battery_0.1-3000" class="ccc" style = "display:none" '.($count[0]["batar_0_3000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="battery_0.1-3000" style="'.($count[0]["batar_0_3000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">до 3000 mAh ('.$count[0]["batar_0_3000"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="battery[]" value="3000-5000" id="battery_3000-5000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="battery[]" value="3000-5000" id="battery_3000-5000" class="ccc" style = "display:none" '.($count[0]["batar_3000_5000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="battery_3000-5000" style="'.($count[0]["batar_3000_5000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">3000 - 5000 mAh ('.$count[0]["batar_3000_5000"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="battery[]" value="5000-8000" id="battery_5000-8000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="battery[]" value="5000-8000" id="battery_5000-8000" class="ccc" style = "display:none" '.($count[0]["batar_5000_8000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="battery_5000-8000" style="'.($count[0]["batar_5000_8000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">5000-8000 mAh ('.$count[0]["batar_5000_8000"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="battery[]" value="8000-100000" id="battery_8000-100000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="battery[]" value="8000-100000" id="battery_8000-100000" class="ccc" style = "display:none" '.($count[0]["batar_more_8000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="battery_8000-100000" style="'.($count[0]["batar_more_8000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">более 8000 mAh ('.$count[0]["batar_more_8000"].')</span></label>
                             </div>
@@ -1608,22 +1599,22 @@ class Characteristics extends CActiveRecord
                   <div class="filter_selected">
                       <div class="selected_item">
                          <div>
-                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc" style = "display:none">
+                             <input type="checkbox" name="common[]" value="promotion" id="promotion" class="ccc" style = "display:none" '.($count_promotion==0?"disabled":"").'>
                              <label class="goods_content_label" for="promotion" style="'.($count_promotion==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
                              <span class="selected_value">Акции ('.$count_promotion.')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="common[]" value="top" id="top" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="common[]" value="top" id="top" class="ccc" style = "display:none" '.($count_top==0?"disabled":"").'>
                              <label class="goods_content_label" for="top" style="'.($count_top==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Хит продаж ('.$count_top.')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="common[]" value="novelty" id="novelty" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="common[]" value="novelty" id="novelty" class="ccc" style = "display:none" '.($count_novelty==0?"disabled":"").'>
                              <label class="goods_content_label" for="novelty" style="'.($count_novelty==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Новинка ('.$count_novelty.')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="common[]" value="bestPrice" id="bestPrice" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="common[]" value="bestPrice" id="bestPrice" class="ccc" style = "display:none" '.($count_bestPrice==0?"disabled":"").'>
                              <label class="goods_content_label" for="bestPrice" style="'.($count_bestPrice==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">Лучшая цена ('.$count_bestPrice.')</span></label>
                          </div>
@@ -1646,7 +1637,7 @@ class Characteristics extends CActiveRecord
                         if($j == $i)
                         {
                             echo '<div>
-                                     <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" >
+                                     <input type="checkbox" name="brand[]" value="'.$item.'" id="brand_'.$item.'" class="ccc" style = "display:none" '.($maker==0?"disabled":"").'>
                                      <label class="goods_content_label" for="brand_'.$item.'" style="'.($maker==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                      <span class="selected_value">'.$item.' ('.$maker.')</span></label>
                                  </div>';
@@ -1658,59 +1649,59 @@ class Characteristics extends CActiveRecord
                  echo    '
                           <p>Тип</p>
                           <div>
-                             <input type="checkbox" name="type[]" value="Ноутбук" id="type_notebook" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="type[]" value="Ноутбук" id="type_notebook" class="ccc" style = "display:none" '.($count[0]["notebook"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="type_notebook" style="'.($count[0]["notebook"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Ноутбук ('.$count[0]["notebook"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="type[]" value="Нетбук" id="type_netbook" class="ccc" style = "display:none" >
-                             <label class="goods_content_label" for="type_netbook" style="'.($count[0]["tel"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>    
+                             <input type="checkbox" name="type[]" value="Нетбук" id="type_netbook" class="ccc" style = "display:none" '.($count[0]["netbook"]==0?"disabled":"").'>
+                             <label class="goods_content_label" for="type_netbook" style="'.($count[0]["netbook"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>    
                              <span class="selected_value">Нетбук ('.$count[0]["netbook"].')</span></label>
                          </div>
                          
                          <p>Операционная система</p>
                          <div>
-                             <input type="checkbox" name="os[]" value="Linux" id="os_linux" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Linux" id="os_linux" class="ccc" style = "display:none" '.($count[0]["os_linux"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_linux" style="'.($count[0]["os_linux"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Linux ('.$count[0]["os_linux"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Windows 8" id="os_Windows_8" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Windows 8" id="os_Windows_8" class="ccc" style = "display:none" '.($count[0]["os_Windows_8"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Windows_8" style="'.($count[0]["os_Windows_8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Windows 8 ('.$count[0]["os_Windows_8"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Windows 7" id="os_Windows_7" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Windows 7" id="os_Windows_7" class="ccc" style = "display:none" '.($count[0]["os_Windows_7"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Windows_7" style="'.($count[0]["os_Windows_7"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Windows 7 ('.$count[0]["os_Windows_7"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Windows 10" id="os_Windows_10" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Windows 10" id="os_Windows_10" class="ccc" style = "display:none" '.($count[0]["os_Windows_10"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Windows_10" style="'.($count[0]["os_Windows_10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Windows 10 ('.$count[0]["os_Windows_10"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Mac OS" id="os_Mac_OS" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Mac OS" id="os_Mac_OS" class="ccc" style = "display:none" '.($count[0]["os_Mac_OS"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Mac_OS" style="'.($count[0]["os_Mac_OS"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Mac OS ('.$count[0]["os_Mac_OS"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Windows 8.1" id="os_Windows_81" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Windows 8.1" id="os_Windows_81" class="ccc" style = "display:none" '.($count[0]["os_Windows_81"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Windows_81" style="'.($count[0]["os_Windows_81"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Windows 8.1 ('.$count[0]["os_Windows_81"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Windows RT" id="os_Windows_RT" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Windows RT" id="os_Windows_RT" class="ccc" style = "display:none" '.($count[0]["os_Windows_RT"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Windows_RT" style="'.($count[0]["os_Windows_RT"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Windows RT ('.$count[0]["os_Windows_RT"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Linpus" id="os_Linpus" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Linpus" id="os_Linpus" class="ccc" style = "display:none" '.($count[0]["os_Linpus"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="os_Linpus" style="'.($count[0]["os_Linpus"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Linpus ('.$count[0]["os_Linpus"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="os[]" value="Без ОС" id="no_os" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="os[]" value="Без ОС" id="no_os" class="ccc" style = "display:none" '.($count[0]["no_os"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="no_os" style="'.($count[0]["no_os"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>   
                              <span class="selected_value">Без ОС ('.$count[0]["no_os"].')</span></label>
                          </div>
@@ -1726,22 +1717,22 @@ class Characteristics extends CActiveRecord
                       <div class="selected_item">
                          <p>Диагональ экрана</p>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="0-13" id="diagonal_0_13" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="0-13" id="diagonal_0_13" class="ccc" style = "display:none" '.($count[0]["diagonal_0_13"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="diagonal_0_13" style="'.($count[0]["diagonal_0_13"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">до 13" ('.$count[0]["diagonal_0_13"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="13-16" id="diagonal_13_16" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="13-16" id="diagonal_13_16" class="ccc" style = "display:none" '.($count[0]["diagonal_13_16"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="diagonal_13_16" style="'.($count[0]["diagonal_13_16"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">13"-16" ('.$count[0]["diagonal_13_16"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="16-18" id="diagonal_16_18" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="16-18" id="diagonal_16_18" class="ccc" style = "display:none" '.($count[0]["diagonal_16_18"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="diagonal_16_18" style="'.($count[0]["diagonal_16_18"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">16"-18" ('.$count[0]["diagonal_16_18"].')</span></label>
                          </div>
                          <div>
-                             <input type="checkbox" name="diagonal[]" value="18-100" id="diagonal_18_100" class="ccc" style = "display:none" >
+                             <input type="checkbox" name="diagonal[]" value="18-100" id="diagonal_18_100" class="ccc" style = "display:none" '.($count[0]["diagonal_18_100"]==0?"disabled":"").'>
                              <label class="goods_content_label" for="diagonal_18_100" style="'.($count[0]["diagonal_18_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                              <span class="selected_value">18" и более ('.$count[0]["diagonal_18_100"].')</span></label>
                          </div>
@@ -1756,77 +1747,77 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Процессор</p>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core i7" id="Intel_Core_i7" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core i7" id="Intel_Core_i7" class="ccc" style = "display:none" '.($count[0]["Intel_Core_i7"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_i7" style="'.($count[0]["Intel_Core_i7"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">Intel Core i7 ('.$count[0]["Intel_Core_i7"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core i5" id="Intel_Core_i5" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core i5" id="Intel_Core_i5" class="ccc" style = "display:none" '.($count[0]["Intel_Core_i5"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_i5" style="'.($count[0]["Intel_Core_i5"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core i5 ('.$count[0]["Intel_Core_i5"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core i3" id="Intel_Core_i3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core i3" id="Intel_Core_i3" class="ccc" style = "display:none" '.($count[0]["Intel_Core_i3"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_i3" style="'.($count[0]["Intel_Core_i3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core i3 ('.$count[0]["Intel_Core_i3"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core M3" id="Intel_Core_M3" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core M3" id="Intel_Core_M3" class="ccc" style = "display:none" '.($count[0]["Intel_Core_M3"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_M3" style="'.($count[0]["Intel_Core_M3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core M3 ('.$count[0]["Intel_Core_M3"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core M" id="Intel_Core_M" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core M" id="Intel_Core_M" class="ccc" style = "display:none" '.($count[0]["Intel_Core_M"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_M" style="'.($count[0]["Intel_Core_M"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core M ('.$count[0]["Intel_Core_M"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core Pentium" id="Intel_Core_Pentium" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core Pentium" id="Intel_Core_Pentium" class="ccc" style = "display:none" '.($count[0]["Intel_Core_Pentium"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_Pentium" style="'.($count[0]["Intel_Core_Pentium"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core Pentium ('.$count[0]["Intel_Core_Pentium"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core Celeron" id="Intel_Core_Celeron" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core Celeron" id="Intel_Core_Celeron" class="ccc" style = "display:none" '.($count[0]["Intel_Core_Celeron"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_Celeron" style="'.($count[0]["Intel_Core_Celeron"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core Celeron ('.$count[0]["Intel_Core_Celeron"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="Intel Core Atom" id="Intel_Core_Atom" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="Intel Core Atom" id="Intel_Core_Atom" class="ccc" style = "display:none" '.($count[0]["Intel_Core_Atom"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Intel_Core_Atom" style="'.($count[0]["Intel_Core_Atom"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">Intel Core Atom ('.$count[0]["Intel_Core_Atom"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="nVidia" id="nVidia" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="nVidia" id="nVidia" class="ccc" style = "display:none" '.($count[0]["nVidia"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="nVidia" style="'.($count[0]["nVidia"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">nVidia ('.$count[0]["nVidia"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="AMD FX" id="AMD_FX" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="AMD FX" id="AMD_FX" class="ccc" style = "display:none" '.($count[0]["AMD_FX"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="AMD_FX" style="'.($count[0]["AMD_FX"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">AMD FX ('.$count[0]["AMD_FX"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="AMD E" id="AMD_E" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="AMD E" id="AMD_E" class="ccc" style = "display:none" '.($count[0]["AMD_E"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="AMD_E" style="'.($count[0]["AMD_E"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">AMD E ('.$count[0]["AMD_E"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="AMD A10" id="AMD_A10" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="AMD A10" id="AMD_A10" class="ccc" style = "display:none" '.($count[0]["AMD_A10"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="AMD_A10" style="'.($count[0]["AMD_A10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">AMD A10 ('.$count[0]["AMD_A10"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="AMD A8" id="AMD_A8" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="AMD A8" id="AMD_A8" class="ccc" style = "display:none" '.($count[0]["AMD_A8"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="AMD_A8" style="'.($count[0]["AMD_A8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">AMD A8 ('.$count[0]["AMD_A8"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="AMD A6" id="AMD_A6" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="AMD A6" id="AMD_A6" class="ccc" style = "display:none" '.($count[0]["AMD_A6"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="AMD_A6" style="'.($count[0]["AMD_A6"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">AMD A6 ('.$count[0]["AMD_A6"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="cpu_type[]" value="AMD A4" id="AMD_A4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="cpu_type[]" value="AMD A4" id="AMD_A4" class="ccc" style = "display:none" '.($count[0]["AMD_A4"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="AMD_A4" style="'.($count[0]["AMD_A4"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">AMD A4 ('.$count[0]["AMD_A4"].')</span></label>
                             </div>
@@ -1834,12 +1825,12 @@ class Characteristics extends CActiveRecord
                         
                             <p>Количесвтво ядер</p>
                             <div>
-                                <input type="checkbox" name="core[]" value="x2" id="core_x2" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x2" id="core_x2" class="ccc" style = "display:none" '.($count[0]["core_x2"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x2" style="'.($count[0]["core_x2"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">x2 ('.$count[0]["core_x2"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="core[]" value="x4" id="core_x4" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="core[]" value="x4" id="core_x4" class="ccc" style = "display:none" '.($count[0]["core_x4"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="core_x4" style="'.($count[0]["core_x4"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">x4 ('.$count[0]["core_x4"].')</span></label>
                             </div>
@@ -1852,36 +1843,31 @@ class Characteristics extends CActiveRecord
                     </div>
                     <div class="filter_selected">
                         <div class="selected_item">
-                            <p>Объем видеокарты</p>
+                            <p>Видеокарта</p>
                             <div>
-                                <input type="checkbox" name="camera[]" value="0-3" id="0-3" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="0-3" style="'.($count[0]["cam_0_3"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
-                                <span class="selected_value">... ('.$count[0]["cam_0_3"].')</span></label>
+                                <input type="checkbox" name="video[]" value="Интегрированная" id="integr" class="ccc" style = "display:none" '.($count[0]["integr"]==0?"disabled":"").'>
+                                <label class="goods_content_label" for="integr" style="'.($count[0]["integr"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>
+                                <span class="selected_value">Интегрированная ('.$count[0]["integr"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="3-5" id="3-5" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="3-5" style="'.($count[0]["cam_3_5"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
-                                <span class="selected_value">... ('.$count[0]["cam_3_5"].')</span></label>
+                                <input type="checkbox" name="video[]" value="AMD FirePro" id="FirePro" class="ccc" style = "display:none" '.($count[0]["FirePro"]==0?"disabled":"").'>
+                                <label class="goods_content_label" for="FirePro" style="'.($count[0]["FirePro"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">AMD FirePro ('.$count[0]["FirePro"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="5-8" id="5-8" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="5-8" style="'.($count[0]["cam_5_8"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
-                                <span class="selected_value">... ('.$count[0]["cam_5_8"].')</span></label>
+                                <input type="checkbox" name="video[]" value="AMD Radeon" id="Radeon" class="ccc" style = "display:none" '.($count[0]["Radeon"]==0?"disabled":"").'>
+                                <label class="goods_content_label" for="Radeon" style="'.($count[0]["Radeon"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">AMD Radeon ('.$count[0]["Radeon"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="8-13" id="8-13" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="8-13" style="'.($count[0]["cam_8_13"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
-                                <span class="selected_value">... ('.$count[0]["cam_8_13"].')</span></label>
+                                <input type="checkbox" name="video[]" value="nVidia GeForce" id="GeForce" class="ccc" style = "display:none" '.($count[0]["GeForce"]==0?"disabled":"").'>
+                                <label class="goods_content_label" for="GeForce" style="'.($count[0]["GeForce"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">nVidia GeForce ('.$count[0]["GeForce"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="camera[]" value="13-20" id="13-20" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="13-20" style="'.($count[0]["cam_13_20"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
-                                <span class="selected_value">... ('.$count[0]["cam_13_20"].')</span></label>
-                            </div>
-                            <div>
-                                <input type="checkbox" name="camera[]" value="20-100" id="20-100" class="ccc" style = "display:none" >
-                                <label class="goods_content_label" for="20-100" style="'.($count[0]["cam_20_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
-                                <span class="selected_value">... ('.$count[0]["cam_20_100"].')</span></label>
+                                <input type="checkbox" name="video[]" value="nVidia Quadro" id="Quadro" class="ccc" style = "display:none" '.($count[0]["Quadro"]==0?"disabled":"").'>
+                                <label class="goods_content_label" for="Quadro" style="'.($count[0]["Quadro"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
+                                <span class="selected_value">nVidia Quadro ('.$count[0]["Quadro"].')</span></label>
                             </div>
                             
                         </div>  
@@ -1893,22 +1879,22 @@ class Characteristics extends CActiveRecord
                         <div class="selected_item">
                             <p>Оперативная память</p>
                             <div>
-                                <input type="checkbox" name="ram[]" value="0.1-3.99" id="ram_0_399" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="0.1-3.99" id="ram_0_399" class="ccc" style = "display:none" '.($count[0]["ram_0_399"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_0_399" style="'.($count[0]["ram_0_399"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">до 4ГБ ('.$count[0]["ram_0_399"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="4-6" id="ram_4_6" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="4-6" id="ram_4_6" class="ccc" style = "display:none" '.($count[0]["ram_4_6"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_4_6" style="'.($count[0]["ram_4_6"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">4-6 ГБ ('.$count[0]["ram_4_6"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="8-10" id="ram_8_10" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="8-10" id="ram_8_10" class="ccc" style = "display:none" '.($count[0]["ram_8_10"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_8_10" style="'.($count[0]["ram_8_10"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">8-10ГБ ('.$count[0]["ram_8_10"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="ram[]" value="12-100" id="ram_12_100" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="ram[]" value="12-100" id="ram_12_100" class="ccc" style = "display:none" '.($count[0]["ram_12_100"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="ram_12_100" style="'.($count[0]["ram_12_100"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">12 ГБ и более ('.$count[0]["ram_12_100"].')</span></label>
                             </div>
@@ -1923,49 +1909,49 @@ class Characteristics extends CActiveRecord
                             
                             <p>Жесткий диск HDD</p>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="0-499.99" id="HDD_0_499" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="HDD[]" value="0-499.99" id="HDD_0_499" class="ccc" style = "display:none" '.($count[0]["HDD_0_499"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="HDD_0_499" style="'.($count[0]["HDD_0_499"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">до 500 ГБ ('.$count[0]["HDD_0_499"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="500-749.99" id="HDD_500_750" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="HDD[]" value="500-749.99" id="HDD_500_750" class="ccc" style = "display:none" '.($count[0]["HDD_500_750"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="HDD_500_750" style="'.($count[0]["HDD_500_750"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">500-750 ГБ ('.$count[0]["HDD_500_750"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="750-999.99" id="HDD_750_1000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="HDD[]" value="750-999.99" id="HDD_750_1000" class="ccc" style = "display:none" '.($count[0]["HDD_750_1000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="HDD_750_1000" style="'.($count[0]["HDD_750_1000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">750 ГБ - 1 ТБ ('.$count[0]["HDD_750_1000"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="1000-1999.99" id="HDD_1000_2000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="HDD[]" value="1000-1999.99" id="HDD_1000_2000" class="ccc" style = "display:none" '.($count[0]["HDD_1000_2000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="HDD_1000_2000" style="'.($count[0]["HDD_1000_2000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">1ТБ - 2 ТБ ('.$count[0]["HDD_1000_2000"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="2000-10000" id="HDD_2000_10000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="HDD[]" value="2000-10000" id="HDD_2000_10000" class="ccc" style = "display:none" '.($count[0]["HDD_2000_10000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="HDD_2000_10000" style="'.($count[0]["HDD_2000_10000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">2 ТБ и более ('.$count[0]["HDD_2000_10000"].')</span></label>
                             </div>
                             
                             <p>Жесткий диск SSD</p>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="0-255.99" id="SSD_0_256" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="SSD[]" value="0-255.99" id="SSD_0_256" class="ccc" style = "display:none" '.($count[0]["SSD_0_256"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="SSD_0_256" style="'.($count[0]["SSD_0_256"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">до 256 ГБ ('.$count[0]["SSD_0_256"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="256-511.99" id="SSD_256_512" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="SSD[]" value="256-511.99" id="SSD_256_512" class="ccc" style = "display:none" '.($count[0]["SSD_256_512"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="SSD_256_512" style="'.($count[0]["SSD_256_512"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">256-512 ГБ ('.$count[0]["SSD_256_512"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="512-999.99" id="SSD_512_1000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="SSD[]" value="512-999.99" id="SSD_512_1000" class="ccc" style = "display:none" '.($count[0]["SSD_512_1000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="SSD_512_1000" style="'.($count[0]["SSD_512_1000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">512ГБ-1ТБ ('.$count[0]["SSD_512_1000"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="GPS[]" value="1000-10000" id="SSD_1000_10000" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="SSD[]" value="1000-10000" id="SSD_1000_10000" class="ccc" style = "display:none" '.($count[0]["SSD_1000_10000"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="SSD_1000_10000" style="'.($count[0]["SSD_1000_10000"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span>  
                                 <span class="selected_value">1ТБ и более ('.$count[0]["SSD_1000_10000"].')</span></label>
                             </div>
@@ -1978,17 +1964,17 @@ class Characteristics extends CActiveRecord
                     <div class="filter_selected">
                         <div class="selected_item">
                             <div>
-                                <input type="checkbox" name="battery[]" value="DVD" id="DVD" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="DVD" id="DVD" class="ccc" style = "display:none" '.($count[0]["DVD"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="DVD" style="'.($count[0]["DVD"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">DVD ('.$count[0]["DVD"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="battery[]" value="Blu-Ray" id="Blu_Ray" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="Blu-Ray" id="Blu_Ray" class="ccc" style = "display:none" '.($count[0]["Blu_Ray"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="Blu_Ray" style="'.($count[0]["Blu_Ray"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">Blu-Ray ('.$count[0]["Blu_Ray"].')</span></label>
                             </div>
                             <div>
-                                <input type="checkbox" name="battery[]" value="нет" id="no_DVD" class="ccc" style = "display:none" >
+                                <input type="checkbox" name="rom[]" value="нет" id="no_DVD" class="ccc" style = "display:none" '.($count[0]["no_DVD"]==0?"disabled":"").'>
                                 <label class="goods_content_label" for="no_DVD" style="'.($count[0]["no_DVD"]==0?"opacity: 0.5; cursor:default;":"").'"><span class="glyphicon glyphicon-unchecked"></span> 
                                 <span class="selected_value">нет ('.$count[0]["no_DVD"].')</span></label>
                             </div>

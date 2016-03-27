@@ -14,13 +14,14 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-
+    
+    
+    
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
         'application.extensions.shoppingCart.*',
-        'application.extensions.yiidebugtb.*',
 	),
 
 	'modules'=>array(
@@ -37,7 +38,12 @@ return array(
 
 	// application components
 	'components'=>array(
-
+        
+        'cache' => array(
+            'class' => 'CDbCache',
+            'connectionID' => 'db',
+        ),
+        
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -66,8 +72,8 @@ return array(
              'transportType'=>'smtp',
              'transportOptions'=>array(
              'host'=>'smtp.gmail.com',
-             'username'=>'artem.donetsk@gmail.com',
-             'password'=>'1456RTHomaS',
+             'username'=>'mob.mir.net@gmail.com',
+             'password'=>'vj,bkmysqvbh9510357',
              'port'=>'465',
              'encryption'=>'ssl',
              ),
@@ -97,17 +103,7 @@ return array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
-                array( // configuration for the toolbar
-          'class'=>'XWebDebugRouter',
-          'config'=>'alignLeft, opaque, runInDebug, fixedPos, collapsed, yamlStyle',
-          'levels'=>'error, warning, trace, profile, info',
-          'allowedIPs'=>array('127.0.0.1','::1','192.168.1.54','192\.168\.1[0-5]\.[0-9]{3}'),),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
+                
 			),
 		),
 

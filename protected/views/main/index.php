@@ -48,10 +48,10 @@
     <div class="content_index_menu col-md-120 hidden-sm hidden-xs">
         <div class="header_nav">
             <ul class="menu">
-                <li class="nav_items"><a href="#">Сотрудничество</a></li>
+                <li class="nav_items"><a href="/main/page/4">Сотрудничество</a></li>
                 <li class="nav_items"><a href="/main/orderNumber">Проверить статус заказа</a></li>
-                <li class="nav_items"><a href="#">Товар под заказ</a></li>
-                <li class="nav_items"><a href="#">Забери товар в ближайшем магазине</a></li>
+                <li class="nav_items"><a href="/main/page/5">Товар под заказ</a></li>
+                <li class="nav_items"><a href="/main/page/6">Забери товар в ближайшем магазине</a></li>
             </ul>
         </div>
     </div>    
@@ -109,7 +109,39 @@
                     if ($j == 0)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">
+                                    ';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '                                                                                                            
+                                    <img src="../../../upload/images/'.$topGoods->photo.'" />
+                                </div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>    
                                 </div>
@@ -144,7 +176,36 @@
                     else if ($j == 1)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
@@ -175,7 +236,36 @@
                     else if ($j == 2)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
@@ -206,7 +296,36 @@
                     else if ($j == 3)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
@@ -259,7 +378,36 @@
                     if ($j == 0)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>    
                                 </div>
@@ -290,7 +438,36 @@
                     else if ($j == 1)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name
                                                                                 .'</a></div>       
@@ -322,7 +499,36 @@
                     else if ($j == 2)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
@@ -353,7 +559,36 @@
                     else if ($j == 3)
                     {
                         echo '<a href="/main/product/'.$topGoods->id.'"><div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods->photo.'" /></div>
+                                <div class="content_index_img">';
+                                    $i = 0;
+                                    if($topGoods->top==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->promotion==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->novelty==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods->bestPrice==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods->photo.'" /></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods->categoryId->category->id.'">'.$topGoods->categoryId->category->category_name.'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods->id.'">'.$topGoods->model_name.'</a></div>       
                                 </div>
@@ -442,15 +677,44 @@
                 {
                     if ($j == 0)
                     {
-                        echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
+                        echo '<div class="col-md-40 col-sm-60 col-xs-120 content_first_item">
+                                <div class="content_index_img"><a href="/main/product/'.$topGoods['id'].'">';
+                                    $i = 0;
+                                    if($topGoods['top']==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['promotion']==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['novelty']==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['bestPrice']==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods["photo"].'" /></a></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
-                            </div></a>
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
                                     $(\'.loader\').css({\'display\':\'block\'});
@@ -473,15 +737,44 @@
                     
                     else if ($j == 1)
                     {
-                        echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
+                        echo '<div class="col-md-40 col-sm-60 col-xs-120 content_second_item">
+                                <div class="content_index_img"><a href="/main/product/'.$topGoods['id'].'">';
+                                    $i = 0;
+                                    if($topGoods['top']==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['promotion']==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['novelty']==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['bestPrice']==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods["photo"].'" /></a></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
-                            </div></a>
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
                                     $(\'.loader\').css({\'display\':\'block\'});
@@ -504,15 +797,44 @@
                     
                     else if ($j == 2)
                     {
-                        echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
+                        echo '<div class="col-md-40 col-sm-60 col-xs-120 content_third_item">
+                                <div class="content_index_img"><a href="/main/product/'.$topGoods['id'].'">';
+                                    $i = 0;
+                                    if($topGoods['top']==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['promotion']==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['novelty']==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['bestPrice']==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods["photo"].'" /></a></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
-                            </div></a>
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
                                     $(\'.loader\').css({\'display\':\'block\'});
@@ -535,15 +857,44 @@
                     
                     else if ($j == 3)
                     {
-                        echo '<a href="/main/product/'.$topGoods['id'].'"><div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
-                                <div class="content_index_img"><img src="../../../upload/images/'.$topGoods["photo"].'" /></div>
+                        echo '<div class="col-md-40 col-sm-60 col-xs-120 content_fourth_item">
+                                <div class="content_index_img"><a href="/main/product/'.$topGoods['id'].'">';
+                                    $i = 0;
+                                    if($topGoods['top']==1)
+                                    {
+                                        echo '<img src="../../../images/top.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['promotion']==1)
+                                    {
+                                        echo '<img src="../../../images/promotion.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['novelty']==1)
+                                    {
+                                        echo '<img src="../../../images/novelty.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    if($topGoods['bestPrice']==1)
+                                    {
+                                        echo '<img src="../../../images/best_price.png" class="stiker'.($i == 0 ? "1" : ($i == 1 ? "2" : ($i == 2 ? "3" : "4"))).'" />';
+                                        $i++;
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    echo '<img src="../../../upload/images/'.$topGoods["photo"].'" /></a></div>
                                 <div class="content_description"><a href="/main/goods/category_id/'.$topGoods["category_id"].'">'.$topGoods["category_name"].'></a>
                                     <div class="content_tel_title"><a href="/main/product/'.$topGoods['id'].'">'.$topGoods["model_name"].'</a></div>    
                                 </div>
                                 <p class="content_old_price"><s>'.($topGoods["old_price"] != 0?$topGoods["old_price"].' р':"").'</s></p>
                                 <p class="content_price">'.$topGoods["price"].' р</p>
-                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">Купить</div>   
-                            </div></a>
+                                <div class="content_button_buy" id="submit_rnd'.$topGoods['id'].'">'.($topGoods['quantity']>0?'Купить':'Заказать').'</div>   
+                            </div>
                             <script>
                                 $(\'body\').on(\'click\',\'#submit_rnd'.$topGoods['id'].'\',function(){
                                     $(\'.loader\').css({\'display\':\'block\'});
@@ -580,37 +931,27 @@
     <div class="row">
         <div class="col-md-80 col-sm-120 col-xs-120 content_news_cont">
             <div class="content_news_header">
-                <p class="text-uppercase">Новости</p>
+                <p class="text-uppercase"><a href="/main/news">Новости</a></p>
             </div>
             <div class="row content_news_text">
-                <!--
-                <div class="col-md-60 col-sm-60 col-xs-120 content_news_news1">
-                    <h3>18 декабря состоялось открытие нашего нового магазина по адресу</h3>
-                    <p class="content_news_date">21 дек 2016</p>
-                    <p class="content_news_textnews">18 декабря состоялось открытие нашего нового магазина по адресу: г. Донецк, ул. Стадионная 3д (Амстор 2 этаж). В период с 18 декабря по 31 декабря включительно в магазине на стадионной проходила акция, по итогом которой было разыграно 2 телефона и наушники.</p>
-                </div>
-                <div class="col-md-60 col-sm-60 hidden-xs content_news_news2">
-                    <h3>18 декабря состоялось открытие нашего нового магазина по адресу</h3>
-                    <p class="content_news_date">21 дек 2016</p>
-                    <p class="content_news_textnews">18 декабря состоялось открытие нашего нового магазина по адресу: г. Донецк, ул. Стадионная 3д (Амстор 2 этаж). В период с 18 декабря по 31 декабря включительно в магазине на стадионной проходила акция, по итогом которой было разыграно 2 телефона и наушники.</p>
-                </div>-->
+                
                 
                 <?php foreach ($news as $n=>$text_news)
                       {
                         if($n == 0)
                         {
                             echo '<div class="col-md-60 col-sm-60 col-xs-120 content_news_news1">
-                                      <h3>'.ShortNewsHelper::getShortTextNews($text_news->title, 7).'</h3>
+                                      <a href="/main/news/'.$text_news->id.'"><h3>'.ShortNewsHelper::getShortTextNews($text_news->title, 7).'</h3></a>
                                       <p class="content_news_date">'.date("j.m.Y" , $text_news->date).'</p>
-                                      <p class="content_news_textnews">'.ShortNewsHelper::getShortTextNews($text_news->text, 50).'</p>
+                                      <p class="content_news_textnews"> '.ShortNewsHelper::getShortTextNews($text_news->text, 35).' </p>
                                   </div>';
                         }
                         else if($n == 1)
                         {
                             echo '<div class="col-md-60 col-sm-60 col-xs-120 content_news_news1">
-                                      <h3>'.$text_news->title.'</h3>
+                                      <a href="/main/news/'.$text_news->id.'"><h3>'.ShortNewsHelper::getShortTextNews($text_news->title, 7).'</h3></a>
                                       <p class="content_news_date">'.date("j.m.Y" , $text_news->date).'</p>
-                                      <p class="content_news_textnews">'.ShortNewsHelper::getShortTextNews($text_news->text, 50).'</p>
+                                      <p class="content_news_textnews">'.ShortNewsHelper::getShortTextNews($text_news->text, 35).'</p>
                                   </div>';
                         }
                         else

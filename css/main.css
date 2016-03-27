@@ -284,3 +284,6 @@ div.search-form
     text-decoration: none;
 }
 
+ul.dropdown-menu{
+    background-color: #4993BE;
+}

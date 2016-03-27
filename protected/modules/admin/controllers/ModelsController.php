@@ -142,6 +142,7 @@ class ModelsController extends Controller
 		if(isset($_POST['Models']))
 		{
 		    $model->attributes=$_POST['Models'];
+            $model->description=$_POST['Models']['description'];
             $acces = explode(',', $_POST['Models']['accessories']);
             $accessories = array();
             foreach($acces as $item)
